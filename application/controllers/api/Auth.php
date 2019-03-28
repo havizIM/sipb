@@ -64,15 +64,14 @@ class Auth extends CI_Controller {
                 'cluster' => 'ap1',
                 'useTLS' => true
               );
-
               $pusher = new Pusher\Pusher(
-                '0f89f53520bf144dd3b6',
-                '2d20ddcf6d5362f84a1a',
-                '745996',
+                '6a169a704ab461b9a26a',
+                'd5825b3c03af460c453f',
+                '745965',
                 $options
               );
 
-              $pusher->trigger('siso', 'log', $data);
+              $pusher->trigger('my-channel', 'log', $data);
 
               if(!$log){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal melakukan login' ));
@@ -117,15 +116,14 @@ class Auth extends CI_Controller {
             'cluster' => 'ap1',
             'useTLS' => true
           );
-
           $pusher = new Pusher\Pusher(
-            '0f89f53520bf144dd3b6',
-            '2d20ddcf6d5362f84a1a',
-            '745996',
+            '6a169a704ab461b9a26a',
+            'd5825b3c03af460c453f',
+            '745965',
             $options
           );
 
-          $pusher->trigger('siso', 'log', $log);
+          $pusher->trigger('my-channel', 'log', $log);
 
           if(!$add_log){
             json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
@@ -181,15 +179,14 @@ class Auth extends CI_Controller {
                 'cluster' => 'ap1',
                 'useTLS' => true
               );
-
               $pusher = new Pusher\Pusher(
-                '0f89f53520bf144dd3b6',
-                '2d20ddcf6d5362f84a1a',
-                '745996',
+                '6a169a704ab461b9a26a',
+                'd5825b3c03af460c453f',
+                '745965',
                 $options
               );
 
-              $pusher->trigger('siso', 'log', $log);
+              $pusher->trigger('my-channel', 'log', $log);
 
               if(!$pass){
                 json_output(500, array('status' => 500, 'description' => 'Gagal', 'message' => 'Gagal mengganti password'));

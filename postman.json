@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "7446ca17-c67a-478f-92d9-8188e4d63fd8",
+		"name": "SIPB",
+		"description": "Sistem Informasi Persediaan Barang",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Show Log",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/log/show/2fa535dfeca3f34",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"log",
+						"show",
+						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/auth/logout_user/2fa535dfeca3f34",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"auth",
+						"logout_user",
+						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ganti Password User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password_lama",
+							"value": "h3lpd35k",
+							"type": "text"
+						},
+						{
+							"key": "password_baru",
+							"value": "helpdesk",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/auth/password_user/2fa535dfeca3f34",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"auth",
+						"password_user",
+						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_user",
+							"value": "Kalyssa Innara Putri",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "kalyssaip",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "Aktif",
+							"description": "Aktif / Nonaktif",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/user/edit/2fa535dfeca3f34?id_user=USR00000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"user",
+						"edit",
+						"2fa535dfeca3f34"
+					],
+					"query": [
+						{
+							"key": "id_user",
+							"value": "USR00000001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "helpdesk",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "h3lpd35k",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/auth/login_user",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"auth",
+						"login_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/user/show/2fa535dfeca3f34",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"user",
+						"show",
+						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
+				},
+				"url": {
+					"raw": "localhost/sipb/api/user/delete/2fa535dfeca3f34?id_user=U00001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"user",
+						"delete",
+						"2fa535dfeca3f34"
+					],
+					"query": [
+						{
+							"key": "id_user",
+							"value": "U00001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_user",
+							"value": "DIan Ratna Sari",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "dianrs",
+							"type": "text"
+						},
+						{
+							"key": "level",
+							"value": "Admin",
+							"description": "Admin / Manajer / Cabang / Sales",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/user/add/2fa535dfeca3f34",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"user",
+						"add",
+						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "592a8d46-29fc-49aa-a375-b49c434497a3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3dbcb3c6-db68-4283-ac49-0287494631f1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

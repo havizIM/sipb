@@ -88,7 +88,7 @@ class User extends CI_Controller {
             } else {
 
               $data = array(
-                'id_user'   => $this->KodeModel->buatKode('user', 'U', 'id_user', 5),
+                'id_user'   => $this->KodeModel->buatKode('user', 'USR', 'id_user', 8),
                 'nama_user' => $nama_user,
                 'username'  => $username,
                 'password'  => substr(str_shuffle("01234567890abcdefghijklmnopqestuvwxyz"), 0, 5),
