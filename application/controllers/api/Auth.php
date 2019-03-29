@@ -36,13 +36,17 @@ class Auth extends CI_Controller {
             $status         = $key->status;
             $level          = $key->level;
 
+            if($level == 'Kepala Gudang'){
+              $level = 'kepala_gudang';
+            }
+
             $session = array(
               'id_user'        => $key->id_user,
               'nama_user'      => $key->nama_user,
               'username'       => $key->username,
               'tgl_registrasi' => $key->tgl_registrasi,
               'foto'           => $key->foto,
-              'level'          => strtolower($key->level),
+              'level'          => strtolower($level),
               'token'          => $key->token
             );
 
