@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2019 at 07:54 AM
+-- Generation Time: Mar 29, 2019 at 07:41 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -72,7 +72,8 @@ INSERT INTO `log` (`id_log`, `user`, `keterangan`, `kategori`, `tgl_log`) VALUES
 (1, 'helpdesk', 'User login', 'Login', '2019-03-28 06:23:48'),
 (2, 'helpdesk', 'User login', 'Login', '2019-03-28 06:27:33'),
 (3, 'helpdesk', 'User logout', 'Logout', '2019-03-28 06:29:25'),
-(4, 'helpdesk', 'Mengganti password lama menjadi password baru', 'Ganti Password', '2019-03-28 06:31:03');
+(4, 'helpdesk', 'Mengganti password lama menjadi password baru', 'Ganti Password', '2019-03-28 06:31:03'),
+(5, 'helpdesk', 'User login', 'Login', '2019-03-28 20:15:23');
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,7 @@ CREATE TABLE `user` (
   `nama_user` varchar(50) NOT NULL,
   `username` varchar(15) NOT NULL,
   `password` varchar(15) NOT NULL,
-  `level` enum('Admin','Sales','Cabang','Helpdesk','Manajer') NOT NULL,
+  `level` enum('Admin','Sales','Kepala Gudang','Helpdesk','Manager') NOT NULL,
   `tgl_registrasi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `foto` text NOT NULL,
   `status` enum('Aktif','Nonaktif','','') NOT NULL,
@@ -145,7 +146,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -155,7 +156,7 @@ ALTER TABLE `log`
 -- Constraints for table `log`
 --
 ALTER TABLE `log`
-  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
