@@ -21,59 +21,22 @@
 
   <script type="text/javascript">
 
-    // function cek_auth(){
-    //   var session = localStorage.getItem('session');
-    //   var auth = JSON.parse(session);
-    //
-    //   if (session) {
-    //     window.location.replace('<?= base_url() ?>'+auth.hak_akses+'/')
-    //   };
-    // };
-    //
-    // cek_auth();
-    //
+    function cek_auth(){
+      var session = localStorage.getItem('sipb');
+      var auth = JSON.parse(session);
+
+      if (session) {
+        window.location.replace('<?= base_url() ?>'+auth.level+'/')
+      };
+    };
+
+    cek_auth();
+
   </script>
 
   <style media="screen">
 
-    .btn-show-pass {
-      font-size: 15px;
-      color: #999999;
 
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
-      align-items: center;
-      position: absolute;
-      height: 100%;
-      top: 0;
-      right: 0;
-      padding-right: 5px;
-      margin-right: 13px;
-      cursor: pointer;
-      -webkit-transition: all 0.4s;
-      -o-transition: all 0.4s;
-      -moz-transition: all 0.4s;
-      transition: all 0.4s;
-    }
-
-    .btn-show-pass:hover {
-      color: #6a7dfe;
-      color: -webkit-linear-gradient(left, #21d4fd, #b721ff);
-      color: -o-linear-gradient(left, #21d4fd, #b721ff);
-      color: -moz-linear-gradient(left, #21d4fd, #b721ff);
-      color: linear-gradient(left, #21d4fd, #b721ff);
-    }
-
-    .btn-show-pass.active {
-      color: #6a7dfe;
-      color: -webkit-linear-gradient(left, #21d4fd, #b721ff);
-      color: -o-linear-gradient(left, #21d4fd, #b721ff);
-      color: -moz-linear-gradient(left, #21d4fd, #b721ff);
-      color: linear-gradient(left, #21d4fd, #b721ff);
-    }
 
   </style>
 
@@ -85,7 +48,7 @@
     <div class="login-box card">
       <div class="card-body">
         <form class="form-horizontal form-material text-center" id="form_login" action="index.html">
-          <a href="javascript:void(0)" class="db"><img src="<?= base_url(''); ?>assets/images/logo.png" alt="Home" style="width: 50%;"></a>
+          <a href="javascript:void(0)" class="db"><img src="<?= base_url(''); ?>assets/images/logo.png" alt="Home" style="width: 65%;"></a>
           <div class="form-group m-t-40">
             <div class="col-xs-12">
               <input class="form-control" id="username" name="username" type="text" required="" placeholder="Username">
@@ -154,7 +117,8 @@
             success: function(response){
               if(response.status === 200){
                 localStorage.setItem('sipb', JSON.stringify(response.data));
-                window.location.replace('<?= base_url() ?>'+response.data.hak_akses+'/')
+                var link = '<?= base_url('') ?>'+response.data.level+'/'
+                window.location.replace(link);
               } else {
                 alert(response.message);
               }
