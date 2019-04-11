@@ -56,8 +56,10 @@ class Barang extends CI_Controller {
 
               $log = array(
                 'user'        => $otorisasi->id_user,
-                'keterangan'  => 'Menambah data barang '.$no_persediaan,
-                'kategori'    => 'Barang'
+                'id_ref'      => $no_persediaan,
+                'refrensi'    => 'Barang',
+                'keterangan'  => 'Menambah data barang',
+                'kategori'    => 'Add'
               );
 
               $add = $this->BarangModel->add($data, $log);
@@ -78,7 +80,6 @@ class Barang extends CI_Controller {
                 );
 
                 $pusher->trigger('sipb', 'barang', $log);
-
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menambah data barang'));
               }
             }
@@ -178,8 +179,10 @@ class Barang extends CI_Controller {
             } else {
               $log = array(
                 'user'        => $otorisasi->id_user,
-                'keterangan'  => 'Menghapus Barang '.$no_persediaan,
-                'kategori'    => 'Barang'
+                'id_ref'      => $no_persediaan,
+                'refrensi'    => 'Barang',
+                'keterangan'  => 'Menghapus data barang',
+                'kategori'    => 'Delete'
               );
 
               $delete = $this->BarangModel->delete($no_persediaan, $log);
@@ -199,7 +202,6 @@ class Barang extends CI_Controller {
                 );
 
                 $pusher->trigger('sipb', 'barang', $log);
-
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menghapus data barang'));
               }
             }
@@ -263,8 +265,10 @@ class Barang extends CI_Controller {
 
                 $log = array(
                   'user'        => $otorisasi->id_user,
-                  'keterangan'  => 'Mengedit data barang '.$no_persediaan,
-                  'kategori'    => 'Barang'
+                  'id_ref'      => $no_persediaan,
+                  'refrensi'    => 'Barang',
+                  'keterangan'  => 'Mengedit data barang',
+                  'kategori'    => 'Edit'
                 );
 
                 $edit = $this->BarangModel->edit($no_persediaan, $data, $log);

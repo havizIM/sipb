@@ -21,21 +21,52 @@ class UserModel extends CI_Model {
       return $this->db->get();
     }
 
-    function add($data)
+    function add($data, $log)
     {
-      return $this->db->insert('user', $data);
+      $this->db->trans_start();
+      $this->db->insert('user', $data);
+      $this->db->insert('log', $log);
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE){
+        $this->db->trans_rollback();
+        return false;
+      } else {
+        $this->db->trans_commit();
+        return true;
+      }
     }
 
-    function edit($param, $data)
+    function edit($param, $data, $log)
     {
-      $this->db->where('id_user', $param);
-      return $this->db->update('user', $data);
+      $this->db->trans_start();
+      $this->db->where('id_user', $param)->update('user', $data);
+      $this->db->insert('log', $log);
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE){
+        $this->db->trans_rollback();
+        return false;
+      } else {
+        $this->db->trans_commit();
+        return true;
+      }
     }
 
-    function delete($param)
+    function delete($param, $log)
     {
-      $this->db->where('id_user', $param);
-      return $this->db->delete('user');
+      $this->db->trans_start();
+      $this->db->where('id_user', $param);->delete('user');
+      $this->db->insert('log', $log);
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE){
+        $this->db->trans_rollback();
+        return false;
+      } else {
+        $this->db->trans_commit();
+        return true;
+      }
     }
 }
 

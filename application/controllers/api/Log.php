@@ -34,6 +34,8 @@ class Log extends CI_Controller {
               $json['id_log']     = $key->id_log;
               $json['id_user']    = $key->id_user;
               $json['nama_user']  = $key->nama_user;
+              $json['id_ref']     = $key->id_ref;
+              $json['refrensi']   = $key->refrensi;
               $json['keterangan'] = $key->keterangan;
               $json['kategori']   = $key->kategori;
               $json['tgl_log']    = $key->tgl_log;

@@ -1,5 +1,7 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
+require 'vendor/autoload.php';
 
 class User extends CI_Controller {
 
@@ -79,6 +81,7 @@ class User extends CI_Controller {
           if($otorisasi->level != 'Helpdesk'){
             json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
           } else {
+            $id_user    = $this->KodeModel->buatKode('user', 'USR', 'id_user', 8);
             $nama_user  = $this->input->post('nama_user');
             $username   = $this->input->post('username');
             $level      = $this->input->post('level');
@@ -88,7 +91,7 @@ class User extends CI_Controller {
             } else {
 
               $data = array(
-                'id_user'   => $this->KodeModel->buatKode('user', 'USR', 'id_user', 8),
+                'id_user'   => $id_user,
                 'nama_user' => $nama_user,
                 'username'  => $username,
                 'password'  => substr(str_shuffle("01234567890abcdefghijklmnopqestuvwxyz"), 0, 5),
@@ -98,11 +101,31 @@ class User extends CI_Controller {
                 'token'     => sha1($username)
               );
 
-              $add = $this->UserModel->add($data);
+              $log = array(
+                'user'        => $otorisasi->id_user,
+                'id_ref'      => $id_user,
+                'refrensi'    => 'User',
+                'keterangan'  => 'Menambah data user baru',
+                'kategori'    => 'Add'
+              );
+
+              $add = $this->UserModel->add($data, $log);
 
               if(!$add){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menambah data user'));
               } else {
+                $options = array(
+                  'cluster' => 'ap1',
+                  'useTLS' => true
+                );
+                $pusher = new Pusher\Pusher(
+                  '6a169a704ab461b9a26a',
+                  'd5825b3c03af460c453f',
+                  '745965',
+                  $options
+                );
+
+                $pusher->trigger('sipb', 'user', $log);
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menambah data user'));
               }
             }
@@ -149,11 +172,31 @@ class User extends CI_Controller {
                   'status'    => $status
                 );
 
-                $edit = $this->UserModel->edit($id_user, $data);
+                $log = array(
+                  'user'        => $otorisasi->id_user,
+                  'id_ref'      => $id_user,
+                  'refrensi'    => 'User',
+                  'keterangan'  => 'Mengedit data user',
+                  'kategori'    => 'Edit'
+                );
+
+                $edit = $this->UserModel->edit($id_user, $data, $log);
 
                 if(!$edit){
                   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal mengedit user'));
                 } else {
+                  $options = array(
+                    'cluster' => 'ap1',
+                    'useTLS' => true
+                  );
+                  $pusher = new Pusher\Pusher(
+                    '6a169a704ab461b9a26a',
+                    'd5825b3c03af460c453f',
+                    '745965',
+                    $options
+                  );
+
+                  $pusher->trigger('sipb', 'user', $log);
                   json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil mengedit user'));
                 }
               }
@@ -189,11 +232,31 @@ class User extends CI_Controller {
             if($id_user == null){
               json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'ID User tidak ditemukan'));
             } else {
-              $delete = $this->UserModel->delete($id_user);
+              $log = array(
+                'user'        => $otorisasi->id_user,
+                'id_ref'      => $id_user,
+                'refrensi'    => 'User',
+                'keterangan'  => 'Menghapus data user baru',
+                'kategori'    => 'Delete'
+              );
+
+              $delete = $this->UserModel->delete($id_user, $log);
 
               if(!$delete){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menghapus user'));
               } else {
+                $options = array(
+                  'cluster' => 'ap1',
+                  'useTLS' => true
+                );
+                $pusher = new Pusher\Pusher(
+                  '6a169a704ab461b9a26a',
+                  'd5825b3c03af460c453f',
+                  '745965',
+                  $options
+                );
+
+                $pusher->trigger('sipb', 'user', $log);
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menghapus user'));
               }
             }
