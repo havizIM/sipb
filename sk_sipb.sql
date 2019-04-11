@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2019 at 08:08 PM
+-- Generation Time: Apr 11, 2019 at 08:14 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -33,7 +33,8 @@ CREATE TABLE `barang` (
   `nama_persediaan` varchar(50) NOT NULL,
   `satuan` varchar(20) NOT NULL,
   `warna` varchar(10) NOT NULL,
-  `merk` varchar(30) NOT NULL,
+  `keterangan` varchar(30) NOT NULL,
+  `foto` text NOT NULL,
   `tgl_input` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -41,9 +42,10 @@ CREATE TABLE `barang` (
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`no_persediaan`, `nama_persediaan`, `satuan`, `warna`, `merk`, `tgl_input`) VALUES
-('HYY-01X070-LV/S', 'HYY 1 X 70 MM2', 'Meter', '-', '-', '2019-04-01 18:10:56'),
-('HYY-01X095-LV/S', 'HYY 1 X 95 MM2', 'Meter', '-', '-', '2019-04-01 18:10:56');
+INSERT INTO `barang` (`no_persediaan`, `nama_persediaan`, `satuan`, `warna`, `keterangan`, `foto`, `tgl_input`) VALUES
+('HYY-01X070-LV/S', 'HYY 1 X 70 MM2', 'Meter', '-', '-', '', '2019-04-01 18:10:56'),
+('HYY-01X095-LV/S', 'HYY 1 X 95 MM2', 'Meter', '-', '-', '', '2019-04-01 18:10:56'),
+('NYX123126', 'Coba', 'Coba', 'Coba', 'Coba', 'NYX123126.jpg', '2019-04-10 20:52:22');
 
 -- --------------------------------------------------------
 
@@ -123,39 +125,6 @@ CREATE TABLE `customer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
---
-
-CREATE TABLE `kategori` (
-  `id_indentifikasi` int(11) NOT NULL,
-  `no_persediaan` varchar(15) NOT NULL,
-  `no_identifikasi` varchar(10) NOT NULL,
-  `keterangan` varchar(15) NOT NULL,
-  `saldo_awal` int(11) NOT NULL,
-  `tgl_input` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `kategori`
---
-
-INSERT INTO `kategori` (`id_indentifikasi`, `no_persediaan`, `no_identifikasi`, `keterangan`, `saldo_awal`, `tgl_input`) VALUES
-(1, 'HYY-01X070-LV/S', '01', '-', 0, '2019-04-01 18:14:22'),
-(2, 'HYY-01X070-LV/S', '81-19', '-', 0, '2019-04-01 18:14:22'),
-(3, 'HYY-01X070-LV/S', '81-24', '-', 0, '2019-04-01 18:14:22'),
-(4, 'HYY-01X070-LV/S', '81-25', '-', 0, '2019-04-01 18:14:22'),
-(5, 'HYY-01X070-LV/S', '81-26', '-', 0, '2019-04-01 18:14:22'),
-(6, 'HYY-01X070-LV/S', '81-27', '-', 0, '2019-04-01 18:14:22'),
-(7, 'HYY-01X070-LV/S', '82-01', '-', 0, '2019-04-01 18:14:22'),
-(8, 'HYY-01X095-LV/S', '01', '-', 0, '2019-04-01 18:18:14'),
-(9, 'HYY-01X095-LV/S', '02', '-', 0, '2019-04-01 18:18:14'),
-(10, 'HYY-01X095-LV/S', '84-05', '-', 0, '2019-04-01 18:18:14'),
-(11, 'HYY-01X095-LV/S', '84-06', '-', 0, '2019-04-01 18:18:14'),
-(12, 'HYY-01X095-LV/S', '84-07', '-', 0, '2019-04-01 18:18:14');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `log`
 --
 
@@ -179,7 +148,16 @@ INSERT INTO `log` (`id_log`, `user`, `keterangan`, `kategori`, `tgl_log`) VALUES
 (5, 'USR00000001', 'User login', 'Login', '2019-03-28 20:15:23'),
 (6, 'USR00000001', 'User login', 'Login', '2019-04-05 17:48:58'),
 (7, 'USR00000001', 'User logout', 'Logout', '2019-04-05 17:49:56'),
-(8, 'USR00000001', 'User login', 'Login', '2019-04-05 17:51:40');
+(8, 'USR00000001', 'User login', 'Login', '2019-04-05 17:51:40'),
+(9, 'USR00000001', 'User logout', 'Logout', '2019-04-05 18:33:10'),
+(10, 'USR00000002', 'User login', 'Login', '2019-04-10 19:46:08'),
+(11, 'USR00000002', 'User login', 'Login', '2019-04-10 20:01:38'),
+(12, 'USR00000002', 'Menambah data barang ', 'Barang', '2019-04-10 20:44:54'),
+(13, 'USR00000002', 'Menambah data barang ', 'Barang', '2019-04-10 20:48:26'),
+(14, 'USR00000002', 'Menambah data barang NYX123126', 'Barang', '2019-04-10 20:52:23'),
+(15, 'USR00000002', 'Menghapus Barang 0', 'Barang', '2019-04-11 03:06:58'),
+(16, 'USR00000002', 'Mengedit data barang NYX123126', 'Barang', '2019-04-11 03:29:09'),
+(17, 'USR00000002', 'Mengedit data barang NYX123126', 'Barang', '2019-04-11 03:30:03');
 
 -- --------------------------------------------------------
 
@@ -209,6 +187,39 @@ CREATE TABLE `memorandum_detail` (
   `qty_keluar` int(11) NOT NULL,
   `keterangan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penyimpanan`
+--
+
+CREATE TABLE `penyimpanan` (
+  `id_indentifikasi` int(11) NOT NULL,
+  `no_persediaan` varchar(15) NOT NULL,
+  `no_identifikasi` varchar(10) NOT NULL,
+  `keterangan` varchar(15) NOT NULL,
+  `saldo_awal` int(11) NOT NULL,
+  `tgl_input` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `penyimpanan`
+--
+
+INSERT INTO `penyimpanan` (`id_indentifikasi`, `no_persediaan`, `no_identifikasi`, `keterangan`, `saldo_awal`, `tgl_input`) VALUES
+(1, 'HYY-01X070-LV/S', '01', '-', 0, '2019-04-01 18:14:22'),
+(2, 'HYY-01X070-LV/S', '81-19', '-', 0, '2019-04-01 18:14:22'),
+(3, 'HYY-01X070-LV/S', '81-24', '-', 0, '2019-04-01 18:14:22'),
+(4, 'HYY-01X070-LV/S', '81-25', '-', 0, '2019-04-01 18:14:22'),
+(5, 'HYY-01X070-LV/S', '81-26', '-', 0, '2019-04-01 18:14:22'),
+(6, 'HYY-01X070-LV/S', '81-27', '-', 0, '2019-04-01 18:14:22'),
+(7, 'HYY-01X070-LV/S', '82-01', '-', 0, '2019-04-01 18:14:22'),
+(8, 'HYY-01X095-LV/S', '01', '-', 0, '2019-04-01 18:18:14'),
+(9, 'HYY-01X095-LV/S', '02', '-', 0, '2019-04-01 18:18:14'),
+(10, 'HYY-01X095-LV/S', '84-05', '-', 0, '2019-04-01 18:18:14'),
+(11, 'HYY-01X095-LV/S', '84-06', '-', 0, '2019-04-01 18:18:14'),
+(12, 'HYY-01X095-LV/S', '84-07', '-', 0, '2019-04-01 18:18:14');
 
 -- --------------------------------------------------------
 
@@ -334,8 +345,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `level`, `tgl_registrasi`, `foto`, `status`, `token`) VALUES
 ('USR00000001', 'helpdesk', 'helpdesk', 'helpdesk', 'Helpdesk', '2019-03-24 17:28:40', 'helpdesk.jpg', 'Aktif', '2fa535dfeca3f34'),
 ('USR00000002', 'Kalyssa Innara Putri', 'kalyssaip', '37e4v', 'Admin', '2019-03-28 06:36:09', 'user.jpg', 'Aktif', 'e2baa50d717f2e8'),
-('USR00000003', 'Dian Ratna Sari', 'dianrs', 'm0ejl', 'Sales', '2019-04-05 17:54:39', 'user.jpg', 'Aktif', 'e2baa50d717f2e8'),
-('USR00000004', 'test', 'test', 'qd9ee', '', '2019-04-05 18:01:52', 'user.jpg', 'Aktif', 'a94a8fe5ccb19ba'),
+('USR00000003', 'Dian Ratna Sari', 'dianrs', 'm0ejl', 'Sales', '2019-04-05 17:54:39', 'user.jpg', 'Aktif', 'e2baa50d717f2e9'),
 ('USR00000005', 'Devan Dirgantara', 'devandp', 'ye37q', 'Manager', '2019-04-05 18:02:50', 'user.jpg', 'Aktif', 'cbb527c93eb9b52');
 
 --
@@ -387,13 +397,6 @@ ALTER TABLE `customer`
   ADD PRIMARY KEY (`id_customer`);
 
 --
--- Indexes for table `kategori`
---
-ALTER TABLE `kategori`
-  ADD PRIMARY KEY (`id_indentifikasi`),
-  ADD KEY `id_persediaan` (`no_persediaan`);
-
---
 -- Indexes for table `log`
 --
 ALTER TABLE `log`
@@ -414,6 +417,13 @@ ALTER TABLE `memorandum_detail`
   ADD PRIMARY KEY (`id_memorandum_detail`),
   ADD KEY `no_memo` (`no_memo`),
   ADD KEY `id_indentifikasi` (`id_indentifikasi`);
+
+--
+-- Indexes for table `penyimpanan`
+--
+ALTER TABLE `penyimpanan`
+  ADD PRIMARY KEY (`id_indentifikasi`),
+  ADD KEY `id_persediaan` (`no_persediaan`);
 
 --
 -- Indexes for table `pesanan`
@@ -493,22 +503,22 @@ ALTER TABLE `barang_masuk_detail`
   MODIFY `id_masuk_detail` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `kategori`
---
-ALTER TABLE `kategori`
-  MODIFY `id_indentifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `memorandum_detail`
 --
 ALTER TABLE `memorandum_detail`
   MODIFY `id_memorandum_detail` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `penyimpanan`
+--
+ALTER TABLE `penyimpanan`
+  MODIFY `id_indentifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pesanan_detail`
@@ -544,7 +554,7 @@ ALTER TABLE `barang_keluar`
 --
 ALTER TABLE `barang_keluar_detail`
   ADD CONSTRAINT `barang_keluar_detail_ibfk_1` FOREIGN KEY (`no_keluar`) REFERENCES `barang_keluar` (`no_keluar`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `barang_keluar_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `kategori` (`id_indentifikasi`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `barang_keluar_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `penyimpanan` (`id_indentifikasi`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `barang_masuk`
@@ -558,19 +568,13 @@ ALTER TABLE `barang_masuk`
 --
 ALTER TABLE `barang_masuk_detail`
   ADD CONSTRAINT `barang_masuk_detail_ibfk_1` FOREIGN KEY (`no_masuk`) REFERENCES `barang_masuk` (`no_masuk`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `barang_masuk_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `kategori` (`id_indentifikasi`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `barang_masuk_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `penyimpanan` (`id_indentifikasi`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `customer`
 --
 ALTER TABLE `customer`
   ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `return_masuk` (`id_customer`) ON UPDATE CASCADE;
-
---
--- Constraints for table `kategori`
---
-ALTER TABLE `kategori`
-  ADD CONSTRAINT `kategori_ibfk_1` FOREIGN KEY (`no_persediaan`) REFERENCES `barang` (`no_persediaan`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `log`
@@ -589,7 +593,13 @@ ALTER TABLE `memorandum`
 --
 ALTER TABLE `memorandum_detail`
   ADD CONSTRAINT `memorandum_detail_ibfk_1` FOREIGN KEY (`no_memo`) REFERENCES `memorandum` (`no_memo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `memorandum_detail_ibfk_2` FOREIGN KEY (`id_indentifikasi`) REFERENCES `kategori` (`id_indentifikasi`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `memorandum_detail_ibfk_2` FOREIGN KEY (`id_indentifikasi`) REFERENCES `penyimpanan` (`id_indentifikasi`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `penyimpanan`
+--
+ALTER TABLE `penyimpanan`
+  ADD CONSTRAINT `penyimpanan_ibfk_1` FOREIGN KEY (`no_persediaan`) REFERENCES `barang` (`no_persediaan`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pesanan`
@@ -603,7 +613,7 @@ ALTER TABLE `pesanan`
 --
 ALTER TABLE `pesanan_detail`
   ADD CONSTRAINT `pesanan_detail_ibfk_1` FOREIGN KEY (`no_pesanan`) REFERENCES `pesanan` (`no_pesanan`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pesanan_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `kategori` (`id_indentifikasi`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pesanan_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `penyimpanan` (`id_indentifikasi`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `return_keluar`
@@ -617,7 +627,7 @@ ALTER TABLE `return_keluar`
 --
 ALTER TABLE `return_keluar_detail`
   ADD CONSTRAINT `return_keluar_detail_ibfk_1` FOREIGN KEY (`no_return_keluar`) REFERENCES `return_keluar` (`no_return_keluar`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `return_keluar_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `kategori` (`id_indentifikasi`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `return_keluar_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `penyimpanan` (`id_indentifikasi`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `return_masuk`
@@ -630,7 +640,7 @@ ALTER TABLE `return_masuk`
 --
 ALTER TABLE `return_masuk_detail`
   ADD CONSTRAINT `return_masuk_detail_ibfk_1` FOREIGN KEY (`no_return_masuk`) REFERENCES `return_masuk` (`no_return_masuk`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `return_masuk_detail_ibfk_2` FOREIGN KEY (`id_indentifikasi`) REFERENCES `kategori` (`id_indentifikasi`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `return_masuk_detail_ibfk_2` FOREIGN KEY (`id_indentifikasi`) REFERENCES `penyimpanan` (`id_indentifikasi`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

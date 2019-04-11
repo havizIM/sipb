@@ -155,12 +155,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "helpdesk",
+							"value": "kalyssaip",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "helpdesk",
+							"value": "37e4v",
 							"type": "text"
 						}
 					]
@@ -217,7 +217,7 @@
 					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
 				},
 				"url": {
-					"raw": "localhost/sipb/api/user/delete/2fa535dfeca3f34?id_user=U00001",
+					"raw": "localhost/sipb/api/user/delete/2fa535dfeca3f34?id_user=USR00000004",
 					"host": [
 						"localhost"
 					],
@@ -231,7 +231,7 @@
 					"query": [
 						{
 							"key": "id_user",
-							"value": "U00001"
+							"value": "USR00000004"
 						}
 					]
 				}
@@ -275,6 +275,168 @@
 						"user",
 						"add",
 						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Barang",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "no_persediaan",
+							"value": "NYX123126",
+							"type": "text"
+						},
+						{
+							"key": "nama_persediaan",
+							"value": "asigfndafnad",
+							"type": "text"
+						},
+						{
+							"key": "satuan",
+							"value": "Meter",
+							"type": "text"
+						},
+						{
+							"key": "warna",
+							"value": "Hijau",
+							"type": "text"
+						},
+						{
+							"key": "keterangan",
+							"value": "Miako",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/barang/add/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"barang",
+						"add",
+						"e2baa50d717f2e8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Barang",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/barang/show/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"barang",
+						"show",
+						"e2baa50d717f2e8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Barang",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/barang/delete/e2baa50d717f2e8?no_persediaan=0",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"barang",
+						"delete",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_persediaan",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Barang",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_persediaan",
+							"value": "Coba",
+							"type": "text"
+						},
+						{
+							"key": "satuan",
+							"value": "Coba",
+							"type": "text"
+						},
+						{
+							"key": "warna",
+							"value": "Coba",
+							"type": "text"
+						},
+						{
+							"key": "keterangan",
+							"value": "Coba",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"value": "",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/barang/edit/e2baa50d717f2e8?no_persediaan=NYX123126",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"barang",
+						"edit",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_persediaan",
+							"value": "NYX123126"
+						}
 					]
 				}
 			},

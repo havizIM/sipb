@@ -75,7 +75,7 @@ class Auth extends CI_Controller {
                 $options
               );
 
-              $pusher->trigger('my-channel', 'log', $data);
+              $pusher->trigger('sipb', 'log', $data);
 
               if(!$log){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal melakukan login' ));
@@ -127,7 +127,7 @@ class Auth extends CI_Controller {
             $options
           );
 
-          $pusher->trigger('my-channel', 'log', $log);
+          $pusher->trigger('sipb', 'log', $log);
 
           if(!$add_log){
             json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
@@ -190,7 +190,7 @@ class Auth extends CI_Controller {
                 $options
               );
 
-              $pusher->trigger('my-channel', 'log', $log);
+              $pusher->trigger('sipb', 'log', $log);
 
               if(!$pass){
                 json_output(500, array('status' => 500, 'description' => 'Gagal', 'message' => 'Gagal mengganti password'));
