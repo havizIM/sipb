@@ -56,7 +56,7 @@ class UserModel extends CI_Model {
     function delete($param, $log)
     {
       $this->db->trans_start();
-      $this->db->where('id_user', $param);->delete('user');
+      $this->db->where('id_user', $param)->delete('user');
       $this->db->insert('log', $log);
       $this->db->trans_complete();
 
