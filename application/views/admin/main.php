@@ -50,7 +50,7 @@
     <style media="screen">
 
       .img-sidebar {
-        background-image: url(<?= base_url(''); ?>assets/images/background-sidebar.jpg);
+        background-image: url(<?= base_url(''); ?>assets/images/bg-sidebar.png);
         background-size: 420px;
         background-repeat: no-repeat;
         background-position: bottom;
