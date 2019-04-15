@@ -266,6 +266,38 @@ class User extends CI_Controller {
     }
   }
 
+  function statistic($token = null)
+  {
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $auth = $this->AuthModel->cekAuth($token);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+          $otorisasi = $auth->row();
+
+          if($otorisasi->level != 'Helpdesk'){
+            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
+          } else {
+
+            $statistic  = $this->UserModel->statistic()->result();
+            json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $statistic));
+
+          }
+        }
+      }
+    }
+  }
+
 }
 
 ?>

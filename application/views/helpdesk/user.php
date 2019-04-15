@@ -1,9 +1,17 @@
 <div class="container-fluid">
-  <div class="row page-titles align-self-center text-right">
-    <h4 class="text-themecolor" style="margin-left: 15px; margin-top: 8px;">User</h4>
-    <div class="d-flex justify-content-end col-md-11 align-items-center">
-      <button type="button" id="btn_add" class="btn btn-info d-none d-lg-block m-l-15" style="margin-right: -52px;"><i class="fa fa-plus-circle"></i> Tambah User</button>
-    </div>
+  <div class="row page-titles">
+      <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor">User</h4>
+      </div>
+      <div class="col-md-7 align-self-center text-right">
+          <div class="d-flex justify-content-end align-items-center">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
+                  <li class="breadcrumb-item active">User</li>
+              </ol>
+              <button type="button" id="btn_add" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah User</button>
+          </div>
+      </div>
   </div>
 
   <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
@@ -85,7 +93,7 @@
         <div class="card-body">
           <h4 class="card-title">Data User</h4>
           <div class="table-responsive m-t-40">
-            <table id="table_user" class="table table-bordered table-striped">
+            <table id="table_user" class="table table-striped">
               <thead>
                 <tr>
                   <th>Tgl Registrasi</th>
