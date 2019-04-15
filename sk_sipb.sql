@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2019 at 08:14 AM
+-- Generation Time: Apr 15, 2019 at 04:44 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -131,6 +131,8 @@ CREATE TABLE `customer` (
 CREATE TABLE `log` (
   `id_log` int(11) NOT NULL,
   `user` varchar(11) NOT NULL,
+  `id_ref` varchar(15) NOT NULL,
+  `refrensi` varchar(30) NOT NULL,
   `keterangan` text NOT NULL,
   `kategori` varchar(20) NOT NULL,
   `tgl_log` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -140,24 +142,17 @@ CREATE TABLE `log` (
 -- Dumping data for table `log`
 --
 
-INSERT INTO `log` (`id_log`, `user`, `keterangan`, `kategori`, `tgl_log`) VALUES
-(1, 'USR00000001', 'User login', 'Login', '2019-03-28 06:23:48'),
-(2, 'USR00000001', 'User login', 'Login', '2019-03-28 06:27:33'),
-(3, 'USR00000001', 'User logout', 'Logout', '2019-03-28 06:29:25'),
-(4, 'USR00000001', 'Mengganti password lama menjadi password baru', 'Ganti Password', '2019-03-28 06:31:03'),
-(5, 'USR00000001', 'User login', 'Login', '2019-03-28 20:15:23'),
-(6, 'USR00000001', 'User login', 'Login', '2019-04-05 17:48:58'),
-(7, 'USR00000001', 'User logout', 'Logout', '2019-04-05 17:49:56'),
-(8, 'USR00000001', 'User login', 'Login', '2019-04-05 17:51:40'),
-(9, 'USR00000001', 'User logout', 'Logout', '2019-04-05 18:33:10'),
-(10, 'USR00000002', 'User login', 'Login', '2019-04-10 19:46:08'),
-(11, 'USR00000002', 'User login', 'Login', '2019-04-10 20:01:38'),
-(12, 'USR00000002', 'Menambah data barang ', 'Barang', '2019-04-10 20:44:54'),
-(13, 'USR00000002', 'Menambah data barang ', 'Barang', '2019-04-10 20:48:26'),
-(14, 'USR00000002', 'Menambah data barang NYX123126', 'Barang', '2019-04-10 20:52:23'),
-(15, 'USR00000002', 'Menghapus Barang 0', 'Barang', '2019-04-11 03:06:58'),
-(16, 'USR00000002', 'Mengedit data barang NYX123126', 'Barang', '2019-04-11 03:29:09'),
-(17, 'USR00000002', 'Mengedit data barang NYX123126', 'Barang', '2019-04-11 03:30:03');
+INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `kategori`, `tgl_log`) VALUES
+(18, 'USR00000001', '-', 'Auth', 'User login', 'Login', '2019-04-12 03:01:08'),
+(19, 'USR00000001', '-', 'Auth', 'User login', 'Login', '2019-04-12 03:01:09'),
+(20, 'USR00000001', '-', 'Auth', 'User login', 'Login', '2019-04-12 03:01:50'),
+(21, 'USR00000001', '-', 'Auth', 'User logout', 'Logout', '2019-04-12 03:02:22'),
+(22, 'USR00000001', 'USR00000006', 'User', 'Menambah data user baru', 'Add', '2019-04-12 03:05:11'),
+(23, 'USR00000001', 'USR00000006', 'User', 'Mengedit data user', 'Edit', '2019-04-12 03:08:41'),
+(24, 'USR00000001', 'USR00000006', 'User', 'Menghapus data user baru', 'Delete', '2019-04-12 03:09:37'),
+(25, 'USR00000002', 'NYX123127', 'Barang', 'Menambah data barang', 'Add', '2019-04-12 03:11:15'),
+(26, 'USR00000002', 'NYX123127', 'Barang', 'Mengedit data barang', 'Edit', '2019-04-12 03:12:10'),
+(27, 'USR00000002', 'NYX123127', 'Barang', 'Menghapus data barang', 'Delete', '2019-04-12 03:12:53');
 
 -- --------------------------------------------------------
 
@@ -506,7 +501,7 @@ ALTER TABLE `barang_masuk_detail`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `memorandum_detail`
