@@ -41,6 +41,8 @@
 
     <!-- <link href="<?= base_url(''); ?>assets/node_modules/datatables/media/css/dataTables.bootstrap4.css" rel="stylesheet"> -->
 
+    <link href="<?= base_url(''); ?>assets/node_modules/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css"/>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css"/>
@@ -113,13 +115,9 @@
               </li>
 
               <li>
-                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                  <i class="ti-user"></i><span class="hide-menu">User</span>
+                <a class="waves-effect waves-dark" href="#/barang" aria-expanded="false">
+                  <i class="ti-package"></i><span class="hide-menu">Barang</span>
                 </a>
-                <ul aria-expanded="false" class="collapse">
-                  <li><a href="">Blabla</a></li>
-                  <li><a href="">Blabla</a></li>
-                </ul>
               </li>
 
             </ul>
@@ -184,6 +182,20 @@
     <script src="<?= base_url(''); ?>assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
 
     <script src="<?= base_url(''); ?>assets/dist/js/custom.min.js"></script>
+
+    <script src="<?= base_url('assets/dist/js/moment/moment.js'); ?>"></script>
+
+    <script src="<?= base_url(''); ?>assets/node_modules/sweetalert/sweetalert.min.js"></script>
+
+    <script src="<?= base_url(''); ?>assets/node_modules/sweetalert/jquery.sweet-alert.custom.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
 
     <script type="text/javascript">
 

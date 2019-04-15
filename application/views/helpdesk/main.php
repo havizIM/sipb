@@ -153,7 +153,7 @@
               </div>
 
               <div class="modal-footer">
-                <button type="submit" id="btn_ganti" class="btn btn-info waves-effect">Ganti</button>
+                <button type="submit" id="btn_ganti" class="btn btn-info waves-effect">Simpan</button>
               </div>
             </form>
           </div>
@@ -301,7 +301,7 @@
                     timer: 1500
                   });
                 }
-                $('#btn_ganti').removeClass('disabled').removeAttr('disabled', 'disabled').text('Ganti')
+                $('#btn_ganti').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
               },
               error: function(){
                 Swal.fire({

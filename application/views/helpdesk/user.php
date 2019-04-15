@@ -29,7 +29,7 @@
                 <option value="">-- Pilih Level --</option>
                 <option value="admin">Admin</option>
                 <option value="sales">Sales</option>
-                <option value="kepala_gudang">Kepala Gudang</option>
+                <option value="kepala gudang">Kepala Gudang</option>
                 <option value="manager">Manager</option>
               </select>
             </div>
@@ -47,7 +47,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="vcenter">Tambah User</h4>
+          <h4 class="modal-title" id="vcenter">Ubah User</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
 
@@ -72,7 +72,7 @@
 
           <div class="modal-footer">
             <input type="hidden" name="id_user" id="edit_id" value="">
-            <button type="submit" id="submit_edit" class="btn btn-info waves-effect">Tambah</button>
+            <button type="submit" id="submit_edit" class="btn btn-info waves-effect">Simpan</button>
           </div>
         </form>
       </div>
@@ -173,7 +173,7 @@
         Swal.fire({
           position: 'center',
           type: 'warning',
-          title: 'Mohon isi semua form yang ada',
+          title: response.message,
           showConfirmButton: false,
           timer: 1500
         });
@@ -182,6 +182,9 @@
           url: '<?= base_url('api/user/add/'); ?>'+auth.token,
           type: 'POST',
           dataType: 'JSON',
+          beforeSend: function(){
+            $('#submit_add').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
+          },
           data: {
             nama_user: nama_user,
             username: username,
@@ -192,7 +195,7 @@
               Swal.fire({
                 position: 'center',
                 type: 'success',
-                title: 'Berhasil menambah user',
+                title: response.message,
                 showConfirmButton: false,
                 timer: 1500
               });
@@ -208,6 +211,7 @@
                 timer: 1500
               });
             }
+            $('#submit_add').removeClass('disabled').removeAttr('disabled', 'disabled').text('Tambah')
           },
           error: function(){
             Swal.fire({
@@ -217,6 +221,7 @@
               showConfirmButton: false,
               timer: 1500
             });
+            $('#submit_add').removeClass('disabled').removeAttr('disabled', 'disabled').text('Tambah')
           }
         });
       }
@@ -271,6 +276,9 @@
           url: `<?= base_url('api/user/edit/') ?>${auth.token}?id_user=${id_user}`,
           type: 'POST',
           dataType: 'JSON',
+          beforeSend: function(){
+            $('#submit_edit').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
+          },
           data: {
             id_user: id_user,
             nama_user: nama_user,
@@ -282,7 +290,7 @@
               Swal.fire({
                 position: 'center',
                 type: 'success',
-                title: 'Berhasil mengubah data user',
+                title: response.message,
                 showConfirmButton: false,
                 timer: 1500
               });
@@ -298,6 +306,7 @@
                 timer: 1500
               });
             }
+            $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
           },
           error: function(){
             Swal.fire({
@@ -307,6 +316,7 @@
               showConfirmButton: false,
               timer: 1500
             });
+            $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
           }
         });
       }

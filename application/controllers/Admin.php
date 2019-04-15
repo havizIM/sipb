@@ -19,4 +19,9 @@ class Admin extends CI_Controller{
     $this->load->view('admin/dashboard');
   }
 
+  function barang()
+  {
+    $this->load->view('admin/barang');
+  }
+
 }

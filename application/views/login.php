@@ -2,11 +2,15 @@
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <meta name="description" content="">
+
   <meta name="author" content="">
 
   <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(''); ?>assets/images/favicon.png">
@@ -18,6 +22,8 @@
   <link href="<?= base_url(''); ?>assets/dist/css/style.min.css" rel="stylesheet">
 
   <script src="<?= base_url(''); ?>assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
+
+  <link href="<?= base_url(''); ?>assets/node_modules/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 
   <script type="text/javascript">
 
@@ -83,6 +89,10 @@
 
   <script src="<?= base_url(''); ?>assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
+  <script src="<?= base_url(''); ?>assets/node_modules/sweetalert/sweetalert.min.js"></script>
+
+  <script src="<?= base_url(''); ?>assets/node_modules/sweetalert/jquery.sweet-alert.custom.js"></script>
+
   <script type="text/javascript">
 
     $(document).ready(function(){
@@ -104,14 +114,20 @@
         var password = $('#password').val();
 
         if(username === '' || password === ''){
-          alert('Username atau Password tidak boleh kosong');
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Isi dulu Username dan Passwordnya',
+            showConfirmButton: false,
+            timer: 1500
+          })
         } else {
           $.ajax({
             url: '<?= base_url('api/auth/login_user'); ?>',
             type: 'POST',
             dataType: 'JSON',
             beforeSend: function(){
-              $('#btn_login').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-refresh fa-spin"></i>');
+              $('#btn_login').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
             },
             data: $('#form_login').serialize(),
             success: function(response){
@@ -120,12 +136,24 @@
                 var link = '<?= base_url('') ?>'+response.data.level+'/'
                 window.location.replace(link);
               } else {
-                alert(response.message);
+                Swal.fire({
+                  type: 'error',
+                  title: 'Oops...',
+                  text: response.message,
+                  showConfirmButton: false,
+                  timer: 1500
+                })
               }
               $('#btn_login').removeClass('disabled').removeAttr('disabled', 'disabled').text('Masuk');
             },
             error: function(){
-              alert(response.message);
+              Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Tidak dapat mengakses server',
+                showConfirmButton: false,
+                timer: 1500
+              })
               $('#btn_login').removeClass('disabled').removeAttr('disabled', 'disabled').text('Masuk');
             }
           });
