@@ -68,6 +68,17 @@ class UserModel extends CI_Model {
         return true;
       }
     }
+
+    function statistic()
+    {
+      $this->db->select("level, COUNT('id_user') as jml_user");
+
+      $this->db->from("user");
+      $this->db->where('level !=', 'Helpdesk');
+
+      $this->db->group_by("level");
+      return $this->db->get();
+    }
 }
 
 ?>
