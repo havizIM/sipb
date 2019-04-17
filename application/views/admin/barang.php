@@ -12,7 +12,7 @@
         <div class="card-body">
           <h4 class="card-title">Data Barang</h4>
           <div class="table-responsive m-t-40">
-            <table id="table_barang" class="table table-bordered table-striped">
+            <table id="table_barang" class="table table-striped table-hover">
               <thead>
                 <tr>
                   <th>Tgl Input</th>
@@ -234,7 +234,7 @@
         {"data": 'warna'},
         {"data": 'keterangan'},
         {"data": null, 'render': function(data, type, row){
-          return `<center><img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 40%;"></center>`
+          return `<center><img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 95%;"></center>`
           }
         },
         {"data": null, 'render': function(data, type, row){
@@ -250,7 +250,7 @@
 
       Swal.fire({
         title: 'Apa Anda yakin ingin menghapus ini?',
-        text: "User akan terhapus secara permanen",
+        text: "Barang akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

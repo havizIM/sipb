@@ -13,9 +13,9 @@
 
     <meta name="author" content="">
 
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(''); ?>assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(''); ?>assets/images/logo-mini.png">
 
-    <title>Helpdesk | SIPB</title>
+    <title>Helpdesk | SIMPB</title>
 
     <script src="<?= base_url(''); ?>assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
 
@@ -161,7 +161,7 @@
       </div>
 
       <footer class="footer">
-        © 2019 SIPB
+        © 2019 Sistem Informasi Manajemen Persediaan Barang
       </footer>
     </div>
 

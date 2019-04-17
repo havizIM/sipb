@@ -12,9 +12,9 @@
 
     <meta name="author" content="">
 
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(''); ?>assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(''); ?>assets/images/logo-mini.png">
 
-    <title>Admin | SIPB</title>
+    <title>Admin | SIMPB</title>
 
     <script src="<?= base_url(''); ?>assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
 
@@ -81,11 +81,6 @@
             <ul class="navbar-nav mr-auto">
               <li class="nav-item"> <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a></li>
               <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a></li>
-              <li class="nav-item">
-                <form class="app-search d-none d-md-block d-lg-block">
-                  <input type="text" class="form-control" placeholder="Search & enter">
-                </form>
-              </li>
             </ul>
 
             <ul class="navbar-nav my-lg-0">
@@ -161,7 +156,7 @@
       </div>
 
       <footer class="footer">
-        © 2019 SIPB
+        © 2019 Sistem Informasi Manajemen Persediaan Barang
       </footer>
     </div>
 
@@ -227,15 +222,27 @@
         })
 
         $('#btn_logout').on('click', function(){
-          $.ajax({
-            url: '<?= base_url('api/auth/logout_user/') ?>'+auth.token,
-            type: 'GET',
-            dataType: 'JSON',
-            success: function(response){
-              localStorage.clear();
-              window.location.replace('<?= base_url().'auth' ?>');
+          Swal.fire({
+            title: 'Apa Anda yakin ingin keluar?',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Saya yakin.',
+            cancelButtonText: 'Batal'
+          }).then((result) => {
+            if (result.value) {
+              $.ajax({
+                url: '<?= base_url('api/auth/logout_user/') ?>'+auth.token,
+                type: 'GET',
+                dataType: 'JSON',
+                success: function(response){
+                  localStorage.clear();
+                  window.location.replace('<?= base_url().'auth' ?>');
+                }
+              });
             }
-          });
+          })
         });
 
         $('#btn_modal_ganti').on('click', function(){
@@ -250,9 +257,21 @@
           var re_password = $('#re_password').val();
 
           if(password_lama === '' || password_baru === '') {
-            alert('Mohon isi data passwordnya');
+            Swal.fire({
+              position: 'center',
+              type: 'warning',
+              title: 'Data tidak boleh kosong',
+              showConfirmButton: false,
+              timer: 1500
+            });
           } else if (password_baru !== re_password) {
-            alert('Password baru belum sama');
+            Swal.fire({
+              position: 'center',
+              type: 'warning',
+              title: 'Password belum sama',
+              showConfirmButton: false,
+              timer: 1500
+            });
           } else {
             $.ajax({
               url: '<?= base_url('api/auth/password_user/') ?>'+auth.token,
@@ -267,16 +286,34 @@
               },
               success: function(response){
                 if(response.status === 200){
-                  alert('Berhasil mengubah password');
+                  Swal.fire({
+                    position: 'center',
+                    type: 'success',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                   $('#form_ganti')[0].reset();
                   $('#modal_ganti').modal('hide');
                 } else {
-                  alert(response.message);
+                  Swal.fire({
+                    position: 'center',
+                    type: 'warning',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 }
                 $('#btn_ganti').removeClass('disabled').removeAttr('disabled', 'disabled').text('Ganti')
               },
               error: function(){
-                alert(response.message);
+                Swal.fire({
+                  position: 'center',
+                  type: 'warning',
+                  title: 'Tidak dapat mengakses server',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
                 $('#btn_ganti').removeClass('disabled').removeAttr('disabled', 'disabled').text('Ganti')
               }
             });
