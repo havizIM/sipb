@@ -19,4 +19,19 @@ class Kepala_gudang extends CI_Controller{
     $this->load->view('kepala_gudang/dashboard');
   }
 
+  function barang()
+  {
+    $this->load->view('kepala_gudang/barang');
+  }
+
+  function stok()
+  {
+    $this->load->view('kepala_gudang/stok');
+  }
+
+  function supplier()
+  {
+    $this->load->view('kepala_gudang/supplier');
+  }
+
 }

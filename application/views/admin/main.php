@@ -115,12 +115,23 @@
                 </a>
               </li>
 
+              <li>
+                <a class="waves-effect waves-dark" href="#/stok" aria-expanded="false">
+                  <i class="fa fa-cubes"></i><span class="hide-menu">Stok</span>
+                </a>
+              </li>
+
+              <li>
+                <a class="waves-effect waves-dark" href="#/supplier" aria-expanded="false">
+                  <i class="ti-shopping-cart-full"></i><span class="hide-menu">Supplier</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
       </aside>
 
-      <div class="page-wrapper" id="content" style="background-image: url('<?= base_url('assets/images/bg-content.jpg') ?>'); background-blend-mode: screen;">
+      <div class="page-wrapper" id="content">
 
       </div>
 
@@ -226,10 +237,10 @@
             title: 'Apa Anda yakin ingin keluar?',
             type: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Saya yakin.',
-            cancelButtonText: 'Batal'
+            confirmButtonColor: '#3085d6',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya, Saya yakin.'
           }).then((result) => {
             if (result.value) {
               $.ajax({

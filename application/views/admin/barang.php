@@ -92,10 +92,6 @@
       <form class="form-horizontal" method="post" id="form_edit" enctype="multipart/form-data">
         <div class="modal-body form-group">
           <div class="form-group">
-            <input type="text" class="form-control" name="no_persediaan" id="edit_no_persediaan" placeholder="Nomor Persediaan">
-          </div>
-
-          <div class="form-group">
             <input type="text" class="form-control" name="nama_persediaan" id="edit_nama_persediaan" placeholder="Nama Persediaan">
           </div>
 
@@ -322,13 +318,12 @@
     $('#form_edit').on('submit', function(e){
       e.preventDefault();
 
-      var nama_persediaan = $('#edit_nama_persediaan').val();
       var satuan = $('#edit_satuan').val();
       var warna = $('#edit_warna').val();
       var keterangan = $('#edit_keterangan').val();
       var no_persediaan = $('#edit_id').val();
 
-      if(nama_persediaan === '' || satuan === '' || warna === '' || keterangan === ''){
+      if(satuan === '' || warna === '' || keterangan === ''){
         Swal.fire({
           position: 'center',
           type: 'warning',

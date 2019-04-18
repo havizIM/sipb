@@ -125,7 +125,7 @@
         </div>
       </aside>
 
-      <div class="page-wrapper" id="content" style="background-image: url('<?= base_url('assets/images/bg-content.jpg') ?>'); background-blend-mode: screen;">
+      <div class="page-wrapper" id="content">
 
       </div>
 

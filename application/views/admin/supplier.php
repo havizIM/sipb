@@ -1,45 +1,47 @@
 <div class="container-fluid">
   <div class="row page-titles">
-      <div class="col-md-5 align-self-center">
-          <h4 class="text-themecolor">User</h4>
+    <div class="col-md-5 align-self-center">
+      <h4 class="text-themecolor">Supplier</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+      <div class="d-flex justify-content-end align-items-center">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item active">Supplier</li>
+        </ol>
+        <button type="button" id="btn_add" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</button>
       </div>
-      <div class="col-md-7 align-self-center text-right">
-          <div class="d-flex justify-content-end align-items-center">
-              <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-                  <li class="breadcrumb-item active">User</li>
-              </ol>
-              <button type="button" id="btn_add" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah User</button>
-          </div>
-      </div>
+    </div>
   </div>
 
   <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="vcenter">Tambah User</h4>
+          <h4 class="modal-title" id="vcenter">Tambah Supplier</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
 
         <form class="form-horizontal" method="post" id="form_add">
           <div class="modal-body form-group">
             <div class="form-group">
-              <input type="text" class="form-control" name="nama_user" id="nama_user" placeholder="Nama User">
+              <input type="text" class="form-control" name="nama_supplier" id="nama_supplier" placeholder="Nama Supplier">
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+              <input type="text" class="form-control" name="telepon" id="telepon" placeholder="Telepon / HP">
             </div>
 
             <div class="form-group">
-              <select class="form-control" id="level" name="level">
-                <option value="">-- Pilih Level --</option>
-                <option value="admin">Admin</option>
-                <option value="sales">Sales</option>
-                <option value="kepala gudang">Kepala Gudang</option>
-                <option value="manager">Manager</option>
-              </select>
+              <input type="text" class="form-control" name="fax" id="fax" placeholder="Fax">
+            </div>
+
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+            </div>
+
+            <div class="form-group">
+              <textarea class="form-control" name="alamat" id="alamat" rows="8" cols="80" placeholder="Alamat"></textarea>
             </div>
           </div>
 
@@ -55,31 +57,35 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="vcenter">Ubah User</h4>
+          <h4 class="modal-title" id="vcenter">Ubah Supplier</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
 
         <form class="form-horizontal" method="post" id="form_edit">
           <div class="modal-body form-group">
             <div class="form-group">
-              <input type="text" class="form-control" name="nama_user" id="edit_nama" placeholder="Nama User">
+              <input type="text" class="form-control" name="nama_supplier" id="edit_nama_supplier" placeholder="Nama Supplier">
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="username" id="edit_username" placeholder="Username">
+              <input type="text" class="form-control" name="telepon" id="edit_telepon" placeholder="Telepon / HP">
             </div>
 
             <div class="form-group">
-              <select class="form-control" id="edit_status" name="status">
-                <option value="">-- Pilih Status --</option>
-                <option value="Aktif">Aktif</option>
-                <option value="Nonaktif">Nonaktif</option>
-              </select>
+              <input type="text" class="form-control" name="fax" id="edit_fax" placeholder="Fax">
+            </div>
+
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" id="edit_email" placeholder="Email">
+            </div>
+
+            <div class="form-group">
+              <textarea class="form-control" name="alamat" id="edit_alamat" rows="8" cols="80" placeholder="Alamat"></textarea>
             </div>
           </div>
 
           <div class="modal-footer">
-            <input type="hidden" name="id_user" id="edit_id" value="">
+            <input type="hidden" name="id_supplier" id="edit_id" value="">
             <button type="submit" id="submit_edit" class="btn btn-info waves-effect">Simpan</button>
           </div>
         </form>
@@ -91,18 +97,17 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Data User</h4>
+          <h4 class="card-title">Data Supplier</h4>
           <div class="table-responsive m-t-40">
-            <table id="table_user" class="table table-striped">
+            <table id="t_supplier" class="table table-striped">
               <thead>
                 <tr>
-                  <th>Tgl Registrasi</th>
-                  <th>ID User</th>
-                  <th>Nama User</th>
-                  <th>Username</th>
-                  <th>Level</th>
-                  <th>Foto</th>
-                  <th>Status</th>
+                  <th>Tgl Input</th>
+                  <th>Nama Supplier</th>
+                  <th>Telepon</th>
+                  <th>Fax</th>
+                  <th>Email</th>
+                  <th>Alamat</th>
                   <th style="width: 12%;"></th>
                 </tr>
               </thead>
@@ -124,48 +129,6 @@
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
 
-    var table = $('#table_user').DataTable({
-      columnDefs: [{
-        targets: [0, 2, 3, 4, 5, 6, 7],
-        searchable: false
-      }, {
-        targets: [7],
-        orderable: false
-      }],
-      autoWidth: false,
-      language: {
-        search: 'Cari Nama: _INPUT_',
-        lengthMenu: 'Tampilkan: _MENU_',
-        paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
-        info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ User',
-        zeroRecords: 'User tidak ditemukan',
-        infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ User',
-        loadingRecords: '<i class="fa fa-refresh fa-spin"></i>',
-        processing: 'Memuat....',
-        infoFiltered: ''
-      },
-      responsive: true,
-      processing: true,
-      ajax: '<?= base_url('api/user/show/'); ?>'+auth.token,
-      columns: [
-        {"data": null, 'render': function(data, type, row){
-            return moment(row.tgl_registrasi, 'YYYY-MM-DD hh:mm:ss').format('LLL')
-          }
-        },
-        {"data": 'id_user'},
-        {"data": 'nama_user'},
-        {"data": 'username'},
-        {"data": 'level'},
-        {"data": 'foto'},
-        {"data": 'status'},
-        {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="edit_user" data-id="${row.id_user}"><i class="far fa-edit"></i></button> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_user" data-id="${row.id_user}"><i class="fas fa-trash"></i></button>`
-          }
-        }
-      ],
-      order: [[1, 'desc']]
-    });
-
     $('#btn_add').on('click', function(){
       $('#modal_add').modal('show');
     })
@@ -173,11 +136,13 @@
     $('#form_add').on('submit', function(e){
       e.preventDefault();
 
-      var nama_user = $('#nama_user').val();
-      var username = $('#username').val();
-      var level = $('#level').val();
+      var nama_supplier = $('#nama_supplier').val();
+      var telepon = $('#telepon').val();
+      var fax = $('#fax').val();
+      var email = $('#email').val();
+      var alamat = $('#alamat').val();
 
-      if (nama_user === '' || username === '' || level === ''){
+      if (nama_supplier === '' || telepon === '' || fax === '' || email === '' || alamat === ''){
         Swal.fire({
           position: 'center',
           type: 'warning',
@@ -187,16 +152,18 @@
         });
       } else {
         $.ajax({
-          url: '<?= base_url('api/user/add/'); ?>'+auth.token,
+          url: '<?= base_url('api/supplier/add/'); ?>'+auth.token,
           type: 'POST',
           dataType: 'JSON',
           beforeSend: function(){
             $('#submit_add').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
           },
           data: {
-            nama_user: nama_user,
-            username: username,
-            level: level
+            nama_supplier: nama_supplier,
+            telepon: telepon,
+            fax: fax,
+            email: email,
+            alamat: alamat
           },
           success: function(response){
             if(response.status === 200){
@@ -235,27 +202,67 @@
       }
     });
 
-    $(document).on('click', '#edit_user', function(){
-      var id_user = $(this).attr('data-id');
+    var table = $('#t_supplier').DataTable({
+      columnDefs: [{
+        targets: [0, 2, 3, 4, 5],
+        searchable: false
+      }, {
+        targets: [5],
+        orderable: false
+      }],
+      autoWidth: false,
+      language: {
+        search: 'Cari (Nama Supplier): _INPUT_',
+        lengthMenu: 'Tampilkan: _MENU_',
+        paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
+        info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Data',
+        zeroRecords: 'Data tidak ditemukan',
+        infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Data',
+        loadingRecords: '<i class="fa fa-refresh fa-spin"></i>',
+        processing: 'Memuat....',
+        infoFiltered: ''
+      },
+      responsive: true,
+      processing: true,
+      ajax: '<?= base_url('api/supplier/show/'); ?>'+auth.token,
+      columns: [
+        {"data": 'tgl_input'},
+        {"data": 'nama_supplier'},
+        {"data": 'telepon'},
+        {"data": 'fax'},
+        {"data": 'email'},
+        {"data": 'alamat'},
+        {"data": null, 'render': function(data, type, row){
+          return `<button class="btn btn-info" id="edit_supplier" data-id="${row.id_supplier}"><i class="far fa-edit"></i></button> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_supplier" data-id="${row.id_supplier}"><i class="fas fa-trash"></i></button>`
+          }
+        }
+      ],
+      order: [[0, 'desc']]
+    });
+
+    $(document).on('click', '#edit_supplier', function(){
+      var id_supplier = $(this).attr('data-id');
 
       $.ajax({
-        url: `<?= base_url('api/user/show/') ?>${auth.token}?id_user=${id_user}`,
+        url: `<?= base_url('api/supplier/show/') ?>${auth.token}?id_supplier=${id_supplier}`,
         type: 'GET',
         dataType: 'JSON',
         success: function(response){
           $.each(response.data, function(k, v){
             $('#modal_edit').modal('show');
-            $('#edit_nama').val(v.nama_user);
-            $('#edit_username').val(v.username);
-            $('#edit_status').val(v.status);
-            $('#edit_id').val(v.id_user);
+            $('#edit_nama_supplier').val(v.nama_supplier);
+            $('#edit_telepon').val(v.telepon);
+            $('#edit_fax').val(v.fax);
+            $('#edit_email').val(v.email);
+            $('#edit_alamat').val(v.alamat);
+            $('#edit_id').val(v.id_supplier);
           })
         },
         error: function(){
           Swal.fire({
             position: 'center',
             type: 'warning',
-            title: response.message,
+            title: 'Tidak dapat mengakses server',
             showConfirmButton: false,
             timer: 1500
           });
@@ -266,12 +273,14 @@
     $('#form_edit').on('submit', function(e){
       e.preventDefault();
 
-      var nama_user = $('#edit_nama').val();
-      var username = $('#edit_username').val();
-      var status = $('#edit_status').val();
-      var id_user = $('#edit_id').val();
+      var nama_supplier = $('#edit_nama_supplier').val();
+      var telepon = $('#edit_telepon').val();
+      var fax = $('#edit_fax').val();
+      var email = $('#edit_email').val();
+      var alamat = $('#edit_alamat').val();
+      var id_supplier = $('#edit_id').val();
 
-      if(nama_user === '' || username === '' || level === ''){
+      if(nama_supplier === '' || telepon === '' || fax === '' || email === '' || alamat === ''){
         Swal.fire({
           position: 'center',
           type: 'warning',
@@ -281,17 +290,19 @@
         });
       } else {
         $.ajax({
-          url: `<?= base_url('api/user/edit/') ?>${auth.token}?id_user=${id_user}`,
+          url: `<?= base_url('api/supplier/edit/') ?>${auth.token}?id_supplier=${id_supplier}`,
           type: 'POST',
           dataType: 'JSON',
           beforeSend: function(){
             $('#submit_edit').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
           },
           data: {
-            id_user: id_user,
-            nama_user: nama_user,
-            username: username,
-            status: status
+            id_supplier: id_supplier,
+            nama_supplier: nama_supplier,
+            telepon: telepon,
+            fax: fax,
+            email: email,
+            alamat: alamat
           },
           success: function(response){
             if(response.status === 200){
@@ -320,7 +331,7 @@
             Swal.fire({
               position: 'center',
               type: 'warning',
-              title: response.message,
+              title: 'Tidak dapat mengakses server',
               showConfirmButton: false,
               timer: 1500
             });
@@ -330,12 +341,12 @@
       }
     });
 
-    $(document).on('click', '#hapus_user', function(){
-      var id_user = $(this).attr('data-id');
+    $(document).on('click', '#hapus_supplier', function(){
+      var id_supplier = $(this).attr('data-id');
 
       Swal.fire({
         title: 'Apa Anda yakin ingin menghapus ini?',
-        text: "User akan terhapus secara permanen",
+        text: "Data akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -345,7 +356,7 @@
       }).then((result) => {
         if (result.value) {
           $.ajax({
-            url: `<?= base_url('api/user/delete/'); ?>${auth.token}?id_user=${id_user}`,
+            url: `<?= base_url('api/supplier/delete/'); ?>${auth.token}?id_supplier=${id_supplier}`,
             type: 'GET',
             dataType: 'JSON',
             success: function(response){
@@ -375,6 +386,6 @@
       })
     });
 
-  });
+  })
 
 </script>

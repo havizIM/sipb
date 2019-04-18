@@ -14,6 +14,10 @@
 
   <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(''); ?>assets/images/logo-mini.png">
 
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css"/>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css"/>
+
     <title>Kepala Gudang | SIMPB</title>
 
   <script src="<?= base_url(''); ?>assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
@@ -107,12 +111,29 @@
               </a>
             </li>
 
+            <li>
+              <a class="waves-effect waves-dark" href="#/barang" aria-expanded="false">
+                <i class="ti-package"></i><span class="hide-menu">Barang</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="waves-effect waves-dark" href="#/stok" aria-expanded="false">
+                <i class="fa fa-cubes"></i><span class="hide-menu">Stok</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="waves-effect waves-dark" href="#/supplier" aria-expanded="false">
+                <i class="ti-shopping-cart-full"></i><span class="hide-menu">Supplier</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
     </aside>
 
-    <div class="page-wrapper" id="content" style="background-image: url('<?= base_url('assets/images/bg-content.jpg') ?>'); background-blend-mode: screen;">
+    <div class="page-wrapper" id="content">
 
     </div>
 
@@ -173,6 +194,14 @@
   <script src="<?= base_url(''); ?>assets/node_modules/sweetalert/sweetalert.min.js"></script>
 
   <script src="<?= base_url(''); ?>assets/node_modules/sweetalert/jquery.sweet-alert.custom.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
 
   <script type="text/javascript">
 

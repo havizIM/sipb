@@ -19,4 +19,14 @@ class Sales extends CI_Controller{
     $this->load->view('sales/dashboard');
   }
 
+  function barang()
+  {
+    $this->load->view('sales/barang');
+  }
+
+  function customer()
+  {
+    $this->load->view('sales/customer');
+  }
+
 }

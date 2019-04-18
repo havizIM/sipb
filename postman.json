@@ -7,22 +7,46 @@
 	},
 	"item": [
 		{
-			"name": "Show Log",
+			"name": "Login User",
 			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "helpdesk",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "helpdesk",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "localhost/sipb/api/log/show/2fa535dfeca3f34",
+					"raw": "localhost/sipb/api/auth/login_user",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"sipb",
 						"api",
-						"log",
-						"show",
-						"2fa535dfeca3f34"
+						"auth",
+						"login_user"
 					]
 				}
 			},
@@ -87,100 +111,6 @@
 			"response": []
 		},
 		{
-			"name": "Edit User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "nama_user",
-							"value": "Kalyssa Innara Putri",
-							"type": "text"
-						},
-						{
-							"key": "username",
-							"value": "kalyssaip",
-							"type": "text"
-						},
-						{
-							"key": "status",
-							"value": "Aktif",
-							"description": "Aktif / Nonaktif",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "localhost/sipb/api/user/edit/2fa535dfeca3f34?id_user=USR00000001",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"sipb",
-						"api",
-						"user",
-						"edit",
-						"2fa535dfeca3f34"
-					],
-					"query": [
-						{
-							"key": "id_user",
-							"value": "USR00000001"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login User",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "username",
-						"value": "",
-						"disabled": true
-					},
-					{
-						"key": "password",
-						"value": "",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "username",
-							"value": "kalyssaip",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "37e4v",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "localhost/sipb/api/auth/login_user",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"sipb",
-						"api",
-						"auth",
-						"login_user"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Show User",
 			"request": {
 				"method": "GET",
@@ -203,36 +133,110 @@
 			"response": []
 		},
 		{
-			"name": "Delete User",
+			"name": "Show Log",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
-				},
+				"header": [],
+				"body": {},
 				"url": {
-					"raw": "localhost/sipb/api/user/delete/2fa535dfeca3f34?id_user=USR00000004",
+					"raw": "localhost/sipb/api/log/show/2fa535dfeca3f34",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"sipb",
 						"api",
-						"user",
-						"delete",
+						"log",
+						"show",
 						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Barang",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/barang/show/e2baa50d717f2e8",
+					"host": [
+						"localhost"
 					],
-					"query": [
-						{
-							"key": "id_user",
-							"value": "USR00000004"
-						}
+					"path": [
+						"sipb",
+						"api",
+						"barang",
+						"show",
+						"e2baa50d717f2e8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Stock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/stock/show/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"stock",
+						"show",
+						"e2baa50d717f2e8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Supplier",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/supplier/show/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"supplier",
+						"show",
+						"e2baa50d717f2e8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/customer/show/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"customer",
+						"show",
+						"e2baa50d717f2e8"
 					]
 				}
 			},
@@ -253,7 +257,7 @@
 						},
 						{
 							"key": "username",
-							"value": "dianrs",
+							"value": "dianrs15",
 							"type": "text"
 						},
 						{
@@ -290,7 +294,7 @@
 					"formdata": [
 						{
 							"key": "no_persediaan",
-							"value": "NYX123126",
+							"value": "NYX123127",
 							"type": "text"
 						},
 						{
@@ -336,21 +340,46 @@
 			"response": []
 		},
 		{
-			"name": "Show Barang",
+			"name": "Add Stock",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "no_persediaan",
+							"value": "NYX123126",
+							"description": "Relasi ke Barang",
+							"type": "text"
+						},
+						{
+							"key": "no_identifikasi",
+							"value": "010-5",
+							"type": "text"
+						},
+						{
+							"key": "keterangan",
+							"value": "Haspel",
+							"type": "text"
+						},
+						{
+							"key": "saldo_awal",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "localhost/sipb/api/barang/show/e2baa50d717f2e8",
+					"raw": "localhost/sipb/api/stock/add/e2baa50d717f2e8",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"sipb",
 						"api",
-						"barang",
-						"show",
+						"stock",
+						"add",
 						"e2baa50d717f2e8"
 					]
 				}
@@ -358,27 +387,149 @@
 			"response": []
 		},
 		{
-			"name": "Delete Barang",
+			"name": "Add Supplier",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_supplier",
+							"value": "PT Mundur Maju",
+							"type": "text"
+						},
+						{
+							"key": "telepon",
+							"value": "1357913753901",
+							"type": "text"
+						},
+						{
+							"key": "fax",
+							"value": "135938590832",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "coba1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "alamat",
+							"value": "Bogor",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "localhost/sipb/api/barang/delete/e2baa50d717f2e8?no_persediaan=0",
+					"raw": "localhost/sipb/api/supplier/add/e2baa50d717f2e8",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"sipb",
 						"api",
-						"barang",
-						"delete",
+						"supplier",
+						"add",
 						"e2baa50d717f2e8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_customer",
+							"value": "PT Maju Mundur",
+							"type": "text"
+						},
+						{
+							"key": "telepon",
+							"value": "1357913753901",
+							"type": "text"
+						},
+						{
+							"key": "fax",
+							"value": "135938590832",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "majumundur@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "alamat",
+							"value": "Bogor",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/customer/add/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"customer",
+						"add",
+						"e2baa50d717f2e8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_user",
+							"value": "Devan Dirgantara Putra",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "advanceDP",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "Nonaktif",
+							"description": "Aktif / Nonaktif",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/user/edit/2fa535dfeca3f34?id_user=USR00000006",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"user",
+						"edit",
+						"2fa535dfeca3f34"
 					],
 					"query": [
 						{
-							"key": "no_persediaan",
-							"value": "0"
+							"key": "id_user",
+							"value": "USR00000006"
 						}
 					]
 				}
@@ -415,7 +566,6 @@
 						},
 						{
 							"key": "foto",
-							"value": "",
 							"type": "file"
 						}
 					]
@@ -436,6 +586,316 @@
 						{
 							"key": "no_persediaan",
 							"value": "NYX123126"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Stock",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "no_persediaan",
+							"value": "NYX123126",
+							"description": "Relasi Ke Barang",
+							"type": "text"
+						},
+						{
+							"key": "no_identifikasi",
+							"value": "Coba",
+							"type": "text"
+						},
+						{
+							"key": "keterangan",
+							"value": "Coba",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/stock/edit/e2baa50d717f2e8?id_identifikasi=14",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"stock",
+						"edit",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "id_identifikasi",
+							"value": "14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Supplier",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_supplier",
+							"value": "Coba",
+							"type": "text"
+						},
+						{
+							"key": "telepon",
+							"value": "17358013",
+							"type": "text"
+						},
+						{
+							"key": "fax",
+							"value": "137591351",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "cobacoba@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "alamat",
+							"value": "Bogor Barat",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/supplier/edit/e2baa50d717f2e8?id_supplier=S00002",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"supplier",
+						"edit",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "id_supplier",
+							"value": "S00002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_customer",
+							"value": "Coba",
+							"type": "text"
+						},
+						{
+							"key": "telepon",
+							"value": "17358013",
+							"type": "text"
+						},
+						{
+							"key": "fax",
+							"value": "137591351",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "cobacoba@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "alamat",
+							"value": "Bogor Barat",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/customer/edit/e2baa50d717f2e8?id_customer=C00002",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"customer",
+						"edit",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "id_customer",
+							"value": "C00002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
+				},
+				"url": {
+					"raw": "localhost/sipb/api/user/delete/2fa535dfeca3f34?id_user=USR00000006",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"user",
+						"delete",
+						"2fa535dfeca3f34"
+					],
+					"query": [
+						{
+							"key": "id_user",
+							"value": "USR00000006"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Barang",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/barang/delete/e2baa50d717f2e8?no_persediaan=NYX123127",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"barang",
+						"delete",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_persediaan",
+							"value": "NYX123127"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Stock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/stock/delete/e2baa50d717f2e8?id_identifikasi=14",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"stock",
+						"delete",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "id_identifikasi",
+							"value": "14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Supplier",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/supplier/delete/e2baa50d717f2e8?id_supplier=S00002",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"supplier",
+						"delete",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "id_supplier",
+							"value": "S00002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/customer/delete/e2baa50d717f2e8?id_customer=C00002",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"customer",
+						"delete",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "id_customer",
+							"value": "C00002"
 						}
 					]
 				}

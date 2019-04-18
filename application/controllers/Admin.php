@@ -24,4 +24,24 @@ class Admin extends CI_Controller{
     $this->load->view('admin/barang');
   }
 
+  function stok()
+  {
+    $this->load->view('admin/stok');
+  }
+
+  function add_stok()
+  {
+    $this->load->view('admin/add_stok');
+  }
+
+  function edit_stok()
+  {
+    $this->load->view('admin/edit_stok');
+  }
+
+  function supplier()
+  {
+    $this->load->view('admin/supplier');
+  }
+
 }
