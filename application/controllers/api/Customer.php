@@ -72,7 +72,7 @@ class Customer extends CI_Controller {
 
           $otorisasi = $auth->row();
 
-          if($otorisasi->level != 'Admin'){
+          if($otorisasi->level != 'Sales'){
             json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
           } else {
             $id_customer    = $this->KodeModel->buatKode('customer', 'C', 'id_customer', 5);
@@ -146,7 +146,7 @@ class Customer extends CI_Controller {
         } else {
           $otorisasi = $auth->row();
 
-          if($otorisasi->level != 'Admin'){
+          if($otorisasi->level != 'Sales'){
             json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
           } else {
             $id_customer    = $this->input->get('id_customer');
@@ -222,7 +222,7 @@ class Customer extends CI_Controller {
 
           $otorisasi = $auth->row();
 
-          if($otorisasi->level != 'Admin'){
+          if($otorisasi->level != 'Sales'){
             json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
           } else {
             $id_customer = $this->input->get('id_customer');
