@@ -1,6 +1,15 @@
 <div class="container-fluid">
-  <div class="row page-titles align-self-center text-right">
-    <h4 class="text-themecolor" style="margin-left: 15px; margin-top: 8px;">Barang</h4>
+  <div class="row page-titles">
+      <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor">Barang</h4>
+      </div>
+      <div class="col-md-7 align-self-center text-right">
+          <div class="d-flex justify-content-end align-items-center">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
+                  <li class="breadcrumb-item active">Barang</li>
+              </ol>
+      </div>
   </div>
 
   <div class="row">

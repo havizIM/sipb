@@ -1,9 +1,17 @@
 <div class="container-fluid">
-  <div class="row page-titles align-self-center text-right">
-    <h4 class="text-themecolor" style="margin-left: 15px; margin-top: 8px;">Stok</h4>
-    <div class="d-flex justify-content-end col-md-11 align-items-center">
-      <a href="#/add_stok" id="btn_add" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Stok</a>
-    </div>
+  <div class="row page-titles">
+      <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor">Stok</h4>
+      </div>
+      <div class="col-md-7 align-self-center text-right">
+          <div class="d-flex justify-content-end align-items-center">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
+                  <li class="breadcrumb-item active">Stok</li>
+              </ol>
+              <a href="#/add_stok" type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Stok</a>
+          </div>
+      </div>
   </div>
 
   <div class="row">
@@ -79,7 +87,7 @@
         {"data": 'warna'},
         {"data": 'ket_barang'},
         {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="edit_stok" data-id="${row.id_identifikasi}">Ubah</button> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_stok" data-id="${row.id_identifikasi}">Hapus</button>`
+          return `<a href="#/edit_stok" class="btn btn-info" id="edit_stok" data-id="${row.id_identifikasi}">Ubah</a> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_stok" data-id="${row.id_identifikasi}">Hapus</button>`
           }
         }
       ],
@@ -130,6 +138,35 @@
         }
       })
     });
+
+    // $(document).on('click', '#edit_stok', function(){
+    //   var id_identifikasi = $(this).attr('data-id');
+    //
+    //   $.ajax({
+    //     url: `<?= base_url('api/stock/show/') ?>${auth.token}?id_identifikasi=${id_identifikasi}`,
+    //     type: 'GET',
+    //     dataType: 'JSON',
+    //     success: function(response){
+    //       $.each(response.data, function(k, v){
+    //         location.hash = '#/edit_stok';
+    //         $('#edit_nama_persediaan').val(v.nama_persediaan);
+    //         $('#edit_satuan').val(v.satuan);
+    //         $('#edit_warna').val(v.warna);
+    //         $('#edit_keterangan').val(v.keterangan);
+    //         $('#edit_id').val(v.no_persediaan);
+    //       })
+    //     },
+    //     error: function(){
+    //       Swal.fire({
+    //         position: 'center',
+    //         type: 'warning',
+    //         title: response.message,
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       });
+    //     }
+    //   });
+    // });
 
   })
 

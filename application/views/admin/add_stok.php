@@ -1,6 +1,17 @@
 <div class="container-fluid">
-  <div class="row page-titles align-self-center text-right">
-    <h4 class="text-themecolor" style="margin-left: 15px; margin-top: 8px;">Tambah Stok</h4>
+  <div class="row page-titles">
+      <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor">Tambah Stok</h4>
+      </div>
+      <div class="col-md-7 align-self-center text-right">
+          <div class="d-flex justify-content-end align-items-center">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
+                  <li class="breadcrumb-item"><a href="#/stok">Stok</a></li>
+                  <li class="breadcrumb-item active">Tambah Stok</li>
+              </ol>
+          </div>
+      </div>
   </div>
 
   <div class="row">
@@ -72,10 +83,6 @@
 
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
-
-    $('#btn_add').on('click', function(){
-      $('#modal_add').modal('show');
-    })
 
     var tables = $('#t_persediaan').DataTable({
       columnDefs: [{
