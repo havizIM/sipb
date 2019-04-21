@@ -9,7 +9,7 @@
                   <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
                   <li class="breadcrumb-item active">User</li>
               </ol>
-              <button type="button" id="btn_add" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah User</button>
+              <button type="button" id="btn_add" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah User</button>
           </div>
       </div>
   </div>

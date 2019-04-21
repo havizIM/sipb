@@ -84,8 +84,58 @@
             </ul>
 
             <ul class="navbar-nav my-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="ti-user"></i>
+                  <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
+                  <ul>
+                    <li>
+                      <div class="drop-title">Informasi User</div>
+                    </li>
+                    <li>
+                      <div class="message-center" style="height: 250px;">
+
+                          <a href="javascript:void(0)">
+                            <span><i class="ti-user"></i></span>
+                            <div class="mail-contnet">
+                              <h5>ID User</h5>
+                              <span class="mail-desc id-user"></span>
+                            </div>
+                          </a>
+
+                          <a href="javascript:void(0)">
+                            <span><i class="ti-id-badge"></i></span>
+                            <div class="mail-contnet">
+                              <h5>Username</h5>
+                              <span class="mail-desc username"></span>
+                            </div>
+                          </a>
+
+                          <a href="javascript:void(0)">
+                            <span><i class="ti-arrow-circle-up"></i></span>
+                            <div class="mail-contnet">
+                              <h5>Level</h5>
+                              <span class="mail-desc level"></span>
+                            </div>
+                          </a>
+
+                          <a href="javascript:void(0)">
+                            <span><i class="ti-calendar"></i></span>
+                            <div class="mail-contnet">
+                              <h5>Tanggal Registrasi</h5>
+                              <span class="mail-desc tgl-regis"></span>
+                            </div>
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
               <li class="nav-item dropdown u-pro">
-                <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url(''); ?>assets/images/users/1.jpg" alt="user" class=""> <span class="hidden-md-down nama"><i class="fa fa-angle-down"></i></span> </a>
+                <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url(''); ?>assets/images/users/1.jpg" alt="user" class=""> <span class="hidden-md-down nama text-white"><i class="fa fa-angle-down"></i></span> </a>
                 <div class="dropdown-menu dropdown-menu-right animated flipInY">
                   <a id="btn_modal_ganti" class="dropdown-item" style="cursor: pointer;"><i class="ti-lock"></i> Ganti Password</a>
                   <a id="btn_logout" class="dropdown-item" style="cursor: pointer;"><i class="fa fa-power-off"></i> Logout</a>
@@ -219,6 +269,10 @@
         var auth = JSON.parse(session);
 
         $('.nama').text(auth.nama_user);
+        $('.id-user').text(auth.id_user);
+        $('.username').text(auth.username);
+        $('.level').text(auth.level);
+        $('.tgl-regis').text(auth.tgl_registrasi);
 
         if(location.hash){
           link = location.hash.substr(2);

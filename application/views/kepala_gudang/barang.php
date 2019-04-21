@@ -12,29 +12,27 @@
       </div>
   </div>
 
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Data Barang</h4>
-          <div class="table-responsive m-t-40">
-            <table id="table_barang" class="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>Tgl Input</th>
-                  <th>Nomor Persediaan</th>
-                  <th>Nama Persediaan</th>
-                  <th>Satuan</th>
-                  <th>Warna</th>
-                  <th>Keterangan</th>
-                  <th>Foto</th>
-                </tr>
-              </thead>
-              <tbody>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Data Barang</h4>
+        <div class="table-responsive">
+          <table id="table_barang" class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Tgl Input</th>
+                <th>Nomor Persediaan</th>
+                <th>Nama Persediaan</th>
+                <th>Satuan</th>
+                <th>Warna</th>
+                <th>Keterangan</th>
+                <th>Foto</th>
+              </tr>
+            </thead>
+            <tbody>
 
-              </tbody>
-            </table>
-          </div>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -76,7 +74,7 @@
         {"data": 'warna'},
         {"data": 'keterangan'},
         {"data": null, 'render': function(data, type, row){
-          return `<center><img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 50%;"></center>`
+          return `<img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 75px; height: 75px;">`
           }
         }
       ],

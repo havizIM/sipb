@@ -77,7 +77,7 @@
         {"data": 'warna'},
         {"data": 'keterangan'},
         {"data": null, 'render': function(data, type, row){
-          return `<center><img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 50%;"></center>`
+          return `<center><img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 75px; height: 75px;"></center>`
           }
         }
       ],

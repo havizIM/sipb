@@ -34,7 +34,7 @@ class Admin extends CI_Controller{
     $this->load->view('admin/add_stok');
   }
 
-  function edit_stok()
+  function edit_stok($id)
   {
     $this->load->view('admin/edit_stok');
   }
