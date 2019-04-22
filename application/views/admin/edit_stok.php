@@ -37,12 +37,8 @@
                 <textarea class="form-control" id="edit_keterangan" name="keterangan" rows="8" cols="80" placeholder="Keterangan"></textarea>
               </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" name="saldo_awal" id="edit_saldo_awal" placeholder="Saldo Awal">
-              </div>
-
               <input type="hidden" name="id_identifikasi" id="edit_id">
-              <button type="submit" id="submit_edit" class="btn btn-info waves-effect">Tambah</button>
+              <button type="submit" id="submit_edit" class="btn btn-info waves-effect">Simpan</button>
           </form>
         </div>
       </div>
@@ -84,6 +80,92 @@
 
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
+    var id_identifikasi = location.hash.substr(12);
+
+    $.ajax({
+      url: `<?= base_url('api/stock/show/') ?>${auth.token}?id_identifikasi=${id_identifikasi}`,
+      type: 'GET',
+      dataType: 'JSON',
+      success: function(response){
+        $.each(response.data, function(k, v){
+          $('#edit_no_persediaan').val(v.no_persediaan);
+          $('#nama_persediaan').val(v.nama_persediaan);
+          $('#edit_no_identifikasi').val(v.no_identifikasi);
+          $('#edit_keterangan').val(v.ket_stock);
+        })
+      },
+      error: function(){
+        Swal.fire({
+          position: 'center',
+          type: 'warning',
+          title: response.message,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    });
+
+    $('#form_edit').on('submit', function(e){
+      e.preventDefault();
+
+      var no_persediaan = $('#edit_no_persediaan').val();
+      var nama_persediaan = $('#nama_persediaan').val();
+      var no_identifikasi = $('#edit_no_identifikasi').val();
+      var keterangan = $('#edit_keterangan').val();
+
+      if(no_persediaan === '' || nama_persediaan === '' || no_identifikasi === '' || keterangan === ''){
+        Swal.fire({
+          position: 'center',
+          type: 'warning',
+          title: 'Data tidak boleh kosong',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      } else {
+        $.ajax({
+          url: `<?= base_url('api/stock/edit/') ?>${auth.token}?id_identifikasi=${id_identifikasi}`,
+          type: 'POST',
+          dataType: 'JSON',
+          beforeSend: function(){
+            $('#submit_edit').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
+          },
+          data: $(this).serialize(),
+          success: function(response){
+            if(response.status === 200){
+              Swal.fire({
+                position: 'center',
+                type: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+              });
+              $('#form_edit')[0].reset();
+              location.hash = '#/stok';
+              table.ajax.reload();
+            } else {
+              Swal.fire({
+                position: 'center',
+                type: 'warning',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+            $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
+          },
+          error: function(){
+            Swal.fire({
+              position: 'center',
+              type: 'warning',
+              title: 'Tidak dapat mengakses server',
+              showConfirmButton: false,
+              timer: 1500
+            });
+            $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
+          }
+        });
+      }
+    })
 
     var tables = $('#t_persediaan').DataTable({
       columnDefs: [{
@@ -138,7 +220,6 @@
 
       $('#lookup_persediaan').modal('hide');
     })
-
 
   })
 

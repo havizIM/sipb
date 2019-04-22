@@ -9,7 +9,7 @@
                   <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
                   <li class="breadcrumb-item active">Barang</li>
               </ol>
-              <button type="button" id="btn_add" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Barang</button>
+              <button type="button" id="btn_add" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Barang</button>
           </div>
       </div>
   </div>
@@ -238,7 +238,7 @@
         {"data": 'warna'},
         {"data": 'keterangan'},
         {"data": null, 'render': function(data, type, row){
-          return `<center><img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 95%;"></center>`
+          return `<center><img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 75px; height: 75px;"></center>`
           }
         },
         {"data": null, 'render': function(data, type, row){

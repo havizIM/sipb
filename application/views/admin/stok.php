@@ -9,7 +9,7 @@
                   <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
                   <li class="breadcrumb-item active">Stok</li>
               </ol>
-              <a href="#/add_stok" type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Stok</a>
+              <a href="#/add_stok" type="button" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Stok</a>
           </div>
       </div>
   </div>
@@ -87,7 +87,7 @@
         {"data": 'warna'},
         {"data": 'ket_barang'},
         {"data": null, 'render': function(data, type, row){
-          return `<a href="#/edit_stok" class="btn btn-info" id="edit_stok" data-id="${row.id_identifikasi}">Ubah</a> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_stok" data-id="${row.id_identifikasi}">Hapus</button>`
+          return `<a href="#/edit_stok/${row.id_identifikasi}" class="btn btn-info" id="edit_stok" data-id="${row.id_identifikasi}">Ubah</a> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_stok" data-id="${row.id_identifikasi}">Hapus</button>`
           }
         }
       ],
@@ -138,35 +138,6 @@
         }
       })
     });
-
-    // $(document).on('click', '#edit_stok', function(){
-    //   var id_identifikasi = $(this).attr('data-id');
-    //
-    //   $.ajax({
-    //     url: `<?= base_url('api/stock/show/') ?>${auth.token}?id_identifikasi=${id_identifikasi}`,
-    //     type: 'GET',
-    //     dataType: 'JSON',
-    //     success: function(response){
-    //       $.each(response.data, function(k, v){
-    //         location.hash = '#/edit_stok';
-    //         $('#edit_nama_persediaan').val(v.nama_persediaan);
-    //         $('#edit_satuan').val(v.satuan);
-    //         $('#edit_warna').val(v.warna);
-    //         $('#edit_keterangan').val(v.keterangan);
-    //         $('#edit_id').val(v.no_persediaan);
-    //       })
-    //     },
-    //     error: function(){
-    //       Swal.fire({
-    //         position: 'center',
-    //         type: 'warning',
-    //         title: response.message,
-    //         showConfirmButton: false,
-    //         timer: 1500
-    //       });
-    //     }
-    //   });
-    // });
 
   })
 
