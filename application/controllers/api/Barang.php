@@ -91,7 +91,7 @@ class Barang extends CI_Controller {
 
   function upload_image($no_persediaan)
   {
-    if(isset($_FILES['foto'])){
+    if(isset($_FILES['foto']) && $_FILES['foto']['name'] != ""){
       $extention = explode('.', $_FILES['foto']['name']);
       $new_name = $no_persediaan.'.'.$extention[1];
       $destination = './doc/barang/'.$new_name;
@@ -103,7 +103,7 @@ class Barang extends CI_Controller {
         return 'barang.jpg';
       }
     } else {
-      return null;
+      return 'barang.jpg';
     }
   }
 
@@ -302,7 +302,7 @@ class Barang extends CI_Controller {
 
   function reupload_image($no_persediaan)
   {
-    if(isset($_FILES['foto'])){
+    if(isset($_FILES['foto']) && $_FILES['foto']['name'] != ""){
       $extention = explode('.', $_FILES['foto']['name']);
       $new_name = $no_persediaan.'.'.$extention[1];
       $destination = './doc/barang/'.$new_name;
