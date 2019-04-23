@@ -367,7 +367,7 @@
                   showConfirmButton: false,
                   timer: 1500
                 });
-                $('#btn_ganti').removeClass('disabled').removeAttr('disabled', 'disabled').text('Ganti')
+                $('#btn_ganti').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
               }
             });
           }

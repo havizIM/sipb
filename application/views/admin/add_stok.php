@@ -160,7 +160,7 @@
         type: 'POST',
         dataType: 'JSON',
         beforeSend: function(){
-          $('#submit_add').addClass('disabled').attr('disabled', 'disabled');
+          $('#submit_add').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
         },
         data: {
           no_persediaan: no_persediaan,
@@ -187,8 +187,8 @@
               showConfirmButton: false,
               timer: 1500
             });
+            $('#submit_add').removeClass('disabled').removeAttr('disabled', 'disabled').text('Tambah');
           }
-          $('#submit_add').removeClass('disabled').removeAttr('disabled', 'disabled');
         },
         error: function(){
           Swal.fire({

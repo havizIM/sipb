@@ -176,6 +176,12 @@
                   <i class="ti-shopping-cart-full"></i><span class="hide-menu">Supplier</span>
                 </a>
               </li>
+
+              <li>
+                <a class="waves-effect waves-dark" href="#/customer" aria-expanded="false">
+                  <i class="ti-user"></i><span class="hide-menu">Customer</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

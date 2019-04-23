@@ -150,8 +150,8 @@
                 showConfirmButton: false,
                 timer: 1500
               });
+              $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
             }
-            $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
           },
           error: function(){
             Swal.fire({

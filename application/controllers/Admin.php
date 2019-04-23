@@ -44,4 +44,9 @@ class Admin extends CI_Controller{
     $this->load->view('admin/supplier');
   }
 
+  function customer()
+  {
+    $this->load->view('admin/customer');
+  }
+
 }

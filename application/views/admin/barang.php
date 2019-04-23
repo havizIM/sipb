@@ -269,6 +269,13 @@
             dataType: 'JSON',
             success: function(response){
               if(response.status === 200){
+                Swal.fire({
+                  position: 'center',
+                  type: 'success',
+                  title: response.message,
+                  showConfirmButton: false,
+                  timer: 1500
+                });
                 table.ajax.reload();
               } else {
                 Swal.fire({

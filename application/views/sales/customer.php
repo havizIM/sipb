@@ -97,7 +97,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Data Supplier</h4>
+          <h4 class="card-title">Data Customer</h4>
           <div class="table-responsive m-t-40">
             <table id="t_customer" class="table table-striped">
               <thead>
@@ -361,6 +361,13 @@
             dataType: 'JSON',
             success: function(response){
               if(response.status === 200){
+                Swal.fire({
+                  position: 'center',
+                  type: 'success',
+                  title: response.message,
+                  showConfirmButton: false,
+                  timer: 1500
+                });
                 table.ajax.reload();
               } else {
                 Swal.fire({
