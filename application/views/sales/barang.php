@@ -84,6 +84,16 @@
       order: [[0, 'desc']]
     });
 
+    var pusher = new Pusher('6a169a704ab461b9a26a', {
+      cluster: 'ap1',
+      forceTLS: true
+    });
+
+    var channel = pusher.subscribe('sipb');
+    channel.bind('barang', function(data) {
+      table.ajax.reload();
+    });
+
   })
 
 </script>

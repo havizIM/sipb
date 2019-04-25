@@ -141,7 +141,6 @@
               });
               $('#form_edit')[0].reset();
               location.hash = '#/stok';
-              table.ajax.reload();
             } else {
               Swal.fire({
                 position: 'center',

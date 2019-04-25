@@ -205,7 +205,7 @@
       </div>
 
       <footer class="footer">
-        © 2019 Sistem Informasi Manajemen Persediaan Barang
+        Sistem Informasi Manajemen Persediaan Barang PT. Setia Sapta by Hani
       </footer>
     </div>
 
@@ -238,6 +238,8 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
+
+    <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
 
     <script type="text/javascript">
 

@@ -125,7 +125,7 @@
           'Dec',
         ],
         datasets:[{
-          label: 'Log by month',
+          label: 'Log berdasarkan Bulan',
           data: [],
           borderColor: "rgba(0, 176, 228, 0.75)",
           backgroundColor: "rgb(0, 176, 228)",
@@ -172,5 +172,5 @@
       }
     })
   })
-  
+
 </script>
