@@ -282,7 +282,8 @@
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya, Saya yakin.',
-            cancelButtonText: 'Batal'
+            cancelButtonText: 'Batal',
+            showLoaderOnConfirm: true
           }).then((result) => {
             if (result.value) {
               $.ajax({

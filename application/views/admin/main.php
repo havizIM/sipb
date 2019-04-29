@@ -260,7 +260,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
 
     <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
-    
+
     <script type="text/javascript">
 
       function load_content(link){
@@ -302,7 +302,8 @@
             cancelButtonColor: '#d33',
             confirmButtonColor: '#3085d6',
             cancelButtonText: 'Batal',
-            confirmButtonText: 'Ya, Saya yakin.'
+            confirmButtonText: 'Ya, Saya yakin.',
+            showLoaderOnConfirm: true
           }).then((result) => {
             if (result.value) {
               $.ajax({

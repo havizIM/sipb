@@ -175,7 +175,7 @@
                 timer: 1500
               });
               $('#modal_add').modal('hide');
-              $('#form_add')[0].reset();              
+              $('#form_add')[0].reset();
             } else {
               Swal.fire({
                 position: 'center',
@@ -350,7 +350,8 @@
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Saya yakin.',
-        cancelButtonText: 'Batal'
+        cancelButtonText: 'Batal',
+        showLoaderOnConfirm: true
       }).then((result) => {
         if (result.value) {
           $.ajax({
