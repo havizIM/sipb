@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 18, 2019 at 04:36 PM
+-- Generation Time: May 04, 2019 at 02:23 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -44,7 +44,7 @@ CREATE TABLE `barang` (
 
 INSERT INTO `barang` (`no_persediaan`, `nama_persediaan`, `satuan`, `warna`, `keterangan`, `foto`, `tgl_input`) VALUES
 ('HYY-01X070-LV', 'HYY 1 X 70 MM2', 'Meter', '-', '-', 'HYY-01X070-LV.jpg', '2019-04-01 18:10:56'),
-('HYY-01X095-LV', 'HYY 1 X 95 MM2', 'Meter', '-', '-', 'HYY-01X095-LV.jpg', '2019-04-01 18:10:56'),
+('HYY-01X095-LV', 'HYY 1 X 95 MM2', 'Meter Persegi', '-', 'Test', 'HYY-01X095-LV.jpg', '2019-04-01 18:10:56'),
 ('NYX123126', 'Coba', 'Coba', 'Coba', 'Coba', 'NYX123126.jpg', '2019-04-10 20:52:22');
 
 -- --------------------------------------------------------
@@ -188,7 +188,26 @@ INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `katego
 (53, 'USR00000002', 'C00002', 'Customer', 'Menambah data customer baru', 'Add', '2019-04-18 14:33:28'),
 (54, 'USR00000002', 'C00002', 'Customer', 'Mengedit data customer', 'Edit', '2019-04-18 14:33:49'),
 (55, 'USR00000002', 'S00002', 'Customer', 'Menghapus data customer baru', 'Delete', '2019-04-18 14:34:18'),
-(56, 'USR00000002', 'C00002', 'Customer', 'Menghapus data customer baru', 'Delete', '2019-04-18 14:34:24');
+(56, 'USR00000002', 'C00002', 'Customer', 'Menghapus data customer baru', 'Delete', '2019-04-18 14:34:24'),
+(57, 'USR00000001', '-', 'Auth', 'User login', 'Login', '2019-04-19 19:14:44'),
+(58, 'USR00000001', '-', 'Auth', 'User logout', 'Logout', '2019-04-19 19:15:18'),
+(59, 'USR00000001', '-', 'Auth', 'User login', 'Login', '2019-04-19 19:15:45'),
+(60, 'USR00000001', '-', 'Auth', 'User logout', 'Logout', '2019-04-19 19:17:25'),
+(61, 'USR00000002', '-', 'Auth', 'User login', 'Login', '2019-04-19 19:18:01'),
+(62, 'USR00000002', '-', 'Auth', 'User logout', 'Logout', '2019-04-19 19:19:39'),
+(63, 'USR00000001', '-', 'Auth', 'User login', 'Login', '2019-04-22 02:33:23'),
+(64, 'USR00000001', '-', 'Auth', 'User logout', 'Logout', '2019-04-22 02:34:26'),
+(65, 'USR00000002', '-', 'Auth', 'User login', 'Login', '2019-04-22 02:35:06'),
+(66, 'USR00000002', 'HYY-01X095-LV', 'Barang', 'Mengedit data barang', 'Edit', '2019-04-22 02:35:30'),
+(67, 'USR00000002', 'HYY-01X095-LV', 'Barang', 'Mengedit data barang', 'Edit', '2019-04-22 02:35:41'),
+(68, 'USR00000001', '-', 'Auth', 'User login', 'Login', '2019-04-25 13:24:00'),
+(69, 'USR00000001', '-', 'Auth', 'User logout', 'Logout', '2019-04-25 13:24:20'),
+(70, 'USR00000003', 'PS0000000001', 'Type', 'Menambah data pesanan baru', 'Add', '2019-05-04 11:21:11'),
+(71, 'USR00000003', 'PS0000000002', 'Type', 'Menambah data pesanan baru', 'Add', '2019-05-04 11:28:14'),
+(72, 'USR00000003', 'PS0000000002', 'Pesanan', 'Mengedit data pesanan', 'Edit', '2019-05-04 11:46:36'),
+(73, 'USR00000002', 'PS0000000002', 'Pesanan', 'Menghapus data Menghapus Data Pesanan', 'Delete', '2019-05-04 11:49:24'),
+(74, 'USR00000002', 'PS0000000002', 'Pesanan', 'Menghapus data Menghapus Data Pesanan', 'Delete', '2019-05-04 11:49:45'),
+(75, 'USR00000002', 'PS0000000001', 'Pesanan', 'Menghapus data Menghapus Data Pesanan', 'Delete', '2019-05-04 11:50:30');
 
 -- --------------------------------------------------------
 
@@ -231,7 +250,7 @@ CREATE TABLE `pesanan` (
   `tgl_kirim` date NOT NULL,
   `id_customer` varchar(6) NOT NULL,
   `alamat_kirim` varchar(200) NOT NULL,
-  `status` enum('Inden','Batal','Proses','') NOT NULL,
+  `status` enum('Proses','Batal','Disetujui','') NOT NULL,
   `id_user` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -244,7 +263,8 @@ CREATE TABLE `pesanan` (
 CREATE TABLE `pesanan_detail` (
   `id_detail_pesanan` int(11) NOT NULL,
   `no_pesanan` varchar(12) NOT NULL,
-  `id_identifikasi` int(11) NOT NULL,
+  `no_persediaan` varchar(15) NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
   `qty_pesanan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -298,7 +318,7 @@ CREATE TABLE `return_masuk` (
 CREATE TABLE `return_masuk_detail` (
   `id_dreturn_masuk` int(11) NOT NULL,
   `no_return_masuk` varchar(15) NOT NULL,
-  `id_indentifikasi` int(11) NOT NULL,
+  `id_identifikasi` int(11) NOT NULL,
   `qty_return_masuk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -471,7 +491,8 @@ ALTER TABLE `pesanan`
 ALTER TABLE `pesanan_detail`
   ADD PRIMARY KEY (`id_detail_pesanan`),
   ADD KEY `no_pesanan` (`no_pesanan`),
-  ADD KEY `id_identifikasi` (`id_identifikasi`);
+  ADD KEY `id_identifikasi` (`no_persediaan`),
+  ADD KEY `no_persediaan` (`no_persediaan`);
 
 --
 -- Indexes for table `return_keluar`
@@ -502,7 +523,7 @@ ALTER TABLE `return_masuk`
 --
 ALTER TABLE `return_masuk_detail`
   ADD PRIMARY KEY (`id_dreturn_masuk`),
-  ADD KEY `id_indentifikasi` (`id_indentifikasi`),
+  ADD KEY `id_indentifikasi` (`id_identifikasi`),
   ADD KEY `no_return_masuk` (`no_return_masuk`);
 
 --
@@ -545,7 +566,7 @@ ALTER TABLE `barang_masuk_detail`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `memorandum_detail`
@@ -557,7 +578,7 @@ ALTER TABLE `memorandum_detail`
 -- AUTO_INCREMENT for table `pesanan_detail`
 --
 ALTER TABLE `pesanan_detail`
-  MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `return_keluar_detail`
@@ -575,7 +596,7 @@ ALTER TABLE `return_masuk_detail`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `id_identifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_identifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -639,8 +660,8 @@ ALTER TABLE `pesanan`
 -- Constraints for table `pesanan_detail`
 --
 ALTER TABLE `pesanan_detail`
-  ADD CONSTRAINT `pesanan_detail_ibfk_1` FOREIGN KEY (`no_pesanan`) REFERENCES `pesanan` (`no_pesanan`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pesanan_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pesanan_detail_ibfk_1` FOREIGN KEY (`no_pesanan`) REFERENCES `pesanan` (`no_pesanan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pesanan_detail_ibfk_2` FOREIGN KEY (`no_persediaan`) REFERENCES `barang` (`no_persediaan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `return_keluar`
@@ -668,7 +689,7 @@ ALTER TABLE `return_masuk`
 --
 ALTER TABLE `return_masuk_detail`
   ADD CONSTRAINT `return_masuk_detail_ibfk_1` FOREIGN KEY (`no_return_masuk`) REFERENCES `return_masuk` (`no_return_masuk`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `return_masuk_detail_ibfk_2` FOREIGN KEY (`id_indentifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `return_masuk_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `stock`

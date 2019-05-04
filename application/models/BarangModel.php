@@ -7,7 +7,11 @@ class BarangModel extends CI_Model {
   function show($no_persediaan = null, $nama_persediaan = null){
 
       $this->db->select('*')
-               // ->select('(SELECT count(id_peserta) from peserta WHERE jadwal.id_jadwal = peserta.jadwal) as jml_peserta')
+               ->select('(SELECT sum(qty_keluar) FROM barang_keluar_detail, stock WHERE barang_keluar_detail.id_identifikasi = stock.id_identifikasi AND stock.no_persediaan = barang.no_persediaan) as jml_barang_keluar')
+               ->select('(SELECT sum(qty_masuk) FROM barang_masuk_detail, stock WHERE barang_masuk_detail.id_identifikasi = stock.id_identifikasi AND stock.no_persediaan = barang.no_persediaan) as jml_barang_masuk')
+               ->select('(SELECT sum(qty_return_keluar) FROM return_keluar_detail, stock WHERE return_keluar_detail.id_identifikasi = stock.id_identifikasi AND stock.no_persediaan = barang.no_persediaan) as jml_return_keluar')
+               ->select('(SELECT sum(qty_return_masuk) FROM return_masuk_detail, stock WHERE return_masuk_detail.id_identifikasi = stock.id_identifikasi AND stock.no_persediaan = barang.no_persediaan) as jml_return_masuk')
+               // ->select('(SELECT sum(qty_keluar) FROM barang_keluar_detail, stock WHERE barang_keluar_detail.id_identifikasi = stock.id_identifikasi AND stock.no_persediaan = barang.no_persediaan) as jml_barang_keluar')
                ->from('barang');
 
       if($no_persediaan != null){

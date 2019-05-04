@@ -8,6 +8,17 @@ class Customer extends CI_Controller {
   function __construct(){
     parent::__construct();
 
+    $this->options = array(
+      'cluster' => 'ap1',
+      'useTLS' => true
+    );
+    $this->pusher = new Pusher\Pusher(
+      '6a169a704ab461b9a26a',
+      'd5825b3c03af460c453f',
+      '745965',
+      $this->options
+    );
+
 		$this->load->model('CustomerModel');
   }
 
@@ -108,18 +119,7 @@ class Customer extends CI_Controller {
               if(!$add){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menambah data customer'));
               } else {
-                $options = array(
-                  'cluster' => 'ap1',
-                  'useTLS' => true
-                );
-                $pusher = new Pusher\Pusher(
-                  '6a169a704ab461b9a26a',
-                  'd5825b3c03af460c453f',
-                  '745965',
-                  $options
-                );
-
-                $pusher->trigger('sipb', 'customer', $log);
+                $this->pusher->trigger('sipb', 'customer', $log);
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menambah data customer'));
               }
             }
@@ -129,7 +129,7 @@ class Customer extends CI_Controller {
     }
   }
 
-  public function edit($token = null){
+  function edit($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method != 'POST') {
@@ -183,18 +183,7 @@ class Customer extends CI_Controller {
                 if(!$edit){
                   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal mengedit customer'));
                 } else {
-                  $options = array(
-                    'cluster' => 'ap1',
-                    'useTLS' => true
-                  );
-                  $pusher = new Pusher\Pusher(
-                    '6a169a704ab461b9a26a',
-                    'd5825b3c03af460c453f',
-                    '745965',
-                    $options
-                  );
-
-                  $pusher->trigger('sipb', 'customer', $log);
+                  $this->pusher->trigger('sipb', 'customer', $log);
                   json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil mengedit customer'));
                 }
               }
@@ -205,7 +194,7 @@ class Customer extends CI_Controller {
     }
   }
 
-  public function delete($token = null){
+  function delete($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method != 'GET') {
@@ -243,18 +232,7 @@ class Customer extends CI_Controller {
               if(!$delete){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menghapus customer'));
               } else {
-                $options = array(
-                  'cluster' => 'ap1',
-                  'useTLS' => true
-                );
-                $pusher = new Pusher\Pusher(
-                  '6a169a704ab461b9a26a',
-                  'd5825b3c03af460c453f',
-                  '745965',
-                  $options
-                );
-
-                $pusher->trigger('sipb', 'customer', $log);
+                $this->pusher->trigger('sipb', 'customer', $log);
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menghapus customer'));
               }
             }

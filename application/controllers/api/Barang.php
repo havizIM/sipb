@@ -8,6 +8,17 @@ class Barang extends CI_Controller {
   function __construct(){
     parent::__construct();
 
+    $this->options = array(
+      'cluster' => 'ap1',
+      'useTLS' => true
+    );
+    $this->pusher = new Pusher\Pusher(
+      '6a169a704ab461b9a26a',
+      'd5825b3c03af460c453f',
+      '745965',
+      $this->options
+    );
+
 		$this->load->model('BarangModel');
   }
 
@@ -39,71 +50,45 @@ class Barang extends CI_Controller {
             $satuan          = $this->input->post('satuan');
             $warna           = $this->input->post('warna');
             $keterangan      = $this->input->post('keterangan');
-            $foto            = $this->upload_image($no_persediaan);
 
-            if($no_persediaan == null || $nama_persediaan == null || $satuan == null || $warna == null || $keterangan == null || $foto == null){
+            if($no_persediaan == null || $nama_persediaan == null || $satuan == null || $warna == null || $keterangan == null){
               json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menambah data user'));
             } else {
+              $foto            = $this->upload_file('foto', $no_persediaan);
 
-              $data = array(
-                'no_persediaan'   => $no_persediaan,
-                'nama_persediaan' => $nama_persediaan,
-                'satuan'          => $satuan,
-                'warna'           => $warna,
-                'keterangan'      => $keterangan,
-                'foto'            => $foto
-              );
-
-              $log = array(
-                'user'        => $otorisasi->id_user,
-                'id_ref'      => $no_persediaan,
-                'refrensi'    => 'Barang',
-                'keterangan'  => 'Menambah data barang',
-                'kategori'    => 'Add'
-              );
-
-              $add = $this->BarangModel->add($data, $log);
-
-              if(!$add){
-                json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menambah data barang'));
+              if($foto == null){
+                json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'File gagal diupload'));
               } else {
-
-                $options = array(
-                  'cluster' => 'ap1',
-                  'useTLS' => true
-                );
-                $pusher = new Pusher\Pusher(
-                  '6a169a704ab461b9a26a',
-                  'd5825b3c03af460c453f',
-                  '745965',
-                  $options
+                $data = array(
+                  'no_persediaan'   => $no_persediaan,
+                  'nama_persediaan' => $nama_persediaan,
+                  'satuan'          => $satuan,
+                  'warna'           => $warna,
+                  'keterangan'      => $keterangan,
+                  'foto'            => $foto
                 );
 
-                $pusher->trigger('sipb', 'barang', $log);
-                json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menambah data barang'));
+                $log = array(
+                  'user'        => $otorisasi->id_user,
+                  'id_ref'      => $no_persediaan,
+                  'refrensi'    => 'Barang',
+                  'keterangan'  => 'Menambah data barang',
+                  'kategori'    => 'Add'
+                );
+
+                $add = $this->BarangModel->add($data, $log);
+
+                if(!$add){
+                  json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menambah data barang'));
+                } else {
+                  $this->pusher->trigger('sipb', 'barang', $log);
+                  json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menambah data barang'));
+                }
               }
             }
           }
         }
       }
-    }
-  }
-
-  function upload_image($no_persediaan)
-  {
-    if(isset($_FILES['foto']) && $_FILES['foto']['name'] != ""){
-      $extention = explode('.', $_FILES['foto']['name']);
-      $new_name = $no_persediaan.'.'.$extention[1];
-      $destination = './doc/barang/'.$new_name;
-      $upload = move_uploaded_file($_FILES['foto']['tmp_name'], $destination);
-
-      if($upload){
-        return $new_name;
-      } else {
-        return 'barang.jpg';
-      }
-    } else {
-      return 'barang.jpg';
     }
   }
 
@@ -129,18 +114,22 @@ class Barang extends CI_Controller {
           $nama_persediaan  = $this->input->get('nama_persediaan');
 
           $show       = $this->BarangModel->show($no_persediaan, $nama_persediaan);
-          $persediaan     = array();
+          $persediaan = array();
 
           foreach($show->result() as $key){
             $json = array();
 
-            $json['no_persediaan']    = $key->no_persediaan;
-            $json['nama_persediaan']  = $key->nama_persediaan;
-            $json['satuan']           = $key->satuan;
-            $json['warna']            = $key->warna;
-            $json['keterangan']       = $key->keterangan;
-            $json['foto']             = $key->foto;
-            $json['tgl_input']        = $key->tgl_input;
+            $json['no_persediaan']     = $key->no_persediaan;
+            $json['nama_persediaan']   = $key->nama_persediaan;
+            $json['satuan']            = $key->satuan;
+            $json['warna']             = $key->warna;
+            $json['keterangan']        = $key->keterangan;
+            $json['foto']              = $key->foto;
+            $json['tgl_input']         = $key->tgl_input;
+            $json['jml_barang_keluar'] = $key->jml_barang_keluar;
+            $json['jml_barang_masuk']  = $key->jml_barang_masuk;
+            $json['jml_return_keluar'] = $key->jml_return_keluar;
+            $json['jml_return_masuk']  = $key->jml_return_masuk;
 
             $persediaan[] = $json;
           }
@@ -190,18 +179,12 @@ class Barang extends CI_Controller {
               if(!$delete){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menghapus data barang'));
               } else {
-                $options = array(
-                  'cluster' => 'ap1',
-                  'useTLS' => true
-                );
-                $pusher = new Pusher\Pusher(
-                  '6a169a704ab461b9a26a',
-                  'd5825b3c03af460c453f',
-                  '745965',
-                  $options
-                );
+                $files = glob('doc/barang/'.$no_persediaan.'.*');
+                foreach ($files as $key) {
+                  unlink($key);
+                }
 
-                $pusher->trigger('sipb', 'barang', $log);
+                $this->pusher->trigger('sipb', 'barang', $log);
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menghapus data barang'));
               }
             }
@@ -236,7 +219,7 @@ class Barang extends CI_Controller {
             $satuan          = $this->input->post('satuan');
             $warna           = $this->input->post('warna');
             $keterangan      = $this->input->post('keterangan');
-            $foto            = $this->reupload_image($no_persediaan);
+
 
             if($no_persediaan == null){
               json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada No Persediaan yang dipilih'));
@@ -244,24 +227,18 @@ class Barang extends CI_Controller {
               if($nama_persediaan == null || $satuan == null || $warna == null || $keterangan == null){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
               } else {
+                $foto            = $this->upload_file('foto', $no_persediaan);
 
-                if($foto == null){
-                  $data = array(
-                    'nama_persediaan' => $nama_persediaan,
-                    'satuan'          => $satuan,
-                    'warna'           => $warna,
-                    'keterangan'      => $keterangan
-                  );
-                } else {
-                  $data = array(
-                    'nama_persediaan' => $nama_persediaan,
-                    'satuan'          => $satuan,
-                    'warna'           => $warna,
-                    'keterangan'      => $keterangan,
-                    'foto'            => $foto
-                  );
+                $data = array(
+                  'nama_persediaan' => $nama_persediaan,
+                  'satuan'          => $satuan,
+                  'warna'           => $warna,
+                  'keterangan'      => $keterangan
+                );
+
+                if($foto != null){
+                  $data['foto'] = $foto;
                 }
-
 
                 $log = array(
                   'user'        => $otorisasi->id_user,
@@ -276,20 +253,7 @@ class Barang extends CI_Controller {
                 if(!$edit){
                   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal mengedit data barang'));
                 } else {
-
-                  $options = array(
-                    'cluster' => 'ap1',
-                    'useTLS' => true
-                  );
-                  $pusher = new Pusher\Pusher(
-                    '6a169a704ab461b9a26a',
-                    'd5825b3c03af460c453f',
-                    '745965',
-                    $options
-                  );
-
-                  $pusher->trigger('sipb', 'barang', $log);
-
+                  $this->pusher->trigger('sipb', 'barang', $log);
                   json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil mengedit data barang'));
                 }
               }
@@ -300,18 +264,29 @@ class Barang extends CI_Controller {
     }
   }
 
-  function reupload_image($no_persediaan)
+  function upload_file($name, $id)
   {
-    if(isset($_FILES['foto']) && $_FILES['foto']['name'] != ""){
-      $extention = explode('.', $_FILES['foto']['name']);
-      $new_name = $no_persediaan.'.'.$extention[1];
-      $destination = './doc/barang/'.$new_name;
-      $upload = move_uploaded_file($_FILES['foto']['tmp_name'], $destination);
+    if(isset($_FILES[$name]) && $_FILES[$name]['name'] != ""){
+      $files = glob('doc/barang/'.$id.'.*');
+      foreach ($files as $key) {
+        unlink($key);
+      }
 
-      if($upload){
-        return $new_name;
-      } else {
+      $config['upload_path']   = './doc/barang/';
+      $config['allowed_types'] = 'pdf|doc|docx';
+      $config['overwrite']     = TRUE;
+			$config['max_size']      = '3048';
+			$config['remove_space']  = TRUE;
+			$config['file_name']     = $id;
+
+      $this->load->library('upload', $config);
+      $this->upload->initialize($config);
+
+      if(!$this->upload->do_upload($name)){
         return null;
+      } else {
+        $file = $this->upload->data();
+        return $file['file_name'];
       }
     } else {
       return null;

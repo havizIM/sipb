@@ -48,7 +48,8 @@
 						"auth",
 						"login_user"
 					]
-				}
+				},
+				"description": "Link : \n- localhost/sipb/api/auth/login_user\n\n\nMethod :\n- POST\n\n\nData : \n- username\n- password\n\n\nHak Akses :\n- Helpdesk\n- Admin\n- Kepala Gudang\n- Sales\n- Manager\n\n\nNote : \n- Response berupa data user\n- Didalam response terdapat token yang digunakan untuk akses API lainnya\n- Masukan response ke session localStorage"
 			},
 			"response": []
 		},
@@ -70,7 +71,8 @@
 						"logout_user",
 						"2fa535dfeca3f34"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/auth/logout_user/--token--\n\n\nMethod :\n- GET\n\n\nHak Akses :\n- Helpdesk\n- Admin\n- Kepala Gudang\n- Sales\n- Manager\n\n\nNote : \n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -106,7 +108,8 @@
 						"password_user",
 						"2fa535dfeca3f34"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/auth/password_user/--token--\n\nMethod :\n- POST\n\nData :\n- password_lama\n- password_baru\n\nHak Akses : \n- Helpdesk\n- Admin\n- Sales\n- Kepala Gudang\n- Manager\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -128,7 +131,8 @@
 						"show",
 						"2fa535dfeca3f34"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/user/show/--token--\n\nMethod :\n- GET\n\nParams : \n- id_user\n- nama_user\n\nHak Akses : \n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
 			},
 			"response": []
 		},
@@ -150,7 +154,8 @@
 						"show",
 						"2fa535dfeca3f34"
 					]
-				}
+				},
+				"description": "Link: \n- localhost/sipb/api/log/show/--token--\n\nMethod : \n- GET\n\nHak Akses :\n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -172,7 +177,8 @@
 						"show",
 						"e2baa50d717f2e8"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/barang/show/--token--\n\nMethod :\n- GET\n\nParams : \n- no_persediaan\n- nama_persediaan\n\nHak Akses : \n- Admin\n- Kepala Gudang\n- Sales\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
 			},
 			"response": []
 		},
@@ -194,7 +200,8 @@
 						"show",
 						"e2baa50d717f2e8"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/stock/show/--token--\n\nMethod :\n- GET\n\nParams : \n- id_identifikasi\n- no_identifikasi\n- no_persediaan\n\nHak Akses : \n- Admin\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
 			},
 			"response": []
 		},
@@ -216,7 +223,8 @@
 						"show",
 						"e2baa50d717f2e8"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/supplier/show/--token--\n\nMethod :\n- GET\n\nParams : \n- id_supplier\n- nama_supplier\n\nHak Akses : \n- Admin\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
 			},
 			"response": []
 		},
@@ -238,7 +246,60 @@
 						"show",
 						"e2baa50d717f2e8"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/customer/show/--token--\n\nMethod :\n- GET\n\nParams : \n- id_customer\n- nama_customer\n\nHak Akses : \n- Admin\n- Sales\n- Manager\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Pesanan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/pesanan/show/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"pesanan",
+						"show",
+						"e2baa50d717f2e8"
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/pesanan/show/--token--\n\nMethod :\n- GET\n\nParams : \n- no_pesanan\n\nHak Akses : \n- Admin\n- Sales\n- Manager\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
+			},
+			"response": []
+		},
+		{
+			"name": "Detail Pesanan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/pesanan/detail/e2baa50d717f2e8?no_pesanan=PS0000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"pesanan",
+						"detail",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_pesanan",
+							"value": "PS0000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/pesanan/detail/--token--\n\nMethod :\n- GET\n\nParams : \n- no_pesanan\n\nHak Akses : \n- Admin\n- Sales\n- Manager\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib"
 			},
 			"response": []
 		},
@@ -280,7 +341,8 @@
 						"add",
 						"2fa535dfeca3f34"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/user/add/--token--\n\nMethod :\n- POST\n\nData : \n- nama_user\n- username\n- level (Admin / Sales / Kepala Gudang / Manager)\n\nHak Akses : \n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -335,7 +397,8 @@
 						"add",
 						"e2baa50d717f2e8"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/barang/add/--token--\n\nMethod :\n- POST\n\nData : \n- no_persediaan\n- nama_persediaan\n- satuan\n- warna\n- keterangan\n- foto (file)\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -382,7 +445,8 @@
 						"add",
 						"e2baa50d717f2e8"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/stock/add/--token--\n\nMethod :\n- POST\n\nData : \n- no_persediaan (Relasi Ke Barang)\n- no_identifikasi\n- keterangan\n- saldo_awal\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
 			},
 			"response": []
 		},
@@ -433,7 +497,8 @@
 						"add",
 						"e2baa50d717f2e8"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/supplier/add/--token--\n\nMethod :\n- POST\n\nData : \n- nama_supplier\n- telepon\n- fax\n- email\n- alamat\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -484,7 +549,86 @@
 						"add",
 						"e2baa50d717f2e8"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/customer/add/--token--\n\nMethod :\n- POST\n\nData : \n- nama_customer\n- telepon\n- fax\n- email\n- alamat\n\nHak Akses : \n- Sales\n\nNote :\n- Token bisa didapatkan dari localStorage"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Pesanan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_customer",
+							"value": "C00001",
+							"description": "Relasi Ke Customer",
+							"type": "text"
+						},
+						{
+							"key": "tgl_kirim",
+							"value": "2018-10-10",
+							"type": "text"
+						},
+						{
+							"key": "alamat_kirim",
+							"value": "Jakarta",
+							"type": "text"
+						},
+						{
+							"key": "no_persediaan[]",
+							"value": "NYX123126",
+							"type": "text"
+						},
+						{
+							"key": "keterangan[]",
+							"value": "Roll",
+							"type": "text"
+						},
+						{
+							"key": "qty_pesanan[]",
+							"value": "16",
+							"type": "text"
+						},
+						{
+							"key": "no_persediaan[]",
+							"value": "HYY-01X070-LV",
+							"type": "text"
+						},
+						{
+							"key": "keterangan[]",
+							"value": "Haspel",
+							"type": "text"
+						},
+						{
+							"key": "qty_pesanan[]",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/pesanan/add/e2baa50d717f2e9",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"pesanan",
+						"add",
+						"e2baa50d717f2e9"
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/pesanan/add/--token--\n\nMethod :\n- POST\n\nData : \n- id_customer (relasi ke customer)\n- tgl_kirim\n- alamat_kirim\n- no_persediaan[]\n- keterangan[]\n- qty_pesanan[]\n\nHak Akses : \n- Sales\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -532,7 +676,8 @@
 							"value": "USR00000006"
 						}
 					]
-				}
+				},
+				"description": "Link:\n- localhost/sipb/api/user/edit/--token--\n\nMethod :\n- POST\n\nParams :\n- id_user\n\nData : \n- nama_user\n- username\n- status (Aktif / Nonaktif)\n\nHak Akses :\n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib\n- Lihat dokumentasi di postman"
 			},
 			"response": []
 		},
@@ -588,7 +733,8 @@
 							"value": "NYX123126"
 						}
 					]
-				}
+				},
+				"description": "Link:\n- localhost/sipb/api/barang/edit/--token--\n\nMethod :\n- POST\n\nParams :\n- no_persediaan\n\nData : \n- nama_persediaan\n- satuan\n- warna\n- keterangan\n- foto (file)\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib\n- Lihat dokumentasi di postman"
 			},
 			"response": []
 		},
@@ -636,7 +782,8 @@
 							"value": "14"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/stock/edit/--token--\n\nMethod :\n- POST\n\nParams :\n- id_identifikasi\n\nData : \n- no_persediaan (Relasi Ke Barang)\n- no_identifikasi\n- keterangan\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
 			},
 			"response": []
 		},
@@ -693,7 +840,8 @@
 							"value": "S00002"
 						}
 					]
-				}
+				},
+				"description": "Link:\n- localhost/sipb/api/supplier/edit/--token--\n\nMethod :\n- POST\n\nParams :\n- id_supplier\n\nData : \n- nama_supplier\n- telepon\n- fax\n- email\n- alamat\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib\n- Lihat dokumentasi di postman"
 			},
 			"response": []
 		},
@@ -750,7 +898,87 @@
 							"value": "C00002"
 						}
 					]
-				}
+				},
+				"description": "Link:\n- localhost/sipb/api/customer/edit/--token--\n\nMethod :\n- POST\n\nParams :\n- id_customer\n\nData : \n- nama_customer\n- telepon\n- fax\n- email\n- alamat\n\nHak Akses :\n- Sales\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib\n- Lihat dokumentasi di postman"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Pesanan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_customer",
+							"value": "C00001",
+							"description": "Relasi ke Customer",
+							"type": "text"
+						},
+						{
+							"key": "tgl_kirim",
+							"value": "2018-10-11",
+							"type": "text"
+						},
+						{
+							"key": "alamat_kirim",
+							"value": "Bogor",
+							"type": "text"
+						},
+						{
+							"key": "no_persediaan[]",
+							"value": "NYX123126",
+							"type": "text"
+						},
+						{
+							"key": "keterangan[]",
+							"value": "Coba",
+							"type": "text"
+						},
+						{
+							"key": "qty_pesanan[]",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "no_persediaan[]",
+							"value": "HYY-01X070-LV",
+							"type": "text"
+						},
+						{
+							"key": "keterangan[]",
+							"value": "Coba",
+							"type": "text"
+						},
+						{
+							"key": "qty_pesanan[]",
+							"value": "5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/pesanan/edit/e2baa50d717f2e9?no_pesanan=PS0000000002",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"pesanan",
+						"edit",
+						"e2baa50d717f2e9"
+					],
+					"query": [
+						{
+							"key": "no_pesanan",
+							"value": "PS0000000002"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/pesanan/edit/--token--\n\nMethod :\n- POST\n\nParams :\n- no_pesanan\n\nData : \n- id_customer (relasi ke customer)\n- tgl_kirim\n- alamat_kirim\n- no_persediaan[]\n- keterangan[]\n- qty_pesanan[]\n\nHak Akses : \n- Sales\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Param bersifat wajib"
 			},
 			"response": []
 		},
@@ -786,7 +1014,8 @@
 							"value": "USR00000006"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/user/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- id_user\n\nHak Akses :\n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan user mana yang dihapus"
 			},
 			"response": []
 		},
@@ -814,7 +1043,8 @@
 							"value": "NYX123127"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/barang/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- no_persediaan\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
 			},
 			"response": []
 		},
@@ -842,7 +1072,8 @@
 							"value": "14"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/stock/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- id_identifikasi\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
 			},
 			"response": []
 		},
@@ -870,7 +1101,8 @@
 							"value": "S00002"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/supplier/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- id_supplier\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
 			},
 			"response": []
 		},
@@ -898,7 +1130,37 @@
 							"value": "C00002"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sipb/api/customer/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- id_customer\n\nHak Akses :\n- Sales\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Pesanan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sipb/api/pesanan/delete/e2baa50d717f2e8?no_pesanan=PS0000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"pesanan",
+						"delete",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_pesanan",
+							"value": "PS0000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/pesanan/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- no_pesanan\n\nHak Akses :\n- Sales\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
 			},
 			"response": []
 		}
