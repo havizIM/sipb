@@ -69,16 +69,23 @@
       processing: true,
       ajax: '<?= base_url('api/log/show/'); ?>'+auth.token,
       columns: [
-        {"data": null, 'render': function(data, type, row){
-            return moment(row.tgl_log, 'YYYY-MM-DD hh:mm:ss').format('LLL')
-          }
-        },
+        {"data": 'tgl_log'},
         {"data": 'id_user'},
         {"data": 'nama_user'},
         {"data": 'keterangan'},
         {"data": 'kategori'}
       ],
-      order: [[0, 'asc']]
+      order: [[0, 'desc']]
+    });
+
+    var pusher = new Pusher('6a169a704ab461b9a26a', {
+      cluster: 'ap1',
+      forceTLS: true
+    });
+
+    var channel = pusher.subscribe('sipb');
+    channel.bind('log', function(data) {
+      table.ajax.reload();
     });
 
   });

@@ -143,8 +143,8 @@
                   showConfirmButton: false,
                   timer: 1500
                 })
+                $('#btn_login').removeClass('disabled').removeAttr('disabled', 'disabled').text('Masuk');
               }
-              $('#btn_login').removeClass('disabled').removeAttr('disabled', 'disabled').text('Masuk');
             },
             error: function(){
               Swal.fire({

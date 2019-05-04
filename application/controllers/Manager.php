@@ -19,4 +19,9 @@ class Manager extends CI_Controller{
     $this->load->view('manager/dashboard');
   }
 
+  function customer()
+  {
+    $this->load->view('manager/customer');
+  }
+
 }

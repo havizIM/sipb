@@ -176,6 +176,12 @@
                   <i class="ti-shopping-cart-full"></i><span class="hide-menu">Supplier</span>
                 </a>
               </li>
+
+              <li>
+                <a class="waves-effect waves-dark" href="#/customer" aria-expanded="false">
+                  <i class="ti-user"></i><span class="hide-menu">Customer</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -217,7 +223,7 @@
       </div>
 
       <footer class="footer">
-        © 2019 Sistem Informasi Manajemen Persediaan Barang
+        Sistem Informasi Manajemen Persediaan Barang PT. Setia Sapta by Hani
       </footer>
     </div>
 
@@ -252,6 +258,8 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
+
+    <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
 
     <script type="text/javascript">
 
@@ -294,7 +302,8 @@
             cancelButtonColor: '#d33',
             confirmButtonColor: '#3085d6',
             cancelButtonText: 'Batal',
-            confirmButtonText: 'Ya, Saya yakin.'
+            confirmButtonText: 'Ya, Saya yakin.',
+            showLoaderOnConfirm: true
           }).then((result) => {
             if (result.value) {
               $.ajax({

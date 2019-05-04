@@ -14,6 +14,10 @@
 
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(''); ?>assets/images/logo-mini.png">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css"/>
+
     <title>Manager | SIMPB</title>
 
     <script src="<?= base_url(''); ?>assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
@@ -155,6 +159,11 @@
                 </a>
               </li>
 
+              <li>
+                <a class="waves-effect waves-dark" href="#/customer" aria-expanded="false">
+                  <i class="ti-user"></i><span class="hide-menu">Customer</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -196,7 +205,7 @@
       </div>
 
       <footer class="footer">
-        © 2019 Sistem Informasi Manajemen Persediaan Barang
+        Sistem Informasi Manajemen Persediaan Barang PT. Setia Sapta by Hani
       </footer>
     </div>
 
@@ -221,6 +230,16 @@
     <script src="<?= base_url(''); ?>assets/node_modules/sweetalert/sweetalert.min.js"></script>
 
     <script src="<?= base_url(''); ?>assets/node_modules/sweetalert/jquery.sweet-alert.custom.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
+
+    <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
 
     <script type="text/javascript">
 
@@ -263,7 +282,8 @@
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya, Saya yakin.',
-            cancelButtonText: 'Batal'
+            cancelButtonText: 'Batal',
+            showLoaderOnConfirm: true
           }).then((result) => {
             if (result.value) {
               $.ajax({

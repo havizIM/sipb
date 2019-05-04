@@ -76,99 +76,101 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-  var session = localStorage.getItem('sipb');
-  var auth = JSON.parse(session);
 
-  var userChart = new Chart(document.getElementById('userChart').getContext('2d'),{
-    type : 'pie',
-    data : {
-      labels : [],
-      datasets: [{
-        data : [],
-        backgroundColor: [
-          "#17a2b8",
-          "#28a745",
-          'red',
-          'yellow'
-        ]
-      }],
-    },
+  $(document).ready(function(){
+    var session = localStorage.getItem('sipb');
+    var auth = JSON.parse(session);
 
-    options : {
-      legend : {
-        display : true,
+    var userChart = new Chart(document.getElementById('userChart').getContext('2d'),{
+      type : 'pie',
+      data : {
+        labels : [],
+        datasets: [{
+          data : [],
+          backgroundColor: [
+            "#17a2b8",
+            "#28a745",
+            'red',
+            'yellow'
+          ]
+        }],
       },
-      responsive : true,
-      tooltips: {
-        enabled: true,
+
+      options : {
+        legend : {
+          display : true,
+        },
+        responsive : true,
+        tooltips: {
+          enabled: true,
+        }
       }
-    }
-  });
+    });
 
-    var logChart = new Chart(document.getElementById('logChart').getContext('2d'),{
-    type: 'bar',
-    data: {
-      labels:[
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ],
-      datasets:[{
-        label: 'Log by month',
-        data: [],
-        borderColor: "rgba(0, 176, 228, 0.75)",
-        backgroundColor: "rgb(0, 176, 228)",
-        pointBorderColor: "rgba(0, 176, 228, 0)",
-        pointBackgroundColor: "rgba(0, 176, 228, 0.9)",
-        pointBorderWidth: 1,
-      }],
-    },
-    options:{
-      responsive : true,
-      legend : {
-        display : true,
+      var logChart = new Chart(document.getElementById('logChart').getContext('2d'),{
+      type: 'bar',
+      data: {
+        labels:[
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec',
+        ],
+        datasets:[{
+          label: 'Log berdasarkan Bulan',
+          data: [],
+          borderColor: "rgba(0, 176, 228, 0.75)",
+          backgroundColor: "rgb(0, 176, 228)",
+          pointBorderColor: "rgba(0, 176, 228, 0)",
+          pointBackgroundColor: "rgba(0, 176, 228, 0.9)",
+          pointBorderWidth: 1,
+        }],
       },
-    },
-  });
+      options:{
+        responsive : true,
+        legend : {
+          display : true,
+        },
+      },
+    });
 
-  $.ajax({
-    url: `<?= base_url('api/log/statistic/') ?>${auth.token}`,
-    type: 'GET',
-    dataType: 'JSON',
-    success: function(response){
-      $.each(response.data.log_by_month, function(k, v){
-        logChart.data.datasets[0].data.push(v);
-      });
-      $('#count_log').text(response.data.total_log);
-      logChart.update();
-    }
-  });
+    $.ajax({
+      url: `<?= base_url('api/log/statistic/') ?>${auth.token}`,
+      type: 'GET',
+      dataType: 'JSON',
+      success: function(response){
+        $.each(response.data.log_by_month, function(k, v){
+          logChart.data.datasets[0].data.push(v);
+        });
+        $('#count_log').text(response.data.total_log);
+        logChart.update();
+      }
+    });
 
-  $.ajax({
-    url: `<?= base_url('api/user/statistic/') ?>${auth.token}`,
-    type: 'GET',
-    dataType: 'JSON',
-    success: function(response){
-      var total = 0;
-      $.each(response.data, function(k, v){
-        userChart.data.labels.push(v.level);
-        userChart.data.datasets[0].data.push(v.jml_user);
+    $.ajax({
+      url: `<?= base_url('api/user/statistic/') ?>${auth.token}`,
+      type: 'GET',
+      dataType: 'JSON',
+      success: function(response){
+        var total = 0;
+        $.each(response.data, function(k, v){
+          userChart.data.labels.push(v.level);
+          userChart.data.datasets[0].data.push(v.jml_user);
 
-        total += parseInt(v.jml_user);
-      });
-      $('#count_user').text(total);
-      userChart.update();
-    }
+          total += parseInt(v.jml_user);
+        });
+        $('#count_user').text(total);
+        userChart.update();
+      }
+    })
   })
-})
+
 </script>

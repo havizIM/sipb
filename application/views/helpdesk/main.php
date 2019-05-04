@@ -211,7 +211,7 @@
       </div>
 
       <footer class="footer">
-        © 2019 Sistem Informasi Manajemen Persediaan Barang
+        Sistem Informasi Manajemen Persediaan Barang PT. Setia Sapta by Hani
       </footer>
     </div>
 
@@ -253,6 +253,8 @@
 
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
 
+    <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+
     <script type="text/javascript">
 
       function load_content(link){
@@ -287,15 +289,28 @@
         })
 
         $('#btn_logout').on('click', function(){
-          $.ajax({
-            url: '<?= base_url('api/auth/logout_user/') ?>'+auth.token,
-            type: 'GET',
-            dataType: 'JSON',
-            success: function(response){
-              localStorage.clear();
-              window.location.replace('<?= base_url().'auth' ?>');
+          Swal.fire({
+            title: 'Apa Anda yakin ingin keluar?',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Saya yakin.',
+            cancelButtonText: 'Batal',
+            showLoaderOnConfirm: true
+          }).then((result) => {
+            if (result.value) {
+              $.ajax({
+                url: '<?= base_url('api/auth/logout_user/') ?>'+auth.token,
+                type: 'GET',
+                dataType: 'JSON',
+                success: function(response){
+                  localStorage.clear();
+                  window.location.replace('<?= base_url().'auth' ?>');
+                }
+              });
             }
-          });
+          })
         });
 
         $('#btn_modal_ganti').on('click', function(){
@@ -367,7 +382,7 @@
                   showConfirmButton: false,
                   timer: 1500
                 });
-                $('#btn_ganti').removeClass('disabled').removeAttr('disabled', 'disabled').text('Ganti')
+                $('#btn_ganti').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
               }
             });
           }

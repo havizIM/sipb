@@ -105,7 +105,8 @@
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Saya yakin.',
-        cancelButtonText: 'Batal'
+        cancelButtonText: 'Batal',
+        showLoaderOnConfirm: true
       }).then((result) => {
         if (result.value) {
           $.ajax({
@@ -114,7 +115,13 @@
             dataType: 'JSON',
             success: function(response){
               if(response.status === 200){
-                table.ajax.reload();
+                Swal.fire({
+                  position: 'center',
+                  type: 'success',
+                  title: response.message,
+                  showConfirmButton: false,
+                  timer: 1500
+                });
               } else {
                 Swal.fire({
                   position: 'center',
@@ -137,6 +144,16 @@
           });
         }
       })
+    });
+
+    var pusher = new Pusher('6a169a704ab461b9a26a', {
+      cluster: 'ap1',
+      forceTLS: true
+    });
+
+    var channel = pusher.subscribe('sipb');
+    channel.bind('stock', function(data) {
+      table.ajax.reload();
     });
 
   })

@@ -141,7 +141,6 @@
               });
               $('#form_edit')[0].reset();
               location.hash = '#/stok';
-              table.ajax.reload();
             } else {
               Swal.fire({
                 position: 'center',
@@ -150,8 +149,8 @@
                 showConfirmButton: false,
                 timer: 1500
               });
+              $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
             }
-            $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
           },
           error: function(){
             Swal.fire({
