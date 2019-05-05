@@ -40,6 +40,22 @@
       }
     }
 
+		function edit_status($no_pesanan, $pesanan, $log)
+    {
+      $this->db->trans_start();
+      $this->db->where('no_pesanan', $no_pesanan)->update('pesanan', $pesanan);
+      $this->db->insert('log', $log);
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE){
+        $this->db->trans_rollback();
+        return false;
+      } else {
+        $this->db->trans_commit();
+        return true;
+      }
+    }
+
 		function show($no_pesanan = null, $otorisasi)
     {
       $this->db->select('a.*, b.nama_customer, c.id_user, c.nama_user')
@@ -53,6 +69,10 @@
 
       if($otorisasi->level == 'Sales'){
         $this->db->where('a.id_user', $otorisasi->id_user);
+      }
+
+			if($otorisasi->level == 'Admin' && $otorisasi->level == 'Kepala Gudang'){
+        $this->db->where('a.status', 'Disetujui');
       }
 
       $this->db->order_by('a.no_pesanan', 'desc');

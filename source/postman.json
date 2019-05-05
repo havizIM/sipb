@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7446ca17-c67a-478f-92d9-8188e4d63fd8",
+		"_postman_id": "afc3d05b-f39c-424a-9dd6-32f101f3b576",
 		"name": "SIPB",
 		"description": "Sistem Informasi Persediaan Barang",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -58,7 +58,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/auth/logout_user/2fa535dfeca3f34",
 					"host": [
@@ -118,7 +121,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/user/show/2fa535dfeca3f34",
 					"host": [
@@ -141,7 +147,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/log/show/2fa535dfeca3f34",
 					"host": [
@@ -164,7 +173,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/barang/show/e2baa50d717f2e8",
 					"host": [
@@ -187,7 +199,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/stock/show/e2baa50d717f2e8",
 					"host": [
@@ -210,7 +225,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/supplier/show/e2baa50d717f2e8",
 					"host": [
@@ -233,7 +251,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/customer/show/e2baa50d717f2e8",
 					"host": [
@@ -256,7 +277,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/pesanan/show/e2baa50d717f2e8",
 					"host": [
@@ -279,7 +303,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/pesanan/detail/e2baa50d717f2e8?no_pesanan=PS0000000001",
 					"host": [
@@ -381,7 +408,8 @@
 						},
 						{
 							"key": "foto",
-							"type": "file"
+							"type": "file",
+							"src": ""
 						}
 					]
 				},
@@ -711,7 +739,8 @@
 						},
 						{
 							"key": "foto",
-							"type": "file"
+							"type": "file",
+							"src": ""
 						}
 					]
 				},
@@ -994,7 +1023,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "localhost/sipb/api/user/delete/2fa535dfeca3f34?id_user=USR00000006",
@@ -1024,7 +1053,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/barang/delete/e2baa50d717f2e8?no_persediaan=NYX123127",
 					"host": [
@@ -1053,7 +1085,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/stock/delete/e2baa50d717f2e8?id_identifikasi=14",
 					"host": [
@@ -1082,7 +1117,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/supplier/delete/e2baa50d717f2e8?id_supplier=S00002",
 					"host": [
@@ -1111,7 +1149,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/customer/delete/e2baa50d717f2e8?id_customer=C00002",
 					"host": [
@@ -1140,7 +1181,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost/sipb/api/pesanan/delete/e2baa50d717f2e8?no_pesanan=PS0000000001",
 					"host": [
@@ -1161,6 +1205,70 @@
 					]
 				},
 				"description": "Link :\n- localhost/sipb/api/pesanan/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- no_pesanan\n\nHak Akses :\n- Sales\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Pesanan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/sipb/api/pesanan/approve/cbb527c93eb9b52?no_pesanan=PS0000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"pesanan",
+						"approve",
+						"cbb527c93eb9b52"
+					],
+					"query": [
+						{
+							"key": "no_pesanan",
+							"value": "PS0000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/pesanan/approve/--token--\n\nMethod :\n- GET\n\nParams :\n- no_pesanan\n\nHak Akses :\n- Manager\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
+			},
+			"response": []
+		},
+		{
+			"name": "Batal Pesanan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/sipb/api/pesanan/batal/e2baa50d717f2e8?no_pesanan=PS0000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"pesanan",
+						"batal",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_pesanan",
+							"value": "PS0000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/pesanan/batal/--token--\n\nMethod :\n- GET\n\nParams :\n- no_pesanan\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
 			},
 			"response": []
 		}

@@ -339,6 +339,110 @@ class Pesanan extends CI_Controller {
     }
   }
 
+  function approve($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+			json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $auth = $this->AuthModel->cekAuth($token);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+          $otorisasi = $auth->row();
+
+          if($otorisasi->level != 'Manager'){
+            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
+          } else {
+            $no_pesanan = $this->input->get('no_pesanan');
+
+            if($no_pesanan == null){
+              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Pesanan tidak ditemukan'));
+            } else {
+              $data = array(
+                'status' => 'Disetujui'
+              );
+
+              $log = array(
+                'user'        => $otorisasi->id_user,
+                'id_ref'      => $no_pesanan,
+                'refrensi'    => 'Pesanan',
+                'keterangan'  => 'Menyetujui Data Pesanan',
+                'kategori'    => 'Approve'
+              );
+
+              $approve = $this->PesananModel->edit_status($no_pesanan, $data, $log);
+
+              if(!$approve){
+                json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menyetujui pesanan'));
+              } else {
+                $this->pusher->trigger('sipb', 'pesanan', $log);
+                json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menyetujui pesanan'));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function batal($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+			json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $auth = $this->AuthModel->cekAuth($token);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+          $otorisasi = $auth->row();
+
+          if($otorisasi->level != 'Admin'){
+            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
+          } else {
+            $no_pesanan = $this->input->get('no_pesanan');
+
+            if($no_pesanan == null){
+              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Pesanan tidak ditemukan'));
+            } else {
+              $data = array(
+                'status' => 'Batal'
+              );
+
+              $log = array(
+                'user'        => $otorisasi->id_user,
+                'id_ref'      => $no_pesanan,
+                'refrensi'    => 'Pesanan',
+                'keterangan'  => 'Membatalkan Pesanan',
+                'kategori'    => 'Batal'
+              );
+
+              $batal = $this->PesananModel->edit_status($no_pesanan, $data, $log);
+
+              if(!$batal){
+                json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal membatalkan pesanan'));
+              } else {
+                $this->pusher->trigger('sipb', 'pesanan', $log);
+                json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil membatalkan pesanan'));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
 
 ?>
