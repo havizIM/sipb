@@ -273,7 +273,7 @@ class Barang extends CI_Controller {
       }
 
       $config['upload_path']   = './doc/barang/';
-      $config['allowed_types'] = 'pdf|doc|docx';
+      $config['allowed_types'] = 'jpg|jpeg|png';
       $config['overwrite']     = TRUE;
 			$config['max_size']      = '3048';
 			$config['remove_space']  = TRUE;
