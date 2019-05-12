@@ -332,13 +332,13 @@
       var id_user = $(this).attr('data-id');
 
       Swal.fire({
-        title: 'Apa Anda yakin ingin menghapus ini?',
+        title: 'Apakah Anda yakin ingin menghapus User ini?',
         text: "User akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, Saya yakin.',
+        confirmButtonText: 'Ya',
         cancelButtonText: 'Batal',
         showLoaderOnConfirm: true
       }).then((result) => {

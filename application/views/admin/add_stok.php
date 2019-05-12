@@ -162,12 +162,7 @@
         beforeSend: function(){
           $('#submit_add').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
         },
-        data: {
-          no_persediaan: no_persediaan,
-          no_identifikasi: no_identifikasi,
-          keterangan: keterangan,
-          saldo_awal: saldo_awal
-        },
+        data: $(this).serialize(),
         success: function(response){
           if(response.status === 200){
             Swal.fire({

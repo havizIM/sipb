@@ -60,11 +60,13 @@
               <input class="form-control" id="username" name="username" type="text" required="" placeholder="Username">
             </div>
           </div>
+
           <div class="form-group">
             <div class="col-xs-12">
               <input class="form-control" id="password" name="password" type="password" required="" placeholder="Password">
             </div>
           </div>
+          
           <div class="form-group row">
             <div class="col-md-12">
               <div class="d-flex no-block align-items-center">
