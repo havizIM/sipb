@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 04, 2019 at 02:23 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 5.6.35
+-- Host: 127.0.0.1
+-- Generation Time: 16 Mei 2019 pada 12.10
+-- Versi Server: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -25,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang`
+-- Struktur dari tabel `barang`
 --
 
 CREATE TABLE `barang` (
@@ -39,7 +37,7 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `barang`
+-- Dumping data untuk tabel `barang`
 --
 
 INSERT INTO `barang` (`no_persediaan`, `nama_persediaan`, `satuan`, `warna`, `keterangan`, `foto`, `tgl_input`) VALUES
@@ -50,7 +48,7 @@ INSERT INTO `barang` (`no_persediaan`, `nama_persediaan`, `satuan`, `warna`, `ke
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang_keluar`
+-- Struktur dari tabel `barang_keluar`
 --
 
 CREATE TABLE `barang_keluar` (
@@ -62,13 +60,21 @@ CREATE TABLE `barang_keluar` (
   `ekspedisi` varchar(30) NOT NULL,
   `no_truk` varchar(9) NOT NULL,
   `ref_id` varchar(12) NOT NULL,
+  `status` enum('Proses','Disetujui','','') NOT NULL,
   `id_user` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `barang_keluar`
+--
+
+INSERT INTO `barang_keluar` (`no_keluar`, `tgl_keluar`, `id_customer`, `alamat_kirim`, `no_sp`, `ekspedisi`, `no_truk`, `ref_id`, `status`, `id_user`) VALUES
+('BK000000001', '2019-05-16 08:38:18', 'C00001', 'Bogor', '12345', 'TKI', '12345', '011101', 'Disetujui', 'USR00000002');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang_keluar_detail`
+-- Struktur dari tabel `barang_keluar_detail`
 --
 
 CREATE TABLE `barang_keluar_detail` (
@@ -78,10 +84,18 @@ CREATE TABLE `barang_keluar_detail` (
   `qty_keluar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `barang_keluar_detail`
+--
+
+INSERT INTO `barang_keluar_detail` (`id_keluar_detail`, `no_keluar`, `id_identifikasi`, `qty_keluar`) VALUES
+(5, 'BK000000001', 1, 10),
+(6, 'BK000000001', 2, 10);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang_masuk`
+-- Struktur dari tabel `barang_masuk`
 --
 
 CREATE TABLE `barang_masuk` (
@@ -96,7 +110,7 @@ CREATE TABLE `barang_masuk` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang_masuk_detail`
+-- Struktur dari tabel `barang_masuk_detail`
 --
 
 CREATE TABLE `barang_masuk_detail` (
@@ -109,7 +123,7 @@ CREATE TABLE `barang_masuk_detail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
+-- Struktur dari tabel `customer`
 --
 
 CREATE TABLE `customer` (
@@ -123,7 +137,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `customer`
+-- Dumping data untuk tabel `customer`
 --
 
 INSERT INTO `customer` (`id_customer`, `nama_customer`, `telepon`, `fax`, `email`, `alamat`, `tgl_input`) VALUES
@@ -132,7 +146,7 @@ INSERT INTO `customer` (`id_customer`, `nama_customer`, `telepon`, `fax`, `email
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log`
+-- Struktur dari tabel `log`
 --
 
 CREATE TABLE `log` (
@@ -146,7 +160,7 @@ CREATE TABLE `log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `log`
+-- Dumping data untuk tabel `log`
 --
 
 INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `kategori`, `tgl_log`) VALUES
@@ -207,12 +221,16 @@ INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `katego
 (72, 'USR00000003', 'PS0000000002', 'Pesanan', 'Mengedit data pesanan', 'Edit', '2019-05-04 11:46:36'),
 (73, 'USR00000002', 'PS0000000002', 'Pesanan', 'Menghapus data Menghapus Data Pesanan', 'Delete', '2019-05-04 11:49:24'),
 (74, 'USR00000002', 'PS0000000002', 'Pesanan', 'Menghapus data Menghapus Data Pesanan', 'Delete', '2019-05-04 11:49:45'),
-(75, 'USR00000002', 'PS0000000001', 'Pesanan', 'Menghapus data Menghapus Data Pesanan', 'Delete', '2019-05-04 11:50:30');
+(75, 'USR00000002', 'PS0000000001', 'Pesanan', 'Menghapus data Menghapus Data Pesanan', 'Delete', '2019-05-04 11:50:30'),
+(76, 'USR00000002', 'BK000000002', 'Barang Keluar', 'Menambah Data Barang Keluar', 'Add', '2019-05-16 09:18:22'),
+(77, 'USR00000007', 'BK000000001', 'Barang keluar', 'Menyetujui Data Barang Keluar', 'Approve', '2019-05-16 09:35:20'),
+(78, 'USR00000002', 'BK000000002', 'Barang Keluar', 'Menghapus Data Barang Keluar', 'Delete', '2019-05-16 09:39:05'),
+(79, 'USR00000002', 'BK000000001', 'Barang Keluar', 'Mengedit data barang keluar', 'Edit', '2019-05-16 09:55:27');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `memorandum`
+-- Struktur dari tabel `memorandum`
 --
 
 CREATE TABLE `memorandum` (
@@ -226,7 +244,7 @@ CREATE TABLE `memorandum` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `memorandum_detail`
+-- Struktur dari tabel `memorandum_detail`
 --
 
 CREATE TABLE `memorandum_detail` (
@@ -241,7 +259,7 @@ CREATE TABLE `memorandum_detail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pesanan`
+-- Struktur dari tabel `pesanan`
 --
 
 CREATE TABLE `pesanan` (
@@ -257,7 +275,7 @@ CREATE TABLE `pesanan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pesanan_detail`
+-- Struktur dari tabel `pesanan_detail`
 --
 
 CREATE TABLE `pesanan_detail` (
@@ -271,7 +289,7 @@ CREATE TABLE `pesanan_detail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `return_keluar`
+-- Struktur dari tabel `return_keluar`
 --
 
 CREATE TABLE `return_keluar` (
@@ -285,7 +303,7 @@ CREATE TABLE `return_keluar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `return_keluar_detail`
+-- Struktur dari tabel `return_keluar_detail`
 --
 
 CREATE TABLE `return_keluar_detail` (
@@ -298,7 +316,7 @@ CREATE TABLE `return_keluar_detail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `return_masuk`
+-- Struktur dari tabel `return_masuk`
 --
 
 CREATE TABLE `return_masuk` (
@@ -312,7 +330,7 @@ CREATE TABLE `return_masuk` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `return_masuk_detail`
+-- Struktur dari tabel `return_masuk_detail`
 --
 
 CREATE TABLE `return_masuk_detail` (
@@ -325,7 +343,7 @@ CREATE TABLE `return_masuk_detail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stock`
+-- Struktur dari tabel `stock`
 --
 
 CREATE TABLE `stock` (
@@ -338,7 +356,7 @@ CREATE TABLE `stock` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stock`
+-- Dumping data untuk tabel `stock`
 --
 
 INSERT INTO `stock` (`id_identifikasi`, `no_persediaan`, `no_identifikasi`, `keterangan`, `saldo_awal`, `tgl_input`) VALUES
@@ -357,7 +375,7 @@ INSERT INTO `stock` (`id_identifikasi`, `no_persediaan`, `no_identifikasi`, `ket
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplier`
+-- Struktur dari tabel `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -371,7 +389,7 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `supplier`
+-- Dumping data untuk tabel `supplier`
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `telepon`, `fax`, `email`, `alamat`, `tgl_input`) VALUES
@@ -380,7 +398,7 @@ INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `telepon`, `fax`, `email
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -396,7 +414,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `level`, `tgl_registrasi`, `foto`, `status`, `token`) VALUES
@@ -554,149 +572,140 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `barang_keluar_detail`
 --
 ALTER TABLE `barang_keluar_detail`
-  MODIFY `id_keluar_detail` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_keluar_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `barang_masuk_detail`
 --
 ALTER TABLE `barang_masuk_detail`
   MODIFY `id_masuk_detail` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
-
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `memorandum_detail`
 --
 ALTER TABLE `memorandum_detail`
   MODIFY `id_memorandum_detail` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `pesanan_detail`
 --
 ALTER TABLE `pesanan_detail`
-  MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `return_keluar_detail`
 --
 ALTER TABLE `return_keluar_detail`
   MODIFY `id_dreturn_keluar` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `return_masuk_detail`
 --
 ALTER TABLE `return_masuk_detail`
   MODIFY `id_dreturn_masuk` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
   MODIFY `id_identifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
 
 --
--- Constraints for dumped tables
---
-
---
--- Constraints for table `barang_keluar`
+-- Ketidakleluasaan untuk tabel `barang_keluar`
 --
 ALTER TABLE `barang_keluar`
   ADD CONSTRAINT `barang_keluar_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE,
   ADD CONSTRAINT `barang_keluar_ibfk_2` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `barang_keluar_detail`
+-- Ketidakleluasaan untuk tabel `barang_keluar_detail`
 --
 ALTER TABLE `barang_keluar_detail`
-  ADD CONSTRAINT `barang_keluar_detail_ibfk_1` FOREIGN KEY (`no_keluar`) REFERENCES `barang_keluar` (`no_keluar`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `barang_keluar_detail_ibfk_1` FOREIGN KEY (`no_keluar`) REFERENCES `barang_keluar` (`no_keluar`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `barang_keluar_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `barang_masuk`
+-- Ketidakleluasaan untuk tabel `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
   ADD CONSTRAINT `barang_masuk_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE,
   ADD CONSTRAINT `barang_masuk_ibfk_2` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `barang_masuk_detail`
+-- Ketidakleluasaan untuk tabel `barang_masuk_detail`
 --
 ALTER TABLE `barang_masuk_detail`
   ADD CONSTRAINT `barang_masuk_detail_ibfk_1` FOREIGN KEY (`no_masuk`) REFERENCES `barang_masuk` (`no_masuk`) ON UPDATE CASCADE,
   ADD CONSTRAINT `barang_masuk_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `log`
+-- Ketidakleluasaan untuk tabel `log`
 --
 ALTER TABLE `log`
   ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `memorandum`
+-- Ketidakleluasaan untuk tabel `memorandum`
 --
 ALTER TABLE `memorandum`
   ADD CONSTRAINT `memorandum_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `memorandum_detail`
+-- Ketidakleluasaan untuk tabel `memorandum_detail`
 --
 ALTER TABLE `memorandum_detail`
   ADD CONSTRAINT `memorandum_detail_ibfk_1` FOREIGN KEY (`no_memo`) REFERENCES `memorandum` (`no_memo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `memorandum_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `pesanan`
+-- Ketidakleluasaan untuk tabel `pesanan`
 --
 ALTER TABLE `pesanan`
   ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE,
   ADD CONSTRAINT `pesanan_ibfk_2` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `pesanan_detail`
+-- Ketidakleluasaan untuk tabel `pesanan_detail`
 --
 ALTER TABLE `pesanan_detail`
   ADD CONSTRAINT `pesanan_detail_ibfk_1` FOREIGN KEY (`no_pesanan`) REFERENCES `pesanan` (`no_pesanan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pesanan_detail_ibfk_2` FOREIGN KEY (`no_persediaan`) REFERENCES `barang` (`no_persediaan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `return_keluar`
+-- Ketidakleluasaan untuk tabel `return_keluar`
 --
 ALTER TABLE `return_keluar`
   ADD CONSTRAINT `return_keluar_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE,
   ADD CONSTRAINT `return_keluar_ibfk_2` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `return_keluar_detail`
+-- Ketidakleluasaan untuk tabel `return_keluar_detail`
 --
 ALTER TABLE `return_keluar_detail`
   ADD CONSTRAINT `return_keluar_detail_ibfk_1` FOREIGN KEY (`no_return_keluar`) REFERENCES `return_keluar` (`no_return_keluar`) ON UPDATE CASCADE,
   ADD CONSTRAINT `return_keluar_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `return_masuk`
+-- Ketidakleluasaan untuk tabel `return_masuk`
 --
 ALTER TABLE `return_masuk`
   ADD CONSTRAINT `return_masuk_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE,
   ADD CONSTRAINT `return_masuk_ibfk_2` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `return_masuk_detail`
+-- Ketidakleluasaan untuk tabel `return_masuk_detail`
 --
 ALTER TABLE `return_masuk_detail`
   ADD CONSTRAINT `return_masuk_detail_ibfk_1` FOREIGN KEY (`no_return_masuk`) REFERENCES `return_masuk` (`no_return_masuk`) ON UPDATE CASCADE,
   ADD CONSTRAINT `return_masuk_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `stock`
+-- Ketidakleluasaan untuk tabel `stock`
 --
 ALTER TABLE `stock`
   ADD CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`no_persediaan`) REFERENCES `barang` (`no_persediaan`) ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
