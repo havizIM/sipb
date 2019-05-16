@@ -170,6 +170,12 @@
                   <i class="ti-user"></i><span class="hide-menu">Customer</span>
                 </a>
               </li>
+
+              <li>
+                <a class="waves-effect waves-dark" href="#/pesanan" aria-expanded="false">
+                  <i class="ti-shopping-cart"></i><span class="hide-menu">Pesanan</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -246,6 +252,8 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
 
     <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+
+    <script src="<?= base_url('assets/') ?>dist/js/pages/jquery.PrintArea.js" type="text/JavaScript"></script>
 
     <script type="text/javascript">
 

@@ -29,4 +29,24 @@ class Sales extends CI_Controller{
     $this->load->view('sales/customer');
   }
 
+  function pesanan()
+  {
+    $this->load->view('sales/pesanan');
+  }
+
+  function add_pesanan()
+  {
+    $this->load->view('sales/add_pesanan');
+  }
+
+  function edit_pesanan($id)
+  {
+    $this->load->view('sales/edit_pesanan');
+  }
+
+  function cetak_pesanan($id)
+  {
+    $this->load->view('sales/cetak_pesanan');
+  }
+
 }
