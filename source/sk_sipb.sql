@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 16 Mei 2019 pada 12.10
+-- Generation Time: 18 Mei 2019 pada 02.43
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -43,6 +43,7 @@ CREATE TABLE `barang` (
 INSERT INTO `barang` (`no_persediaan`, `nama_persediaan`, `satuan`, `warna`, `keterangan`, `foto`, `tgl_input`) VALUES
 ('HYY-01X070-LV', 'HYY 1 X 70 MM2', 'Meter', '-', '-', 'HYY-01X070-LV.jpg', '2019-04-01 18:10:56'),
 ('HYY-01X095-LV', 'HYY 1 X 95 MM2', 'Meter Persegi', '-', 'Test', 'HYY-01X095-LV.jpg', '2019-04-01 18:10:56'),
+('NX401B55', 'Kabel Tipe C', 'Meter', 'Biru', '-', 'NX401B55.jpg', '2019-05-16 14:25:47'),
 ('NYX123126', 'Coba', 'Coba', 'Coba', 'Coba', 'NYX123126.jpg', '2019-04-10 20:52:22');
 
 -- --------------------------------------------------------
@@ -104,8 +105,16 @@ CREATE TABLE `barang_masuk` (
   `no_po` varchar(20) NOT NULL,
   `tgl_masuk` date NOT NULL,
   `id_supplier` varchar(6) NOT NULL,
+  `status` enum('Proses','Disetujui','','') NOT NULL,
   `id_user` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `barang_masuk`
+--
+
+INSERT INTO `barang_masuk` (`no_masuk`, `no_surat`, `no_po`, `tgl_masuk`, `id_supplier`, `status`, `id_user`) VALUES
+('BM000000001', '67890', '67890', '2019-05-22', 'S00001', 'Disetujui', 'USR00000002');
 
 -- --------------------------------------------------------
 
@@ -119,6 +128,13 @@ CREATE TABLE `barang_masuk_detail` (
   `id_identifikasi` int(11) NOT NULL,
   `qty_masuk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `barang_masuk_detail`
+--
+
+INSERT INTO `barang_masuk_detail` (`id_masuk_detail`, `no_masuk`, `id_identifikasi`, `qty_masuk`) VALUES
+(5, 'BM000000001', 1, 55);
 
 -- --------------------------------------------------------
 
@@ -225,7 +241,25 @@ INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `katego
 (76, 'USR00000002', 'BK000000002', 'Barang Keluar', 'Menambah Data Barang Keluar', 'Add', '2019-05-16 09:18:22'),
 (77, 'USR00000007', 'BK000000001', 'Barang keluar', 'Menyetujui Data Barang Keluar', 'Approve', '2019-05-16 09:35:20'),
 (78, 'USR00000002', 'BK000000002', 'Barang Keluar', 'Menghapus Data Barang Keluar', 'Delete', '2019-05-16 09:39:05'),
-(79, 'USR00000002', 'BK000000001', 'Barang Keluar', 'Mengedit data barang keluar', 'Edit', '2019-05-16 09:55:27');
+(79, 'USR00000002', 'BK000000001', 'Barang Keluar', 'Mengedit data barang keluar', 'Edit', '2019-05-16 09:55:27'),
+(80, 'USR00000002', '-', 'Auth', 'User login', 'Login', '2019-05-16 14:23:49'),
+(81, 'USR00000002', 'NX401B55', 'Barang', 'Menambah data barang', 'Add', '2019-05-16 14:25:47'),
+(82, 'USR00000002', '-', 'Auth', 'User logout', 'Logout', '2019-05-16 14:26:03'),
+(83, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-05-16 14:26:21'),
+(84, 'USR00000003', 'PS0000000001', 'Pesanan', 'Menambah data pesanan', 'Add', '2019-05-16 14:28:11'),
+(85, 'USR00000003', '-', 'Auth', 'User logout', 'Logout', '2019-05-16 14:31:49'),
+(86, 'USR00000003', '-', 'Auth', 'User logout', 'Logout', '2019-05-16 14:32:08'),
+(87, 'USR00000005', '-', 'Auth', 'User login', 'Login', '2019-05-16 14:32:21'),
+(88, 'USR00000005', 'PS0000000001', 'Pesanan', 'Menyetujui Data Pesanan', 'Approve', '2019-05-16 14:32:36'),
+(89, 'USR00000005', '-', 'Auth', 'User logout', 'Logout', '2019-05-16 14:33:49'),
+(90, 'USR00000002', '-', 'Auth', 'User login', 'Login', '2019-05-16 14:34:56'),
+(91, 'USR00000002', '-', 'Auth', 'Mengganti password lama menjadi password baru', 'Change Password', '2019-05-16 14:35:15'),
+(92, 'USR00000002', '-', 'Auth', 'User logout', 'Logout', '2019-05-17 14:29:53'),
+(93, 'USR00000005', '-', 'Auth', 'User login', 'Login', '2019-05-17 14:31:39'),
+(94, 'USR00000002', 'BM000000002', 'Barang Masuk', 'Menambah Data Barang Masuk', 'Add', '2019-05-18 00:11:01'),
+(95, 'USR00000002', 'BM000000002', 'Barang Masuk', 'Menghapus Data Barang Masuk', 'Delete', '2019-05-18 00:21:16'),
+(96, 'USR00000007', 'BM000000001', 'Barang Masuk', 'Menyetujui Data Barang Masuk', 'Approve', '2019-05-18 00:24:28'),
+(97, 'USR00000002', 'BM000000001', 'Barang Masuk', 'Mengedit Data Barang Masuk', 'Edit', '2019-05-18 00:37:17');
 
 -- --------------------------------------------------------
 
@@ -272,6 +306,13 @@ CREATE TABLE `pesanan` (
   `id_user` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `pesanan`
+--
+
+INSERT INTO `pesanan` (`no_pesanan`, `tgl_pesanan`, `tgl_kirim`, `id_customer`, `alamat_kirim`, `status`, `id_user`) VALUES
+('PS0000000001', '2019-05-16 14:28:11', '2019-05-16', 'C00001', 'Jakarta', 'Disetujui', 'USR00000003');
+
 -- --------------------------------------------------------
 
 --
@@ -285,6 +326,15 @@ CREATE TABLE `pesanan_detail` (
   `keterangan` varchar(100) NOT NULL,
   `qty_pesanan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pesanan_detail`
+--
+
+INSERT INTO `pesanan_detail` (`id_detail_pesanan`, `no_pesanan`, `no_persediaan`, `keterangan`, `qty_pesanan`) VALUES
+(1, 'PS0000000001', 'NX401B55', 'Haspel', 10),
+(2, 'PS0000000001', 'HYY-01X095-LV', 'Roll', 20),
+(3, 'PS0000000001', 'HYY-01X070-LV', 'Haspel', 40);
 
 -- --------------------------------------------------------
 
@@ -419,7 +469,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `level`, `tgl_registrasi`, `foto`, `status`, `token`) VALUES
 ('USR00000001', 'helpdesk', 'helpdesk', 'helpdesk', 'Helpdesk', '2019-03-24 17:28:40', 'helpdesk.jpg', 'Aktif', '2fa535dfeca3f34'),
-('USR00000002', 'Kalyssa Innara Putri', 'kalyssaip', '37e4v', 'Admin', '2019-03-28 06:36:09', 'user.jpg', 'Aktif', 'e2baa50d717f2e8'),
+('USR00000002', 'Kalyssa Innara Putri', 'kalyssaip', 'hani', 'Admin', '2019-03-28 06:36:09', 'user.jpg', 'Aktif', 'e2baa50d717f2e8'),
 ('USR00000003', 'Dian Ratna Sari', 'dianrs', 'm0ejl', 'Sales', '2019-04-05 17:54:39', 'user.jpg', 'Aktif', 'e2baa50d717f2e9'),
 ('USR00000005', 'Devan Dirgantara', 'devandp', 'ye37q', 'Manager', '2019-04-05 18:02:50', 'user.jpg', 'Aktif', 'cbb527c93eb9b52'),
 ('USR00000006', 'Coba', 'Coba', 'sqkp8', 'Admin', '2019-04-15 19:24:16', 'user.jpg', 'Aktif', '2866a3fd7a01fce'),
@@ -577,12 +627,12 @@ ALTER TABLE `barang_keluar_detail`
 -- AUTO_INCREMENT for table `barang_masuk_detail`
 --
 ALTER TABLE `barang_masuk_detail`
-  MODIFY `id_masuk_detail` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_masuk_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 --
 -- AUTO_INCREMENT for table `memorandum_detail`
 --
@@ -592,7 +642,7 @@ ALTER TABLE `memorandum_detail`
 -- AUTO_INCREMENT for table `pesanan_detail`
 --
 ALTER TABLE `pesanan_detail`
-  MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `return_keluar_detail`
 --
@@ -637,7 +687,7 @@ ALTER TABLE `barang_masuk`
 -- Ketidakleluasaan untuk tabel `barang_masuk_detail`
 --
 ALTER TABLE `barang_masuk_detail`
-  ADD CONSTRAINT `barang_masuk_detail_ibfk_1` FOREIGN KEY (`no_masuk`) REFERENCES `barang_masuk` (`no_masuk`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `barang_masuk_detail_ibfk_1` FOREIGN KEY (`no_masuk`) REFERENCES `barang_masuk` (`no_masuk`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `barang_masuk_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --

@@ -58,9 +58,9 @@
 
 		function show($no_masuk = null)
         {
-            $this->db->select('a.*, b.nama_customer, c.id_user, c.nama_user')
+            $this->db->select('a.*, b.nama_supplier, b.telepon, b.fax, b.email, b.alamat, c.id_user, c.nama_user')
                      ->from('barang_masuk a')
-                     ->join('customer b', 'b.id_customer = a.id_customer')
+                     ->join('supplier b', 'b.id_supplier = a.id_supplier')
                      ->join('user c', 'c.id_user = a.id_user');
 
             if($no_masuk != null){
@@ -94,11 +94,11 @@
                      ->join('stock b', 'b.id_identifikasi = a.id_identifikasi')
                      ->join('barang c', 'c.no_persediaan = b.no_persediaan');
 
-            if($no_keluar != null){
-                $this->db->where('a.no_keluar', $no_keluar);
+            if($no_masuk != null){
+                $this->db->where('a.no_masuk', $no_masuk);
             }
 
-            $this->db->order_by('a.id_keluar_detail', 'desc');
+            $this->db->order_by('a.id_masuk_detail', 'desc');
             return $this->db->get();
 		}
   }
