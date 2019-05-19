@@ -59,7 +59,7 @@
                 </div>
               </div>
 
-              <center><button type="submit" id="submit_edit" class="btn btn-info waves-effect">Ubah</button></center>
+              <center><button type="submit" id="submit_edit" class="btn btn-info waves-effect">Simpan</button></center>
           </form>
         </div>
       </div>
@@ -337,7 +337,7 @@
                   showConfirmButton: false,
                   timer: 1500
                 });
-                $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Ubah');
+                $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan');
               }
             },
             error: function(){
@@ -348,7 +348,7 @@
                 showConfirmButton: false,
                 timer: 1500
               });
-              $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Ubah')
+              $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
             }
           })
         }

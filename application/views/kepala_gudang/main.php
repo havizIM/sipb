@@ -49,17 +49,6 @@
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css"/>
 
-  <style media="screen">
-
-    .img-sidebar {
-      background-image: url(<?= base_url(''); ?>assets/images/bg-sidebar.png);
-      background-size: 420px;
-      background-repeat: no-repeat;
-      background-position: bottom;
-    }
-
-  </style>
-
 </head>
 
 <body class="skin-red fixed-layout">
@@ -178,6 +167,24 @@
                 <i class="ti-shopping-cart-full"></i><span class="hide-menu">Supplier</span>
               </a>
             </li>
+
+            <li>
+              <a class="waves-effect waves-dark" href="#/pesanan" aria-expanded="false">
+                <i class="ti-shopping-cart"></i><span class="hide-menu">Pesanan</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="waves-effect waves-dark" href="#/barang_keluar" aria-expanded="false">
+                <i class="icon-logout"></i><span class="hide-menu">Barang Keluar</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="waves-effect waves-dark" href="#/barang_masuk" aria-expanded="false">
+                <i class="icon-login"></i><span class="hide-menu">Barang Masuk</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -254,6 +261,8 @@
   <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
 
   <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+
+  <script src="<?= base_url('assets/') ?>dist/js/pages/jquery.PrintArea.js" type="text/JavaScript"></script>
 
   <script type="text/javascript">
 

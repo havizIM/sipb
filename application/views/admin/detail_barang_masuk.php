@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Cetak Pesanan</h4>
+      <h4 class="text-themecolor">Detail Barang Masuk</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="#/pesanan">Pesanan</a></li>
-          <li class="breadcrumb-item active">Cetak Pesanan</li>
+          <li class="breadcrumb-item"><a href="#/barang_masuk">Barang Masuk</a></li>
+          <li class="breadcrumb-item active">Detail Barang Masuk</li>
         </ol>
       </div>
     </div>
@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>SURAT PESANAN</b> <span class="pull-right" id="no_pesanan"></span></h3>
+          <h3><b>DETAIL BARANG MASUK</b> <span class="pull-right"></span></h3>
           <hr>
           <div class="row">
             <div class="col-md-6">
@@ -33,28 +33,29 @@
                 </div>
               </div>
 
-            <div class="col-md-6">
-              <div class="pull-right text-right">
-                <address>
-                  <h3>Kepada,</h3>
-                  <h4 class="font-bold" id="nama_customer" name="nama_customer"></h4>
-                  <p class="text-muted m-l-30" id="alamat_kirim" name="alamat_kirim"></p>
-                  <p><b>Tanggal Pesanan :</b> <i class="fa fa-calendar"></i> <span id="tgl_pesanan" name="tgl_pesanan"></span> </p>
-                  <p><b>Tanggal Kirim :</b> <i class="fa fa-calendar"></i> <span id="tgl_kirim" name="tgl_kirim"></span> </p>
-                </address>
+              <div class="col-md-6">
+                <div class="pull-right text-right">
+                  <address>
+                    <h3>Dari,</h3>
+                    <h4 class="font-bold" id="nama_supplier" name="nama_supplier"></h4>
+                    <p class="text-muted m-l-30" id="no_surat" name="no_surat" style="margin-bottom: 0px;"></p>
+                    <p class="text-muted m-l-30" id="no_po" name="no_po" style="margin-bottom: 0px;"></p>
+                    <p><b>Tgl. Masuk :</b> <i class="fa fa-calendar"></i> <span id="tgl_masuk" name="tgl_masuk"></span> </p>
+                  </address>
+                </div>
               </div>
-            </div>
-          </div>
+           </div>
 
           <div class="col-md-12">
             <div class="table-responsive m-t-40" style="clear: both;">
-              <table class="table table-hover" id="detail_pesanan">
+              <table class="table table-hover" id="detail_barang_masuk">
                 <thead>
                   <tr>
-                    <th>Nomor Persediaan</th>
-                    <th>Quantity</th>
+                    <th>No. Identifikasi</th>
+                    <th>No. Persediaan</th>
                     <th>Nama Persediaan</th>
                     <th>Keterangan</th>
+                    <th>Qty</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -79,35 +80,36 @@
 
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
-    var no_pesanan = location.hash.substr(16);
+    var no_masuk = location.hash.substr(22);
     var link =
 
     $.ajax({
-      url: `<?= base_url('api/pesanan/detail/') ?>${auth.token}?no_pesanan=${no_pesanan}`,
+      url: `<?= base_url('api/barang_masuk/detail/') ?>${auth.token}?no_masuk=${no_masuk}`,
       type: 'GET',
       dataType: 'JSON',
       success: function(response){
 
         $.each(response.data, function(k, v){
-          $('#no_pesanan').text('#'+v.no_pesanan)
-          $('#nama_customer').text(v.nama_customer)
-          $('#alamat_kirim').text(v.alamat_kirim)
-          $('#tgl_pesanan').text(v.tgl_pesanan)
-          $('#tgl_kirim').text(v.tgl_kirim)
+          $('#no_masuk').text(v.no_masuk)
+          $('#nama_supplier').text(v.nama_supplier)
+          $('#no_surat').text('No. Surat : '+v.no_surat)
+          $('#no_po').text('No. PO : '+v.no_po)
+          $('#tgl_masuk').text(v.tgl_masuk)
 
           var html = ''
 
           $.each(v.detail, function(k1, v1){
-            html+= `<tr id="baris${v1.id_detail_pesanan}">`
+            html+= `<tr id="baris${v1.id_masuk_detail}">`
 
+            html+= `<td>${v1.no_identifikasi}</td>`
             html+= `<td>${v1.no_persediaan}</td>`
-            html+= `<td>${v1.qty_pesanan}</td>`
             html+= `<td>${v1.nama_persediaan}</td>`
             html+= `<td>${v1.keterangan}</td>`
+            html+= `<td>${v1.qty_masuk}</td>`
             html+= `</tr>`
           })
 
-          $('#detail_pesanan tbody').append(html)
+          $('#detail_barang_masuk tbody').append(html)
         })
       },
       error: function(){

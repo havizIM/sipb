@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Cetak Pesanan</h4>
+      <h4 class="text-themecolor">Detail Barang Keluar</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="#/pesanan">Pesanan</a></li>
-          <li class="breadcrumb-item active">Cetak Pesanan</li>
+          <li class="breadcrumb-item"><a href="#/pesanan">Barang Keluar</a></li>
+          <li class="breadcrumb-item active">Detail Barang Keluar</li>
         </ol>
       </div>
     </div>
@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>SURAT PESANAN</b> <span class="pull-right" id="no_pesanan"></span></h3>
+          <h3><b>DETAIL BARANG KELUAR</b> <span class="pull-right" id="no_pesanan"></span></h3>
           <hr>
           <div class="row">
             <div class="col-md-6">
@@ -33,28 +33,32 @@
                 </div>
               </div>
 
-            <div class="col-md-6">
-              <div class="pull-right text-right">
-                <address>
-                  <h3>Kepada,</h3>
-                  <h4 class="font-bold" id="nama_customer" name="nama_customer"></h4>
-                  <p class="text-muted m-l-30" id="alamat_kirim" name="alamat_kirim"></p>
-                  <p><b>Tanggal Pesanan :</b> <i class="fa fa-calendar"></i> <span id="tgl_pesanan" name="tgl_pesanan"></span> </p>
-                  <p><b>Tanggal Kirim :</b> <i class="fa fa-calendar"></i> <span id="tgl_kirim" name="tgl_kirim"></span> </p>
-                </address>
+              <div class="col-md-6">
+                <div class="pull-right text-right">
+                  <address>
+                    <h3>Kepada,</h3>
+                    <h4 class="font-bold" id="nama_customer" name="nama_customer"></h4>
+                    <p class="text-muted m-l-30" id="alamat_kirim" name="alamat_kirim" style="margin-bottom: 0px;"></p>
+                    <p class="text-muted m-l-30" id="no_sp" name="no_sp" style="margin-bottom: 0px;"></p>
+                    <p class="text-muted m-l-30" id="ekspedisi" name="ekspedisi" style="margin-bottom: 0px;"></p>
+                    <p class="text-muted m-l-30" id="no_truk" name="no_truk" style="margin-bottom: 0px;"></p>
+                    <p class="text-muted m-l-30" id="ref_id" name="ref_id" style="margin-bottom: 0px;"></p>
+                    <p><b>Tgl. Keluar :</b> <i class="fa fa-calendar"></i> <span id="tgl_keluar" name="tgl_keluar"></span> </p>
+                  </address>
+                </div>
               </div>
-            </div>
-          </div>
+           </div>
 
           <div class="col-md-12">
             <div class="table-responsive m-t-40" style="clear: both;">
-              <table class="table table-hover" id="detail_pesanan">
+              <table class="table table-hover" id="detail_barang_keluar">
                 <thead>
                   <tr>
-                    <th>Nomor Persediaan</th>
-                    <th>Quantity</th>
+                    <th>No. Identifikasi</th>
+                    <th>No. Persediaan</th>
                     <th>Nama Persediaan</th>
                     <th>Keterangan</th>
+                    <th>Qty</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -79,35 +83,39 @@
 
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
-    var no_pesanan = location.hash.substr(16);
+    var no_keluar = location.hash.substr(23);
     var link =
 
     $.ajax({
-      url: `<?= base_url('api/pesanan/detail/') ?>${auth.token}?no_pesanan=${no_pesanan}`,
+      url: `<?= base_url('api/barang_keluar/detail/') ?>${auth.token}?no_keluar=${no_keluar}`,
       type: 'GET',
       dataType: 'JSON',
       success: function(response){
 
         $.each(response.data, function(k, v){
-          $('#no_pesanan').text('#'+v.no_pesanan)
+          $('#no_keluar').text(v.no_keluar)
           $('#nama_customer').text(v.nama_customer)
-          $('#alamat_kirim').text(v.alamat_kirim)
-          $('#tgl_pesanan').text(v.tgl_pesanan)
-          $('#tgl_kirim').text(v.tgl_kirim)
+          $('#alamat_kirim').text('Alamat Pengiriman : '+v.alamat_kirim)
+          $('#no_sp').text('No. SP : '+v.no_sp)
+          $('#ekspedisi').text('Ekspedisi : '+v.ekspedisi)
+          $('#no_truk').text('No. Truk : '+v.no_truk)
+          $('#ref_id').text('Ref. ID : '+v.ref_id)
+          $('#tgl_keluar').text(v.tgl_keluar)
 
           var html = ''
 
           $.each(v.detail, function(k1, v1){
-            html+= `<tr id="baris${v1.id_detail_pesanan}">`
+            html+= `<tr id="baris${v1.id_keluar_detail}">`
 
+            html+= `<td>${v1.no_identifikasi}</td>`
             html+= `<td>${v1.no_persediaan}</td>`
-            html+= `<td>${v1.qty_pesanan}</td>`
             html+= `<td>${v1.nama_persediaan}</td>`
             html+= `<td>${v1.keterangan}</td>`
+            html+= `<td>${v1.qty_keluar}</td>`
             html+= `</tr>`
           })
 
-          $('#detail_pesanan tbody').append(html)
+          $('#detail_barang_keluar tbody').append(html)
         })
       },
       error: function(){

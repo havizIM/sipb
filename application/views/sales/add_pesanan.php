@@ -66,6 +66,7 @@
     </div>
   </div>
 </div>
+</div>
 
 <div id="lookup_customer" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog modal-lg">
@@ -122,6 +123,7 @@
     </div>
   </div>
 </div>
+
 
 <script type="text/javascript">
 
@@ -312,7 +314,7 @@
               });
               $('#submit_add').removeClass('disabled').removeAttr('disabled', 'disabled').text('Tambah')
             }
-          })        
+          })
         }
       }
     })

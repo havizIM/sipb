@@ -34,4 +34,34 @@ class Kepala_gudang extends CI_Controller{
     $this->load->view('kepala_gudang/supplier');
   }
 
+  function pesanan()
+  {
+    $this->load->view('kepala_gudang/pesanan');
+  }
+
+  function cetak_pesanan()
+  {
+    $this->load->view('kepala_gudang/cetak_pesanan');
+  }
+
+  function barang_keluar()
+  {
+    $this->load->view('kepala_gudang/barang_keluar');
+  }
+
+  function detail_barang_keluar()
+  {
+    $this->load->view('kepala_gudang/detail_barang_keluar');
+  }
+
+  function barang_masuk()
+  {
+    $this->load->view('kepala_gudang/barang_masuk');
+  }
+
+  function detail_barang_masuk()
+  {
+    $this->load->view('kepala_gudang/detail_barang_masuk');
+  }
+
 }

@@ -59,4 +59,44 @@ class Admin extends CI_Controller{
     $this->load->view('admin/cetak_pesanan');
   }
 
+  function barang_keluar()
+  {
+    $this->load->view('admin/barang_keluar');
+  }
+
+  function add_barang_keluar()
+  {
+    $this->load->view('admin/add_barang_keluar');
+  }
+
+  function edit_barang_keluar($id)
+  {
+    $this->load->view('admin/edit_barang_keluar');
+  }
+
+  function detail_barang_keluar()
+  {
+    $this->load->view('admin/detail_barang_keluar');
+  }
+
+  function barang_masuk()
+  {
+    $this->load->view('admin/barang_masuk');
+  }
+
+  function add_barang_masuk()
+  {
+    $this->load->view('admin/add_barang_masuk');
+  }
+
+  function edit_barang_masuk($id)
+  {
+    $this->load->view('admin/edit_barang_masuk');
+  }
+
+  function detail_barang_masuk()
+  {
+    $this->load->view('admin/detail_barang_masuk');
+  }
+
 }

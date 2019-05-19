@@ -9,7 +9,7 @@
                   <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
                   <li class="breadcrumb-item active">Barang</li>
               </ol>
-              <button type="button" id="btn_add" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Barang</button>
+              <button type="button" id="btn_add" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</button>
           </div>
       </div>
   </div>
@@ -23,8 +23,8 @@
             <table id="table_barang" class="table table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Tgl Input</th>
-                  <th>Nomor Persediaan</th>
+                  <th>Tgl. Input</th>
+                  <th>No. Persediaan</th>
                   <th>Nama Persediaan</th>
                   <th>Satuan</th>
                   <th>Warna</th>
@@ -55,7 +55,7 @@
       <form class="form-horizontal" method="post" id="form_add" enctype="multipart/form-data">
         <div class="modal-body form-group">
           <div class="form-group">
-            <input type="text" class="form-control" name="no_persediaan" id="no_persediaan" placeholder="Nomor Persediaan">
+            <input type="text" class="form-control" name="no_persediaan" id="no_persediaan" placeholder="No. Persediaan">
           </div>
 
           <div class="form-group">

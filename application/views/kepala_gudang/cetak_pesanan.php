@@ -39,7 +39,7 @@
                   <h3>Kepada,</h3>
                   <h4 class="font-bold" id="nama_customer" name="nama_customer"></h4>
                   <p class="text-muted m-l-30" id="alamat_kirim" name="alamat_kirim"></p>
-                  <p><b>Tanggal Pesanan :</b> <i class="fa fa-calendar"></i> <span id="tgl_pesanan" name="tgl_pesanan"></span> </p>
+                  <p class="m-t-30"><b>Tanggal Pesanan :</b> <i class="fa fa-calendar"></i> <span id="tgl_pesanan" name="tgl_pesanan"></span> </p>
                   <p><b>Tanggal Kirim :</b> <i class="fa fa-calendar"></i> <span id="tgl_kirim" name="tgl_kirim"></span> </p>
                 </address>
               </div>

@@ -5,11 +5,10 @@
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
-          <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-              <li class="breadcrumb-item active">Pesanan</li>
-          </ol>
-          <a href="#/add_pesanan" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</a>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item active">Pesanan</li>
+        </ol>
       </div>
     </div>
   </div>
@@ -30,7 +29,7 @@
                   <th>Status</th>
                   <th>Nama Sales</th>
                   <th>Tanggal Kirim</th>
-                  <th style="width: 13%;"></th>
+                  <th style="width: 18%;"></th>
                 </tr>
               </thead>
               <tbody>
@@ -84,7 +83,8 @@
         {"data": 'tgl_kirim'},
         {"data": null, 'render': function(data, type, row){
             if(row.status === 'Disetujui'){
-              return `<button type="submit" id="btn_batal" data-id="${row.no_pesanan}" class="btn btn-danger">Batalkan <i class="ti-close"></i></button>`
+              return `<a href="#/cetak_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print"><i class="fa fa-print"></i></a>
+                      <button type="submit" id="btn_batal" data-id="${row.no_pesanan}" class="btn btn-danger">Batalkan <i class="ti-close"></i></button>`
             } else {
               return `<a href="#/cetak_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print" style="width: 75%;"><i class="fa fa-print"></i></a>`
             }
