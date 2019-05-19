@@ -149,6 +149,7 @@
                 showConfirmButton: false,
                 timer: 1500
               });
+              window.location = '#/barang_masuk'
             } else {
               Swal.fire({
                 position: 'center',
@@ -180,16 +181,6 @@
           popClose: close
       };
       $("div.printableArea").printArea(options);
-    });
-
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('sipb');
-    channel.bind('barang_masuk', function(data) {
-      table.ajax.reload();
     });
 
   })
