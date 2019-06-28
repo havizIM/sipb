@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9d78472e-8ce3-4f9a-9558-d27173f99ecb",
+		"_postman_id": "38e8f22d-7147-4c0f-8f06-c0cf6567a348",
 		"name": "SIPB",
 		"description": "Sistem Informasi Persediaan Barang",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -58,10 +58,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/auth/logout_user/2fa535dfeca3f34",
 					"host": [
@@ -121,10 +117,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/user/show/2fa535dfeca3f34",
 					"host": [
@@ -147,10 +139,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/log/show/2fa535dfeca3f34",
 					"host": [
@@ -173,10 +161,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang/show/e2baa50d717f2e8",
 					"host": [
@@ -199,10 +183,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/stock/show/e2baa50d717f2e8",
 					"host": [
@@ -225,10 +205,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/supplier/show/e2baa50d717f2e8",
 					"host": [
@@ -251,10 +227,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/customer/show/e2baa50d717f2e8",
 					"host": [
@@ -277,10 +249,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/pesanan/show/e2baa50d717f2e8",
 					"host": [
@@ -303,10 +271,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang_keluar/show/e2baa50d717f2e8",
 					"host": [
@@ -325,14 +289,76 @@
 			"response": []
 		},
 		{
+			"name": "Show Return Keluar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/return_keluar/show/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_keluar",
+						"show",
+						"e2baa50d717f2e8"
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_keluar/show/--token--\n\nMethod :\n- GET\n\nParams : \n- no_return_keluar\n\nHak Akses : \n- Admin\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Return Masuk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/return_masuk/show/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_masuk",
+						"show",
+						"e2baa50d717f2e8"
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_masuk/show/--token--\n\nMethod :\n- GET\n\nParams : \n- no_return_masuk\n\nHak Akses : \n- Admin\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Memorandum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/memorandum/show/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"memorandum",
+						"show",
+						"e2baa50d717f2e8"
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_masuk/show/--token--\n\nMethod :\n- GET\n\nParams : \n- no_return_masuk\n\nHak Akses : \n- Admin\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik"
+			},
+			"response": []
+		},
+		{
 			"name": "Show Barang Masuk",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang_masuk/show/e2baa50d717f2e8",
 					"host": [
@@ -355,10 +381,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/pesanan/detail/e2baa50d717f2e8?no_pesanan=PS0000000001",
 					"host": [
@@ -387,10 +409,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang_keluar/detail/e2baa50d717f2e8?no_keluar=BK000000001",
 					"host": [
@@ -415,14 +433,66 @@
 			"response": []
 		},
 		{
+			"name": "Detail Return Keluar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/return_keluar/detail/e2baa50d717f2e8?no_return_keluar=RTR-K000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_keluar",
+						"detail",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_return_keluar",
+							"value": "RTR-K000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_keluar/detail/--token--\n\nMethod :\n- GET\n\nParams : \n- no_return_keluar\n\nHak Akses : \n- Admin\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib"
+			},
+			"response": []
+		},
+		{
+			"name": "Detail Return Masuk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/return_masuk/detail/e2baa50d717f2e8?no_return_masuk=RTR-M000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_masuk",
+						"detail",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_return_masuk",
+							"value": "RTR-M000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_masuk/detail/--token--\n\nMethod :\n- GET\n\nParams : \n- no_return_masuk\n\nHak Akses : \n- Admin\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib"
+			},
+			"response": []
+		},
+		{
 			"name": "Detail Barang Masuk",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang_masuk/detail/e2baa50d717f2e8?no_masuk=BM000000001",
 					"host": [
@@ -439,6 +509,34 @@
 						{
 							"key": "no_masuk",
 							"value": "BM000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/barang_masuk/detail/--token--\n\nMethod :\n- GET\n\nParams : \n- no_masuk\n\nHak Akses : \n- Admin\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib"
+			},
+			"response": []
+		},
+		{
+			"name": "Detail Memorandum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/memorandum/detail/e2baa50d717f2e8?no_memo=MEMO-0000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"memorandum",
+						"detail",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_memo",
+							"value": "MEMO-0000000001"
 						}
 					]
 				},
@@ -524,8 +622,8 @@
 						},
 						{
 							"key": "foto",
-							"type": "file",
-							"src": ""
+							"value": "",
+							"type": "file"
 						}
 					]
 				},
@@ -858,6 +956,126 @@
 			"response": []
 		},
 		{
+			"name": "Add Return Keluar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "no_ref",
+							"value": "3718673195",
+							"type": "text"
+						},
+						{
+							"key": "id_supplier",
+							"value": "S00001",
+							"description": "Relasi Ke Supplier",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "1",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_return_keluar[]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "2",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_return_keluar[]",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/return_keluar/add/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_keluar",
+						"add",
+						"e2baa50d717f2e8"
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_keluar/add/--token--\n\nMethod :\n- POST\n\nData : \n- no_ref\n- id_supplier (relasi ke supplier)\n- id_identifikasi[] (relasi ke stock)\n- qty_return_keluar[]\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Return Masuk",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "no_ref",
+							"value": "3718673195",
+							"type": "text"
+						},
+						{
+							"key": "id_customer",
+							"value": "C00001",
+							"description": "Relasi Ke Customer",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "1",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_return_masuk[]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "2",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_return_masuk[]",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/return_masuk/add/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_masuk",
+						"add",
+						"e2baa50d717f2e8"
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_masuk/add/--token--\n\nMethod :\n- POST\n\nData : \n- no_ref\n- id_customer (relasi ke customer)\n- id_identifikasi[] (relasi ke stock)\n- qty_return_masuk[]\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
+			},
+			"response": []
+		},
+		{
 			"name": "Add Barang Masuk",
 			"request": {
 				"method": "POST",
@@ -919,6 +1137,59 @@
 						"sipb",
 						"api",
 						"barang_masuk",
+						"add",
+						"e2baa50d717f2e8"
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/barang_masuk/add/--token--\n\nMethod :\n- POST\n\nData : \n- id_supplier (Relasi ke Supplier)\n- no_surat\n- no_po\n- tgl_masuk\n- id_identifikasi[] (Relasi ke stock)\n- qty_keluar[]\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Memorandum",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "keterangan_memo",
+							"value": "Coba dlu aja",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "1",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_masuk[]",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "qty_keluar[]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "keterangan[]",
+							"value": "Test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/memorandum/add/e2baa50d717f2e8",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"memorandum",
 						"add",
 						"e2baa50d717f2e8"
 					]
@@ -1006,8 +1277,8 @@
 						},
 						{
 							"key": "foto",
-							"type": "file",
-							"src": ""
+							"value": "",
+							"type": "file"
 						}
 					]
 				},
@@ -1431,6 +1702,197 @@
 			"response": []
 		},
 		{
+			"name": "Edit Return Keluar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "no_ref",
+							"value": "371867319778",
+							"type": "text"
+						},
+						{
+							"key": "id_supplier",
+							"value": "S00001",
+							"description": "Relasi Ke Supplier",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "1",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_return_keluar[]",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "2",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_return_keluar[]",
+							"value": "6",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/return_keluar/edit/e2baa50d717f2e8?no_return_keluar=RTR-K000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_keluar",
+						"edit",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_return_keluar",
+							"value": "RTR-K000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_keluar/edit/--token--\n\nMethod :\n- POST\n\nParam : \n- no_return_keluar\n\nData : \n- id_supplier (relasi ke supplier)\n- no_ref\n- id_identifikasi[] (relasi ke stock)\n- qty_return_keluar[]\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Return Masuk",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "no_ref",
+							"value": "3718673111",
+							"type": "text"
+						},
+						{
+							"key": "id_customer",
+							"value": "C00001",
+							"description": "Relasi Ke Customer",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "1",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_return_masuk[]",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "2",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_return_masuk[]",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/return_masuk/edit/e2baa50d717f2e8?no_return_masuk=RTR-K000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_masuk",
+						"edit",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_return_masuk",
+							"value": "RTR-K000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_masuk/edit/--token--\n\nMethod :\n- POST\n \nParam : \n- no_return_masuk\n\nData : \n- no_ref\n- id_customer\n- id_identifikasi[] (relasi ke stock)\n- qrt_return_masuk[]\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Memorandum",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "keterangan_memo",
+							"value": "3718673111",
+							"type": "text"
+						},
+						{
+							"key": "id_identifikasi[]",
+							"value": "1",
+							"description": "Relasi ke Stock",
+							"type": "text"
+						},
+						{
+							"key": "qty_masuk[]",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "qty_keluar[]",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "keterangan[]",
+							"value": "Coba",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sipb/api/memorandum/edit/e2baa50d717f2e8?no_memo=MEMO-0000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"memorandum",
+						"edit",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_memo",
+							"value": "MEMO-0000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_masuk/edit/--token--\n\nMethod :\n- POST\n \nParam : \n- no_return_masuk\n\nData : \n- no_ref\n- id_customer\n- id_identifikasi[] (relasi ke stock)\n- qrt_return_masuk[]\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
+			},
+			"response": []
+		},
+		{
 			"name": "Delete User",
 			"request": {
 				"method": "GET",
@@ -1440,10 +1902,6 @@
 						"value": "application/x-www-form-urlencoded"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/user/delete/2fa535dfeca3f34?id_user=USR00000006",
 					"host": [
@@ -1472,10 +1930,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang/delete/e2baa50d717f2e8?no_persediaan=NYX123127",
 					"host": [
@@ -1504,10 +1958,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/stock/delete/e2baa50d717f2e8?id_identifikasi=14",
 					"host": [
@@ -1536,10 +1986,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/supplier/delete/e2baa50d717f2e8?id_supplier=S00002",
 					"host": [
@@ -1568,10 +2014,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/customer/delete/e2baa50d717f2e8?id_customer=C00002",
 					"host": [
@@ -1600,10 +2042,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/pesanan/delete/e2baa50d717f2e8?no_pesanan=PS0000000001",
 					"host": [
@@ -1632,10 +2070,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang_keluar/delete/e2baa50d717f2e8?no_keluar=BK000000002",
 					"host": [
@@ -1660,14 +2094,66 @@
 			"response": []
 		},
 		{
+			"name": "Delete Return Keluar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/return_keluar/delete/e2baa50d717f2e8?no_return_keluar=RTR-K000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_keluar",
+						"delete",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_return_keluar",
+							"value": "RTR-K000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_keluar/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- no_return_keluar\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Return Masuk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/return_masuk/delete/e2baa50d717f2e8?no_return_masuk=RTR-K000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_masuk",
+						"delete",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_return_masuk",
+							"value": "RTR-K000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_masuk/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- no_return_masuk\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Barang Masuk",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang_masuk/delete/e2baa50d717f2e8?no_masuk=BM000000002",
 					"host": [
@@ -1692,14 +2178,38 @@
 			"response": []
 		},
 		{
+			"name": "Delete Memorandum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/memorandum/delete/e2baa50d717f2e8?no_memo=MEMO-0000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"memorandum",
+						"delete",
+						"e2baa50d717f2e8"
+					],
+					"query": [
+						{
+							"key": "no_memo",
+							"value": "MEMO-0000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/barang_masuk/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- no_masuk\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
+			},
+			"response": []
+		},
+		{
 			"name": "Approve Pesanan",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/pesanan/approve/cbb527c93eb9b52?no_pesanan=PS0000000001",
 					"host": [
@@ -1728,10 +2238,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang_keluar/approve/b34716876d1413c?no_keluar=BK000000001",
 					"host": [
@@ -1756,14 +2262,66 @@
 			"response": []
 		},
 		{
+			"name": "Approve Return Keluar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/return_keluar/approve/b34716876d1413c?no_return_keluar=RTR-K00001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_keluar",
+						"approve",
+						"b34716876d1413c"
+					],
+					"query": [
+						{
+							"key": "no_return_keluar",
+							"value": "RTR-K00001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_keluar/approve/--token--\n\nMethod :\n- GET\n\nParams :\n- no_return_keluar\n\nHak Akses :\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Return Masuk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/return_masuk/approve/b34716876d1413c?no_return_masuk=RTR-M000000002",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"return_masuk",
+						"approve",
+						"b34716876d1413c"
+					],
+					"query": [
+						{
+							"key": "no_return_masuk",
+							"value": "RTR-M000000002"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/return_masuk/approve/--token--\n\nMethod :\n- GET\n\nParams :\n- no_return_masuk\n\nHak Akses :\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
+			},
+			"response": []
+		},
+		{
 			"name": "Approve Barang Masuk",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/barang_masuk/approve/b34716876d1413c?no_masuk=BM000000001",
 					"host": [
@@ -1788,14 +2346,38 @@
 			"response": []
 		},
 		{
+			"name": "Approve Memorandum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sipb/api/memorandum/approve/b34716876d1413c?no_memo=MEMO-0000000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sipb",
+						"api",
+						"memorandum",
+						"approve",
+						"b34716876d1413c"
+					],
+					"query": [
+						{
+							"key": "no_memo",
+							"value": "MEMO-0000000001"
+						}
+					]
+				},
+				"description": "Link :\n- localhost/sipb/api/barang_masuk/approve/--token--\n\nMethod :\n- GET\n\nParams :\n- no_masuk\n\nHak Akses :\n- Kepala Gudang\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
+			},
+			"response": []
+		},
+		{
 			"name": "Batal Pesanan",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "localhost/sipb/api/pesanan/batal/e2baa50d717f2e8?no_pesanan=PS0000000001",
 					"host": [

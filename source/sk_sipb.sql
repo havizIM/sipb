@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18 Mei 2019 pada 02.43
--- Versi Server: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Waktu pembuatan: 28 Jun 2019 pada 08.22
+-- Versi server: 10.1.40-MariaDB
+-- Versi PHP: 7.1.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -70,7 +72,8 @@ CREATE TABLE `barang_keluar` (
 --
 
 INSERT INTO `barang_keluar` (`no_keluar`, `tgl_keluar`, `id_customer`, `alamat_kirim`, `no_sp`, `ekspedisi`, `no_truk`, `ref_id`, `status`, `id_user`) VALUES
-('BK000000001', '2019-05-16 08:38:18', 'C00001', 'Bogor', '12345', 'TKI', '12345', '011101', 'Disetujui', 'USR00000002');
+('BK000000001', '2019-05-16 08:38:18', 'C00001', 'Bogor', '12345', 'TKI', '12345', '011101', 'Disetujui', 'USR00000002'),
+('BK000000002', '2019-06-16 13:12:23', 'C00001', 'Jl. Manju Mundur', 'PS0000000001', 'ABC', 'B 2020 SA', '-', 'Proses', 'USR00000002');
 
 -- --------------------------------------------------------
 
@@ -91,7 +94,10 @@ CREATE TABLE `barang_keluar_detail` (
 
 INSERT INTO `barang_keluar_detail` (`id_keluar_detail`, `no_keluar`, `id_identifikasi`, `qty_keluar`) VALUES
 (5, 'BK000000001', 1, 10),
-(6, 'BK000000001', 2, 10);
+(6, 'BK000000001', 2, 10),
+(7, 'BK000000002', 11, 10),
+(8, 'BK000000002', 7, 50),
+(9, 'BK000000002', 5, 30);
 
 -- --------------------------------------------------------
 
@@ -259,7 +265,28 @@ INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `katego
 (94, 'USR00000002', 'BM000000002', 'Barang Masuk', 'Menambah Data Barang Masuk', 'Add', '2019-05-18 00:11:01'),
 (95, 'USR00000002', 'BM000000002', 'Barang Masuk', 'Menghapus Data Barang Masuk', 'Delete', '2019-05-18 00:21:16'),
 (96, 'USR00000007', 'BM000000001', 'Barang Masuk', 'Menyetujui Data Barang Masuk', 'Approve', '2019-05-18 00:24:28'),
-(97, 'USR00000002', 'BM000000001', 'Barang Masuk', 'Mengedit Data Barang Masuk', 'Edit', '2019-05-18 00:37:17');
+(97, 'USR00000002', 'BM000000001', 'Barang Masuk', 'Mengedit Data Barang Masuk', 'Edit', '2019-05-18 00:37:17'),
+(98, 'USR00000002', '-', 'Auth', 'User login', 'Login', '2019-06-10 12:49:39'),
+(99, 'USR00000002', '-', 'Auth', 'User login', 'Login', '2019-06-10 14:33:55'),
+(100, 'USR00000002', '-', 'Auth', 'User login', 'Login', '2019-06-16 13:04:45'),
+(101, 'USR00000002', 'BK000000002', 'Barang Keluar', 'Menambah Data Barang Keluar', 'Add', '2019-06-16 13:12:23'),
+(102, 'USR00000002', 'RTR-K000000001', 'Return Keluar', 'Menambah Data Return Keluar', 'Add', '2019-06-27 13:43:43'),
+(103, 'USR00000002', 'RTR-K000000001', 'Return Keluar', 'Mengedit data return keluar', 'Edit', '2019-06-27 14:20:41'),
+(104, 'USR00000002', 'RTR-K000000001', 'Return Keluar', 'Mengedit data return keluar', 'Edit', '2019-06-27 14:21:04'),
+(105, 'USR00000002', 'RTR-K000000001', 'Return Keluar', 'Menghapus Data Return Keluar', 'Delete', '2019-06-27 15:08:42'),
+(106, 'USR00000007', 'RTR-K00001', 'Return keluar', 'Menyetujui Data Return Keluar', 'Approve', '2019-06-27 15:10:28'),
+(107, 'USR00000002', 'RTR-K000000001', 'Return Masuk', 'Menambah Data Return Masuk', 'Add', '2019-06-27 16:01:37'),
+(108, 'USR00000002', 'RTR-K000000001', 'Return Masuk', 'Mengedit data return Masuk', 'Edit', '2019-06-27 16:39:35'),
+(109, 'USR00000002', 'RTR-K000000001', 'Return Masuk', 'Menghapus Data Return Masuk', 'Delete', '2019-06-27 16:42:35'),
+(110, 'USR00000002', 'RTR-M000000001', 'Return Masuk', 'Menambah Data Return Masuk', 'Add', '2019-06-27 16:44:52'),
+(111, 'USR00000002', 'RTR-M000000002', 'Return Masuk', 'Menambah Data Return Masuk', 'Add', '2019-06-27 16:45:08'),
+(112, 'USR00000007', 'RTR-M000000001', 'Return masuk', 'Menyetujui Data Return masuk', 'Approve', '2019-06-27 16:46:17'),
+(113, 'USR00000007', 'RTR-M000000001', 'Return masuk', 'Menyetujui Data Return masuk', 'Approve', '2019-06-27 16:47:11'),
+(114, 'USR00000007', 'RTR-M000000002', 'Return masuk', 'Menyetujui Data Return masuk', 'Approve', '2019-06-27 16:47:28'),
+(115, 'USR00000002', 'MEMO-0000000001', 'Memorandum', 'Menambah Data Memorandum', 'Add', '2019-06-28 06:13:18'),
+(116, 'USR00000002', 'MEMO-0000000001', 'Memorandum', 'Mengedit data Memorandum', 'Edit', '2019-06-28 06:17:08'),
+(117, 'USR00000007', 'MEMO-0000000001', 'Memorandum', 'Menyetujui Data Memorandum', 'Approve', '2019-06-28 06:20:46'),
+(118, 'USR00000002', 'MEMO-0000000001', 'Memorandum', 'Menghapus Data Memorandum', 'Delete', '2019-06-28 06:20:56');
 
 -- --------------------------------------------------------
 
@@ -272,7 +299,7 @@ CREATE TABLE `memorandum` (
   `tgl_memo` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `keterangan_memo` varchar(200) NOT NULL,
   `id_user` varchar(11) NOT NULL,
-  `status` enum('Menunggu','Ditolak','Disetujui','') NOT NULL
+  `status` enum('Proses','Batal','Disetujui','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -346,9 +373,17 @@ CREATE TABLE `return_keluar` (
   `no_return_keluar` varchar(15) NOT NULL,
   `tgl_return` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `no_ref` varchar(20) NOT NULL,
+  `status` enum('Proses','Batal','Disetujui','') NOT NULL,
   `id_supplier` varchar(6) NOT NULL,
   `id_user` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `return_keluar`
+--
+
+INSERT INTO `return_keluar` (`no_return_keluar`, `tgl_return`, `no_ref`, `status`, `id_supplier`, `id_user`) VALUES
+('RTR-K00001', '2019-06-27 13:12:57', 'BM000000001', 'Disetujui', 'S00001', 'USR00000001');
 
 -- --------------------------------------------------------
 
@@ -363,6 +398,14 @@ CREATE TABLE `return_keluar_detail` (
   `qty_return_keluar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `return_keluar_detail`
+--
+
+INSERT INTO `return_keluar_detail` (`id_dreturn_keluar`, `no_return_keluar`, `id_identifikasi`, `qty_return_keluar`) VALUES
+(1, 'RTR-K00001', 1, 10),
+(2, 'RTR-K00001', 7, 10);
+
 -- --------------------------------------------------------
 
 --
@@ -373,9 +416,18 @@ CREATE TABLE `return_masuk` (
   `no_return_masuk` varchar(15) NOT NULL,
   `tgl_return` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `no_ref` varchar(20) NOT NULL,
+  `status` enum('Proses','Disetujui','Batal','') NOT NULL,
   `id_customer` varchar(6) NOT NULL,
   `id_user` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `return_masuk`
+--
+
+INSERT INTO `return_masuk` (`no_return_masuk`, `tgl_return`, `no_ref`, `status`, `id_customer`, `id_user`) VALUES
+('RTR-M000000001', '2019-06-27 16:44:52', '3718673195', 'Disetujui', 'C00001', 'USR00000002'),
+('RTR-M000000002', '2019-06-27 16:45:08', '3718673195', 'Disetujui', 'C00001', 'USR00000002');
 
 -- --------------------------------------------------------
 
@@ -389,6 +441,16 @@ CREATE TABLE `return_masuk_detail` (
   `id_identifikasi` int(11) NOT NULL,
   `qty_return_masuk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `return_masuk_detail`
+--
+
+INSERT INTO `return_masuk_detail` (`id_dreturn_masuk`, `no_return_masuk`, `id_identifikasi`, `qty_return_masuk`) VALUES
+(5, 'RTR-M000000001', 1, 2),
+(6, 'RTR-M000000001', 2, 3),
+(7, 'RTR-M000000002', 1, 2),
+(8, 'RTR-M000000002', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -480,13 +542,13 @@ INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `level`, `tg
 --
 
 --
--- Indexes for table `barang`
+-- Indeks untuk tabel `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`no_persediaan`);
 
 --
--- Indexes for table `barang_keluar`
+-- Indeks untuk tabel `barang_keluar`
 --
 ALTER TABLE `barang_keluar`
   ADD PRIMARY KEY (`no_keluar`),
@@ -494,7 +556,7 @@ ALTER TABLE `barang_keluar`
   ADD KEY `id_customer` (`id_customer`);
 
 --
--- Indexes for table `barang_keluar_detail`
+-- Indeks untuk tabel `barang_keluar_detail`
 --
 ALTER TABLE `barang_keluar_detail`
   ADD PRIMARY KEY (`id_keluar_detail`),
@@ -502,7 +564,7 @@ ALTER TABLE `barang_keluar_detail`
   ADD KEY `id_identifikasi` (`id_identifikasi`);
 
 --
--- Indexes for table `barang_masuk`
+-- Indeks untuk tabel `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
   ADD PRIMARY KEY (`no_masuk`),
@@ -510,7 +572,7 @@ ALTER TABLE `barang_masuk`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `barang_masuk_detail`
+-- Indeks untuk tabel `barang_masuk_detail`
 --
 ALTER TABLE `barang_masuk_detail`
   ADD PRIMARY KEY (`id_masuk_detail`),
@@ -518,27 +580,27 @@ ALTER TABLE `barang_masuk_detail`
   ADD KEY `id_identifikasi` (`id_identifikasi`);
 
 --
--- Indexes for table `customer`
+-- Indeks untuk tabel `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id_customer`);
 
 --
--- Indexes for table `log`
+-- Indeks untuk tabel `log`
 --
 ALTER TABLE `log`
   ADD PRIMARY KEY (`id_log`),
   ADD KEY `user` (`user`);
 
 --
--- Indexes for table `memorandum`
+-- Indeks untuk tabel `memorandum`
 --
 ALTER TABLE `memorandum`
   ADD PRIMARY KEY (`no_memo`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `memorandum_detail`
+-- Indeks untuk tabel `memorandum_detail`
 --
 ALTER TABLE `memorandum_detail`
   ADD PRIMARY KEY (`id_memorandum_detail`),
@@ -546,7 +608,7 @@ ALTER TABLE `memorandum_detail`
   ADD KEY `id_indentifikasi` (`id_identifikasi`);
 
 --
--- Indexes for table `pesanan`
+-- Indeks untuk tabel `pesanan`
 --
 ALTER TABLE `pesanan`
   ADD PRIMARY KEY (`no_pesanan`),
@@ -554,7 +616,7 @@ ALTER TABLE `pesanan`
   ADD KEY `id_customer` (`id_customer`);
 
 --
--- Indexes for table `pesanan_detail`
+-- Indeks untuk tabel `pesanan_detail`
 --
 ALTER TABLE `pesanan_detail`
   ADD PRIMARY KEY (`id_detail_pesanan`),
@@ -563,7 +625,7 @@ ALTER TABLE `pesanan_detail`
   ADD KEY `no_persediaan` (`no_persediaan`);
 
 --
--- Indexes for table `return_keluar`
+-- Indeks untuk tabel `return_keluar`
 --
 ALTER TABLE `return_keluar`
   ADD PRIMARY KEY (`no_return_keluar`),
@@ -571,7 +633,7 @@ ALTER TABLE `return_keluar`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `return_keluar_detail`
+-- Indeks untuk tabel `return_keluar_detail`
 --
 ALTER TABLE `return_keluar_detail`
   ADD PRIMARY KEY (`id_dreturn_keluar`),
@@ -579,7 +641,7 @@ ALTER TABLE `return_keluar_detail`
   ADD KEY `id_identifikasi` (`id_identifikasi`);
 
 --
--- Indexes for table `return_masuk`
+-- Indeks untuk tabel `return_masuk`
 --
 ALTER TABLE `return_masuk`
   ADD PRIMARY KEY (`no_return_masuk`),
@@ -587,7 +649,7 @@ ALTER TABLE `return_masuk`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `return_masuk_detail`
+-- Indeks untuk tabel `return_masuk_detail`
 --
 ALTER TABLE `return_masuk_detail`
   ADD PRIMARY KEY (`id_dreturn_masuk`),
@@ -595,69 +657,77 @@ ALTER TABLE `return_masuk_detail`
   ADD KEY `no_return_masuk` (`no_return_masuk`);
 
 --
--- Indexes for table `stock`
+-- Indeks untuk tabel `stock`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`id_identifikasi`),
   ADD KEY `id_persediaan` (`no_persediaan`);
 
 --
--- Indexes for table `supplier`
+-- Indeks untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id_supplier`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `barang_keluar_detail`
+-- AUTO_INCREMENT untuk tabel `barang_keluar_detail`
 --
 ALTER TABLE `barang_keluar_detail`
-  MODIFY `id_keluar_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_keluar_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
--- AUTO_INCREMENT for table `barang_masuk_detail`
+-- AUTO_INCREMENT untuk tabel `barang_masuk_detail`
 --
 ALTER TABLE `barang_masuk_detail`
   MODIFY `id_masuk_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT for table `log`
+-- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+
 --
--- AUTO_INCREMENT for table `memorandum_detail`
+-- AUTO_INCREMENT untuk tabel `memorandum_detail`
 --
 ALTER TABLE `memorandum_detail`
-  MODIFY `id_memorandum_detail` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_memorandum_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `pesanan_detail`
+-- AUTO_INCREMENT untuk tabel `pesanan_detail`
 --
 ALTER TABLE `pesanan_detail`
   MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT for table `return_keluar_detail`
+-- AUTO_INCREMENT untuk tabel `return_keluar_detail`
 --
 ALTER TABLE `return_keluar_detail`
-  MODIFY `id_dreturn_keluar` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_dreturn_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `return_masuk_detail`
+-- AUTO_INCREMENT untuk tabel `return_masuk_detail`
 --
 ALTER TABLE `return_masuk_detail`
-  MODIFY `id_dreturn_masuk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_dreturn_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `stock`
+-- AUTO_INCREMENT untuk tabel `stock`
 --
 ALTER TABLE `stock`
   MODIFY `id_identifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
@@ -706,7 +776,7 @@ ALTER TABLE `memorandum`
 -- Ketidakleluasaan untuk tabel `memorandum_detail`
 --
 ALTER TABLE `memorandum_detail`
-  ADD CONSTRAINT `memorandum_detail_ibfk_1` FOREIGN KEY (`no_memo`) REFERENCES `memorandum` (`no_memo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `memorandum_detail_ibfk_1` FOREIGN KEY (`no_memo`) REFERENCES `memorandum` (`no_memo`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `memorandum_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --
@@ -734,7 +804,7 @@ ALTER TABLE `return_keluar`
 -- Ketidakleluasaan untuk tabel `return_keluar_detail`
 --
 ALTER TABLE `return_keluar_detail`
-  ADD CONSTRAINT `return_keluar_detail_ibfk_1` FOREIGN KEY (`no_return_keluar`) REFERENCES `return_keluar` (`no_return_keluar`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `return_keluar_detail_ibfk_1` FOREIGN KEY (`no_return_keluar`) REFERENCES `return_keluar` (`no_return_keluar`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `return_keluar_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --
@@ -748,7 +818,7 @@ ALTER TABLE `return_masuk`
 -- Ketidakleluasaan untuk tabel `return_masuk_detail`
 --
 ALTER TABLE `return_masuk_detail`
-  ADD CONSTRAINT `return_masuk_detail_ibfk_1` FOREIGN KEY (`no_return_masuk`) REFERENCES `return_masuk` (`no_return_masuk`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `return_masuk_detail_ibfk_1` FOREIGN KEY (`no_return_masuk`) REFERENCES `return_masuk` (`no_return_masuk`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `return_masuk_detail_ibfk_2` FOREIGN KEY (`id_identifikasi`) REFERENCES `stock` (`id_identifikasi`) ON UPDATE CASCADE;
 
 --
@@ -756,6 +826,7 @@ ALTER TABLE `return_masuk_detail`
 --
 ALTER TABLE `stock`
   ADD CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`no_persediaan`) REFERENCES `barang` (`no_persediaan`) ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
