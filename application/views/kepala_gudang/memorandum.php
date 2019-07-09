@@ -1,14 +1,15 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Pelanggan</h4>
+      <h4 class="text-themecolor">Memorandum</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item active">Pelanggan</li>
+          <li class="breadcrumb-item active">Memorandum</li>
         </ol>
+        <a href="#/add_memorandum" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</a>
       </div>
     </div>
   </div>
@@ -17,17 +18,17 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Data Pelanggan</h4>
+          <h4 class="card-title">Data Memorandum</h4>
           <div class="table-responsive m-t-40">
-            <table id="t_customer" class="table table-striped">
+            <table id="t_memorandum" class="table table-striped">
               <thead>
                 <tr>
-                  <th>Tgl. Input</th>
-                  <th>Nama Pelanggan</th>
-                  <th>Telepon</th>
-                  <th>Fax</th>
-                  <th>Email</th>
-                  <th>Alamat</th>
+                  <th>Tgl. Memo</th>
+                  <th>No. Memo</th>
+                  <th>Keterangan</th>
+                  <th>Status</th>
+                  <th>Nama Admin</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -48,7 +49,7 @@
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
 
-    var table = $('#t_customer').DataTable({
+    var table = $('#t_memorandum').DataTable({
       columnDefs: [{
         targets: [0, 2, 3, 4, 5],
         searchable: false
@@ -58,7 +59,7 @@
       }],
       autoWidth: false,
       language: {
-        search: 'Cari (Nama Pelanggan): _INPUT_',
+        search: 'Cari (No. Memo): _INPUT_',
         lengthMenu: 'Tampilkan: _MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
         info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Data',
@@ -70,14 +71,17 @@
       },
       responsive: true,
       processing: true,
-      ajax: '<?= base_url('api/customer/show/'); ?>'+auth.token,
+      ajax: '<?= base_url('api/memorandum/show/'); ?>'+auth.token,
       columns: [
-        {"data": 'tgl_input'},
-        {"data": 'nama_customer'},
-        {"data": 'telepon'},
-        {"data": 'fax'},
-        {"data": 'email'},
-        {"data": 'alamat'}
+        {"data": 'tgl_memo'},
+        {"data": 'no_memo'},
+        {"data": 'keterangan_memo'},
+        {"data": 'status'},
+        {"data": 'nama_user'},
+        {"data": null, 'render': function(data, type, row){
+            return `<a href="#/detail_memorandum/${row.no_memo}" class="btn btn-primary"><i class="fa fa-eye"></i></a>`
+          }
+        }
       ],
       order: [[0, 'desc']]
     });
@@ -88,7 +92,7 @@
     });
 
     var channel = pusher.subscribe('sipb');
-    channel.bind('customer', function(data) {
+    channel.bind('memorandum', function(data) {
       table.ajax.reload();
     });
 

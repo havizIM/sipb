@@ -1,38 +1,34 @@
 <div class="container-fluid">
   <div class="row page-titles">
-      <div class="col-md-5 align-self-center">
-          <h4 class="text-themecolor">Stok</h4>
+    <div class="col-md-5 align-self-center">
+      <h4 class="text-themecolor">Memorandum</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+      <div class="d-flex justify-content-end align-items-center">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item active">Memorandum</li>
+        </ol>
+        <a href="#/add_memorandum" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</a>
       </div>
-      <div class="col-md-7 align-self-center text-right">
-          <div class="d-flex justify-content-end align-items-center">
-              <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Stok</li>
-              </ol>
-              <a href="#/add_stok" type="button" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</a>
-          </div>
-      </div>
+    </div>
   </div>
 
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Data Stok</h4>
+          <h4 class="card-title">Data Memorandum</h4>
           <div class="table-responsive m-t-40">
-            <table id="t_stok" class="table table-striped table-hover">
+            <table id="t_memorandum" class="table table-striped">
               <thead>
                 <tr>
-                  <th>Tgl Input</th>
-                  <th>Nomor Identifikasi</th>
-                  <th>Keterangan Stok</th>
-                  <th>Saldo Awal</th>
-                  <th>Kode Barang</th>
-                  <th>Nama Barang</th>
-                  <th>Satuan</th>
-                  <th>Warna</th>
-                  <th>Keterangan Barang</th>
-                  <th style="width: 12%;"></th>
+                  <th>Tgl. Memo</th>
+                  <th>No. Memo</th>
+                  <th>Keterangan</th>
+                  <th>Status</th>
+                  <th>Nama Admin</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -53,53 +49,48 @@
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
 
-    var table = $('#t_stok').DataTable({
+    var table = $('#t_memorandum').DataTable({
       columnDefs: [{
-        targets: [0, 2, 3, 4, 5, 6, 7, 8, 9],
+        targets: [0, 2, 3, 4, 5],
         searchable: false
       }, {
-        targets: [9],
+        targets: [5],
         orderable: false
       }],
       autoWidth: false,
       language: {
-        search: '<span>Cari (Nomor Identifikasi) :</span>_INPUT_',
-        lengthMenu: '<span>Tampilkan: </span>_MENU_',
+        search: 'Cari (No. Memo): _INPUT_',
+        lengthMenu: 'Tampilkan: _MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
-        info: 'Menampilkan  _START_ sampai _END_ dari _TOTAL_ Data',
+        info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Data',
         zeroRecords: 'Data tidak ditemukan',
         infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Data',
-        loadingRecords: '<i class="fas fa-redo-alt fa-spin"></i>',
-        processing: '<i class="fas fa-redo-alt fa-spin"></i>',
+        loadingRecords: '<i class="fa fa-refresh fa-spin"></i>',
+        processing: 'Memuat....',
         infoFiltered: ''
       },
       responsive: true,
       processing: true,
-      ajax: '<?= base_url('api/stock/show/'); ?>'+auth.token,
+      ajax: '<?= base_url('api/memorandum/show/'); ?>'+auth.token,
       columns: [
-        {"data": 'tgl_input'},
-        {"data": 'no_identifikasi'},
-        {"data": 'ket_stock'},
-        {"data": 'saldo_awal'},
-        {"data": 'no_persediaan'},
-        {"data": 'nama_persediaan'},
-        {"data": 'satuan'},
-        {"data": 'warna'},
-        {"data": 'ket_barang'},
+        {"data": 'tgl_memo'},
+        {"data": 'no_memo'},
+        {"data": 'keterangan_memo'},
+        {"data": 'status'},
+        {"data": 'nama_user'},
         {"data": null, 'render': function(data, type, row){
-          return `<a href="#/edit_stok/${row.id_identifikasi}" class="btn btn-info" id="edit_stok" data-id="${row.id_identifikasi}">Ubah</a> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_stok" data-id="${row.id_identifikasi}" data-nama="${row.no_identifikasi}">Hapus</button>`
+            return `<a href="#/edit_memorandum/${row.no_memo}" class="btn btn-info"><i class="far fa-edit"></i></a> <a href="#/detail_memorandum/${row.no_memo}" class="btn btn-primary"><i class="fa fa-eye"></i></a> <button class="btn btn-danger" id="hapus_memorandum" data-id="${row.no_memo}"><i class="fas fa-trash"></i></button>`
           }
         }
       ],
       order: [[0, 'desc']]
-    })
+    });
 
-    $(document).on('click', '#hapus_stok', function(){
-      var id_identifikasi = $(this).attr('data-id');
-      var no_identifikasi = $(this).attr('data-nama')
+    $(document).on('click', '#hapus_memorandum', function(){
+      var no_memo = $(this).attr('data-id');
 
       Swal.fire({
-        title: `Apa Anda yakin ingin menghapus ${no_identifikasi}?`,
+        title: `Apa Anda yakin ingin menghapus ${no_memo}?`,
         text: "Data akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,
@@ -111,7 +102,7 @@
       }).then((result) => {
         if (result.value) {
           $.ajax({
-            url: `<?= base_url('api/stock/delete/'); ?>${auth.token}?id_identifikasi=${id_identifikasi}`,
+            url: `<?= base_url('api/memorandum/delete/'); ?>${auth.token}?no_memo=${no_memo}`,
             type: 'GET',
             dataType: 'JSON',
             success: function(response){
@@ -153,7 +144,7 @@
     });
 
     var channel = pusher.subscribe('sipb');
-    channel.bind('stock', function(data) {
+    channel.bind('memorandum', function(data) {
       table.ajax.reload();
     });
 

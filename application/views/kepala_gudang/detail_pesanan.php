@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Cetak Pesanan</h4>
+      <h4 class="text-themecolor">Detail Pesanan</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
           <li class="breadcrumb-item"><a href="#/pesanan">Pesanan</a></li>
-          <li class="breadcrumb-item active">Cetak Pesanan</li>
+          <li class="breadcrumb-item active">Detail Pesanan</li>
         </ol>
       </div>
     </div>
@@ -48,7 +48,7 @@
 
           <div class="col-md-12">
             <div class="table-responsive m-t-40" style="clear: both;">
-              <table class="table table-hover" id="detail_pesanan">
+              <table class="table table-hover" id="detail_data_pesanan">
                 <thead>
                   <tr>
                     <th>Nomor Persediaan</th>
@@ -79,7 +79,7 @@
 
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
-    var no_pesanan = location.hash.substr(16);
+    var no_pesanan = location.hash.substr(17);
     var link =
 
     $.ajax({
@@ -107,7 +107,7 @@
             html+= `</tr>`
           })
 
-          $('#detail_pesanan tbody').append(html)
+          $('#detail_data_pesanan tbody').append(html)
         })
       },
       error: function(){

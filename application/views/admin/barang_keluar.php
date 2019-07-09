@@ -56,10 +56,10 @@
 
     var table = $('#t_barang_keluar').DataTable({
       columnDefs: [{
-        targets: [0, 2, 3, 4, 5, 6, 7, 8, 9],
+        targets: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         searchable: false
       }, {
-        targets: [9],
+        targets: [10],
         orderable: false
       }],
       autoWidth: false,
@@ -89,7 +89,7 @@
         {"data": 'status'},
         {"data": 'nama_user'},
         {"data": null, 'render': function(data, type, row){
-            return `<a href="#/edit_barang_keluar/${row.no_keluar}" class="btn btn-info"><i class="far fa-edit"></i></a> <a href="#/detail_barang_keluar/${row.no_keluar}" class="btn btn-primary" id="print"><i class="fa fa-print"></i></a> <button class="btn btn-danger" id="hapus_barang_keluar" data-id="${row.no_keluar}"><i class="fas fa-trash"></i></button>`
+            return `<a href="#/edit_barang_keluar/${row.no_keluar}" class="btn btn-info"><i class="far fa-edit"></i></a> <a href="#/detail_barang_keluar/${row.no_keluar}" class="btn btn-primary"><i class="fa fa-eye"></i></a> <button class="btn btn-danger" id="hapus_barang_keluar" data-id="${row.no_keluar}"><i class="fas fa-trash"></i></button>`
           }
         }
       ],
@@ -100,7 +100,7 @@
       var no_keluar = $(this).attr('data-id');
 
       Swal.fire({
-        title: 'Apa Anda yakin ingin menghapus ini?',
+        title: `Apa Anda yakin ingin menghapus ${no_keluar}?`,
         text: "Data akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,

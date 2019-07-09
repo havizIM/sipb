@@ -22,7 +22,7 @@
             <div class="form-group">
               <div class="input-group">
                 <input type="hidden" name="no_persediaan" id="edit_no_persediaan">
-                <input type="text" class="form-control" name="nama_persediaan" id="nama_persediaan" placeholder="-- Pilih Persediaan --" readonly>
+                <input type="text" class="form-control" name="nama_persediaan" id="nama_persediaan" placeholder="-- Pilih Barang --" readonly>
                 <div class="input-group-append">
                   <span class="input-group-text bg-info text-white" id="modal_persediaan">Cari</span>
                 </div>
@@ -51,14 +51,14 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Pilih Persediaan</h4>
+        <h4 class="modal-title" id="myLargeModalLabel">Pilih Barang</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
       <div class="modal-body form-group">
         <div class="table-responsive m-t-40">
           <table class="table table-striped table-hover" id="t_persediaan">
             <thead>
-              <th>Nama Persediaan</th>
+              <th>Nama Barang</th>
               <th>Satuan</th>
               <th>Warna</th>
               <th>Keterangan</th>
@@ -181,9 +181,9 @@
         search: 'Cari Nama: _INPUT_',
         lengthMenu: 'Tampilkan: _MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
-        info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Persediaan',
-        zeroRecords: 'Persediaan tidak ditemukan',
-        infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Persediaan',
+        info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Barang',
+        zeroRecords: 'Barang tidak ditemukan',
+        infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Barang',
         loadingRecords: '<i class="fa fa-refresh fa-spin"></i>',
         processing: 'Memuat....',
         infoFiltered: ''

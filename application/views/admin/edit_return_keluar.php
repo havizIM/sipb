@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row page-titles">
       <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Tambah Barang Masuk</h4>
+        <h4 class="text-themecolor">Ubah Return Keluar</h4>
       </div>
       <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="#/barang_masuk">Barang Masuk</a></li>
-            <li class="breadcrumb-item active">Tambah Barang Masuk</li>
+            <li class="breadcrumb-item"><a href="#/return_keluar">Return Keluar</a></li>
+            <li class="breadcrumb-item active">Ubah Return Keluar</li>
           </ol>
         </div>
       </div>
@@ -18,57 +18,45 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <form class="form-horizontal" method="post" id="form_add" enctype="multipart/form-data">
+          <form class="form-horizontal" method="post" id="form_edit" enctype="multipart/form-data">
             <div class="form-group">
-              <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Supplier</label>
-              <div class="input-group">
-                <input type="hidden" name="id_supplier" id="id_supplier">
-                <input type="text" class="form-control" name="nama_supplier" id="nama_supplier" placeholder="-- Pilih Supplier --" readonly>
-                <div class="input-group-append">
-                  <span class="input-group-text bg-info text-white" id="modal_supplier" style="cursor: pointer;">Cari</span>
+              <label style="margin-left: 10px; margin-bottom: 5px;">No. Ref</label>
+              <input type="text" class="form-control" id="no_ref" name="no_ref" rows="8" cols="80" placeholder="No. Ref">
+            </div>
+
+            <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Supplier</label>
+            <div class="input-group">
+              <input type="hidden" name="id_supplier" id="id_supplier">
+              <input type="text" class="form-control" name="nama_supplier" id="nama_supplier" placeholder="-- Pilih Supplier --" readonly>
+              <div class="input-group-append">
+                <span class="input-group-text bg-info text-white" id="modal_supplier" style="cursor: pointer;">Cari</span>
+              </div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <label style="margin-left: 10px; margin-bottom: 5px;">Stok</label>
+                  <table class="table table-bordered" id="stok">
+                    <thead>
+                      <th>No Identifikasi</th>
+                      <th>Qty</th>
+                      <th> <button type="button" class="btn btn-sm btn-info" id="modal_stok"> <i class="fa fa-plus"></i> </button> </th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <br>
+            </div>
 
-              <div class="form-group">
-                <label style="margin-left: 10px; margin-bottom: 5px;">No. Surat</label>
-                <input type="text" class="form-control" id="no_surat" name="no_surat">
-              </div>
-
-              <div class="form-group">
-                <label style="margin-left: 10px; margin-bottom: 5px;">No. PO</label>
-                <input type="text" class="form-control" name="no_po" id="no_po">
-              </div>
-
-              <div class="form-group">
-                <label style="margin-left: 10px; margin-bottom: 5px;">Tgl. Masuk</label>
-                <input type="date" class="form-control" name="tgl_masuk" id="tgl_masuk">
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="table-responsive">
-                    <label style="margin-left: 10px; margin-bottom: 5px;">Detail Barang Masuk</label>
-                    <table class="table table-bordered" id="detail_masuk">
-                      <thead>
-                        <th>No Identifikasi</th>
-                        <th>Qty</th>
-                        <th> <button type="button" class="btn btn-sm btn-info" id="modal_stok"> <i class="fa fa-plus"></i> </button> </th>
-                      </thead>
-                      <tbody>
-
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-              <center><button type="submit" id="submit_add" class="btn btn-info waves-effect">Tambah</button></center>
+            <center><button type="submit" id="submit_edit" class="btn btn-info waves-effect">Simpan</button></center>
           </form>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 
@@ -135,8 +123,9 @@
 
   $(document).ready(function(){
 
-    var session = localStorage.getItem('sipb');
+    var session = localStorage.getItem('sipb')
     var auth = JSON.parse(session);
+    var no_return_keluar = location.hash.substr(21);
 
     var tables = $('#t_supplier').DataTable({
       columnDefs: [{
@@ -240,11 +229,11 @@
       var html = `<tr id="baris${id_identifikasi}">`
 
       html+=`<td>${no_identifikasi} <input type="hidden" name="id_identifikasi[]" value="${id_identifikasi}"></td>`
-      html+=`<td><input type="text" class="form-control" name="qty_masuk[]" placeholder="Qty" required></td>`
+      html+=`<td><input type="text" class="form-control" name="qty_return_keluar[]" placeholder="Qty" required></td>`
       html+=`<td><button type="button" class="btn btn-danger remove" id="${id_identifikasi}"><i class="fa fa-trash"></i></button></td>`
       html+=`</tr>`
 
-      $('#detail_masuk').append(html)
+      $('#stok').append(html)
     })
 
     $(document).on('click', '.remove', function(){
@@ -253,16 +242,49 @@
       $('#baris'+id+'').remove()
     })
 
-    $('#form_add').on('submit', function(e){
-      e.preventDefault()
+    $.ajax({
+      url: `<?= base_url('api/return_keluar/detail/') ?>${auth.token}?no_return_keluar=${no_return_keluar}`,
+      type: 'GET',
+      dataType: 'JSON',
+      success: function(response){
+        $.each(response.data, function(k, v){
+          $('#no_ref').val(v.no_ref)
+          $('#id_supplier').val(v.id_supplier)
+          $('#nama_supplier').val(v.nama_supplier)
 
+          var html = ''
+
+          $.each(v.detail, function(k1, v1){
+            html+= `<tr id="baris${v1.id_identifikasi}">`
+
+            html+=`<td>${v1.no_identifikasi} <input type="hidden" name="id_identifikasi[]" value="${v1.id_identifikasi}"></td>`
+            html+=`<td><input type="text" class="form-control" value="${v1.qty_return_keluar}" name="qty_return_keluar[]" placeholder="Qty" required></td>`
+            html+=`<td><button type="button" class="btn btn-danger remove" id="${v1.id_identifikasi}"><i class="fa fa-trash"></i></button></td>`
+            html+=`</tr>`
+
+            $('#stok').append(html)
+          })
+        })
+      },
+      error: function(){
+        Swal.fire({
+          position: 'center',
+          type: 'warning',
+          title: 'Tidak dapat mengakses server',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    })
+
+    $('#form_edit').on('submit', function(e){
+      e.preventDefault();
+
+      var no_ref = $('#no_ref').val()
       var id_supplier = $('#id_supplier').val()
-      var no_surat = $('#no_surat').val()
-      var no_po = $('#no_po').val()
-      var tgl_masuk = $('#tgl_masuk').val()
-      var detail = $('#detail_masuk tbody tr').length
+      var stok = $('#stok tbody tr').length
 
-      if(id_supplier === '' || no_surat === '' || no_po === '' || tgl_masuk === ''){
+      if(no_ref === '' || id_supplier === ''){
         Swal.fire({
           position: 'center',
           type: 'warning',
@@ -271,7 +293,7 @@
           timer: 1500
         });
       } else {
-        if(detail<1) {
+        if(stok<1) {
           Swal.fire({
             position: 'center',
             type: 'warning',
@@ -279,13 +301,13 @@
             showConfirmButton: false,
             timer: 1500
           });
-        } else {
+      } else {
           $.ajax({
-            url: '<?= base_url('api/barang_masuk/add/') ?>'+auth.token,
+            url: `<?= base_url('api/return_keluar/edit/') ?>${auth.token}?no_return_keluar=${no_return_keluar}`,
             type: 'POST',
             dataType: 'JSON',
             beforeSend: function(){
-              $('#submit_add').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
+              $('#submit_edit').addClass('disabled').attr('disabled', 'disabled').html('<i class="fa fa-fw fa-spinner fa-spin"></i>');
             },
             data: $(this).serialize(),
             success: function(response){
@@ -297,8 +319,8 @@
                   showConfirmButton: false,
                   timer: 1500
                 });
-                $('#form_add')[0].reset();
-                location.hash = '#/barang_masuk';
+                $('#form_edit')[0].reset();
+                location.hash = '#/return_keluar';
               } else {
                 Swal.fire({
                   position: 'center',
@@ -307,7 +329,7 @@
                   showConfirmButton: false,
                   timer: 1500
                 });
-                $('#submit_add').removeClass('disabled').removeAttr('disabled', 'disabled').text('Tambah');
+                $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan');
               }
             },
             error: function(){
@@ -318,7 +340,7 @@
                 showConfirmButton: false,
                 timer: 1500
               });
-              $('#submit_add').removeClass('disabled').removeAttr('disabled', 'disabled').text('Tambah')
+              $('#submit_edit').removeClass('disabled').removeAttr('disabled', 'disabled').text('Simpan')
             }
           })
         }

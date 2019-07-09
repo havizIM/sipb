@@ -8,8 +8,9 @@
               <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
                   <li class="breadcrumb-item active">User</li>
+                  <li class="breadcrumb-item active">Data User</li>
               </ol>
-              <button type="button" id="btn_add" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah User</button>
+              <button type="button" id="btn_add" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</button>
           </div>
       </div>
   </div>
@@ -159,7 +160,7 @@
         {"data": 'foto'},
         {"data": 'status'},
         {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="edit_user" data-id="${row.id_user}"><i class="far fa-edit"></i></button> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_user" data-id="${row.id_user}"><i class="fas fa-trash"></i></button>`
+          return `<button class="btn btn-info" id="edit_user" data-id="${row.id_user}"><i class="far fa-edit"></i></button> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_user" data-id="${row.id_user}" data-nama="${row.nama_user}"><i class="fas fa-trash"></i></button>`
           }
         }
       ],
@@ -330,9 +331,10 @@
 
     $(document).on('click', '#hapus_user', function(){
       var id_user = $(this).attr('data-id');
+      var nama_user = $(this).attr('data-nama')
 
       Swal.fire({
-        title: 'Apakah Anda yakin ingin menghapus User ini?',
+        title: `Apakah Anda yakin ingin menghapus ${nama_user}?`,
         text: "User akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,

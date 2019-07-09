@@ -30,7 +30,7 @@
                   <th>Status</th>
                   <th>Nama Sales</th>
                   <th>Tanggal Kirim</th>
-                  <th style="width: 14%;"></th>
+                  <th style="width: 17%;"></th>
                 </tr>
               </thead>
               <tbody>
@@ -84,9 +84,9 @@
         {"data": 'tgl_kirim'},
         {"data": null, 'render': function(data, type, row){
             if(row.status === 'Proses'){
-              return `<a href="#/edit_pesanan/${row.no_pesanan}" class="btn btn-info"><i class="fa fa-edit"></i></a> <button class="btn btn-danger" id="hapus_pesanan" data-id="${row.no_pesanan}"><i class="fa fa-trash"></i></button>`
+              return `<a href="#/edit_pesanan/${row.no_pesanan}" class="btn btn-info"><i class="fa fa-edit"></i></a> <a href="#/detail_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print"><i class="fa fa-eye"></i></a> <button class="btn btn-danger" id="hapus_pesanan" data-id="${row.no_pesanan}"><i class="fa fa-trash"></i></button>`
             } else {
-              return `<a href="#/cetak_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print" style="width: 75%;"><i class="fa fa-print"></i></a>`
+              return `<a href="#/detail_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print" style="width: 75%;"><i class="fa fa-eye"></i></a>`
             }
           }
         }
@@ -98,7 +98,7 @@
       var no_pesanan = $(this).attr('data-id');
 
       Swal.fire({
-        title: 'Apa Anda yakin ingin menghapus ini?',
+        title: `Apa Anda yakin ingin menghapus ${no_pesanan}?`,
         text: "Data akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,

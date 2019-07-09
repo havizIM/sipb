@@ -7,7 +7,7 @@
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="#/pesanan">Barang Keluar</a></li>
+          <li class="breadcrumb-item"><a href="#/barang_keluar">Barang Keluar</a></li>
           <li class="breadcrumb-item active">Detail Barang Keluar</li>
         </ol>
       </div>
@@ -55,8 +55,8 @@
                 <thead>
                   <tr>
                     <th>No. Identifikasi</th>
-                    <th>No. Persediaan</th>
-                    <th>Nama Persediaan</th>
+                    <th>Kode Barang</th>
+                    <th>Nama Barang</th>
                     <th>Keterangan</th>
                     <th>Qty</th>
                   </tr>
@@ -69,7 +69,7 @@
           </div>
         </div>
         <hr>
-        <div class="text-right">
+        <div class="text-right" id="approve">
           <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
         </div>
       </div>
@@ -102,6 +102,16 @@
           $('#ref_id').text('Ref. ID : '+v.ref_id)
           $('#tgl_keluar').text(v.tgl_keluar)
 
+          var btn = ''
+
+          if(v.status === 'Proses'){
+            btn+=`<button type="submit" id="btn_approve" data-id="${v.no_keluar}" class="btn btn-success" style="margin-right: 10px; margin-bottom: 15px;"><i class="ti-check"></i> Approve</button>`
+
+            $('#approve').append(btn)
+          } else {
+            $('#print').attr('style', 'margin-right: 15px; margin-bottom: 15px;')
+          }
+
           var html = ''
 
           $.each(v.detail, function(k1, v1){
@@ -128,6 +138,58 @@
         });
       }
     })
+
+    $(document).on('click', '#btn_approve', function(){
+      var no_keluar = $(this).attr('data-id');
+
+      Swal.fire({
+        title: `Apakah Anda yakin ingin mengapprove ${no_keluar}?`,
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Saya yakin.',
+        cancelButtonText: 'Batal',
+        showLoaderOnConfirm: true
+        }).then((result) => {
+          if (result.value) {
+            $.ajax({
+              url: `<?= base_url('api/barang_keluar/approve/'); ?>${auth.token}?no_keluar=${no_keluar}`,
+              type: 'GET',
+              dataType: 'JSON',
+              success: function(response){
+                if(response.status === 200){
+                  Swal.fire({
+                    position: 'center',
+                    type: 'success',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  window.location = '#/barang_keluar'
+                } else {
+                  Swal.fire({
+                    position: 'center',
+                    type: 'error',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                }
+              },
+              error: function(){
+                Swal.fire({
+                  position: 'center',
+                  type: 'error',
+                  title: 'Tidak dapat mengakses server',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              }
+            });
+          }
+        })
+      })
 
     $("#print").click(function() {
 

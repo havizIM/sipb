@@ -7,7 +7,8 @@
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Log</li>
+                <li class="breadcrumb-item active">User</li>
+                <li class="breadcrumb-item active">Log User</li>
             </ol>
         </div>
     </div>

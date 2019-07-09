@@ -29,6 +29,11 @@ class Kepala_gudang extends CI_Controller{
     $this->load->view('kepala_gudang/stok');
   }
 
+  function customer()
+  {
+    $this->load->view('kepala_gudang/customer');
+  }
+
   function supplier()
   {
     $this->load->view('kepala_gudang/supplier');
@@ -39,9 +44,9 @@ class Kepala_gudang extends CI_Controller{
     $this->load->view('kepala_gudang/pesanan');
   }
 
-  function cetak_pesanan()
+  function detail_pesanan()
   {
-    $this->load->view('kepala_gudang/cetak_pesanan');
+    $this->load->view('kepala_gudang/detail_pesanan');
   }
 
   function barang_keluar()
@@ -62,6 +67,36 @@ class Kepala_gudang extends CI_Controller{
   function detail_barang_masuk()
   {
     $this->load->view('kepala_gudang/detail_barang_masuk');
+  }
+
+  function return_keluar()
+  {
+    $this->load->view('kepala_gudang/return_keluar');
+  }
+
+  function detail_return_keluar()
+  {
+    $this->load->view('kepala_gudang/detail_return_keluar');
+  }
+
+  function return_masuk()
+  {
+    $this->load->view('kepala_gudang/return_masuk');
+  }
+
+  function detail_return_masuk()
+  {
+    $this->load->view('kepala_gudang/detail_return_masuk');
+  }
+
+  function memorandum()
+  {
+    $this->load->view('kepala_gudang/memorandum');
+  }
+
+  function detail_memorandum()
+  {
+    $this->load->view('kepala_gudang/detail_memorandum');
   }
 
 }

@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Detail Barang Masuk</h4>
+      <h4 class="text-themecolor">Detail Memorandum</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="#/barang_masuk">Barang Masuk</a></li>
-          <li class="breadcrumb-item active">Detail Barang Masuk</li>
+          <li class="breadcrumb-item"><a href="#/memorandum">Memorandum</a></li>
+          <li class="breadcrumb-item active">Detail Memorandum</li>
         </ol>
       </div>
     </div>
@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>DETAIL BARANG MASUK</b> <span class="pull-right"></span></h3>
+          <h3><b>DETAIL MEMORANDUM</b> <span class="pull-right"></span></h3>
           <hr>
           <div class="row">
             <table width="100%">
@@ -32,35 +32,32 @@
                         <br/> Taman Sari,
                         <br/> Jakarta Barat,
                         <br/> DKI Jakarta 11120</p>
-                      </address>
-                    </div>
-                  </td>
-
-                  <td width="50%">
-                    <div class="pull-right text-right">
-                      <address>
-                        <h3>Dari,</h3>
-                        <h4 class="font-bold" id="nama_supplier" name="nama_supplier"></h4>
-                        <p class="text-muted m-l-30" id="no_surat" name="no_surat" style="margin-bottom: 0px;"></p>
-                        <p class="text-muted m-l-30" id="no_po" name="no_po" style="margin-bottom: 0px;"></p>
-                        <p><b>Tgl. Masuk :</b> <i class="fa fa-calendar"></i> <span id="tgl_masuk" name="tgl_masuk"></span> </p>
-                      </address>
-                    </div>
+                    </address>
                   </div>
                 </td>
+
+                <td width="50%">
+                  <div class="pull-right text-right">
+                    <address>
+                      <h4 id="no_memo" name="no_memo"></h4>
+                      <p><b>Tgl. Memorandum :</b> <i class="fa fa-calendar"></i> <span id="tgl_memo" name="tgl_memo"></span> </p>
+                    </address>
+                  </div>
+                </div>
+              </td>
               </tr>
             </table>
 
           <div class="col-md-12">
             <div class="table-responsive m-t-40" style="clear: both;">
-              <table class="table table-hover" id="detail_barang_masuk">
+              <table class="table table-hover" id="detail_memorandum">
                 <thead>
                   <tr>
                     <th>No. Identifikasi</th>
-                    <th>Kode Barang</th>
                     <th>Nama Barang</th>
+                    <th>Qty. Masuk</th>
+                    <th>Qty. Keluar</th>
                     <th>Keterangan</th>
-                    <th>Qty</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -85,36 +82,33 @@
 
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
-    var no_masuk = location.hash.substr(22);
+    var no_memo = location.hash.substr(20);
     var link =
 
     $.ajax({
-      url: `<?= base_url('api/barang_masuk/detail/') ?>${auth.token}?no_masuk=${no_masuk}`,
+      url: `<?= base_url('api/memorandum/detail/') ?>${auth.token}?no_memo=${no_memo}`,
       type: 'GET',
       dataType: 'JSON',
       success: function(response){
 
         $.each(response.data, function(k, v){
-          $('#no_masuk').text(v.no_masuk)
-          $('#nama_supplier').text(v.nama_supplier)
-          $('#no_surat').text('No. Surat : '+v.no_surat)
-          $('#no_po').text('No. PO : '+v.no_po)
-          $('#tgl_masuk').text(v.tgl_masuk)
+          $('#no_memo').html(`<b>${v.no_memo}</b>`)
+          $('#tgl_memo').text(v.tgl_memo)
 
           var html = ''
 
           $.each(v.detail, function(k1, v1){
-            html+= `<tr id="baris${v1.id_masuk_detail}">`
+            html+= `<tr id="baris${v1.id_memorandum_detail}">`
 
             html+= `<td>${v1.no_identifikasi}</td>`
-            html+= `<td>${v1.no_persediaan}</td>`
             html+= `<td>${v1.nama_persediaan}</td>`
-            html+= `<td>${v1.keterangan}</td>`
             html+= `<td>${v1.qty_masuk}</td>`
+            html+= `<td>${v1.qty_keluar}</td>`
+            html+= `<td>${v1.keterangan}</td>`
             html+= `</tr>`
           })
 
-          $('#detail_barang_masuk tbody').append(html)
+          $('#detail_memorandum tbody').append(html)
         })
       },
       error: function(){

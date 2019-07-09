@@ -21,8 +21,8 @@
             <thead>
               <tr>
                 <th>Tgl Input</th>
-                <th>Nomor Persediaan</th>
-                <th>Nama Persediaan</th>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
                 <th>Satuan</th>
                 <th>Warna</th>
                 <th>Keterangan</th>

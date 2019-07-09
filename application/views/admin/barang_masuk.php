@@ -102,7 +102,7 @@
       var no_masuk = $(this).attr('data-id');
 
       Swal.fire({
-        title: 'Apa Anda yakin ingin menghapus ini?',
+        title: `Apa Anda yakin ingin menghapus ${no_masuk}?`,
         text: "Data akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,

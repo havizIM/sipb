@@ -54,9 +54,9 @@ class Admin extends CI_Controller{
     $this->load->view('admin/pesanan');
   }
 
-  function cetak_pesanan()
+  function detail_pesanan()
   {
-    $this->load->view('admin/cetak_pesanan');
+    $this->load->view('admin/detail_pesanan');
   }
 
   function barang_keluar()
@@ -97,6 +97,66 @@ class Admin extends CI_Controller{
   function detail_barang_masuk()
   {
     $this->load->view('admin/detail_barang_masuk');
+  }
+
+  function return_keluar()
+  {
+    $this->load->view('admin/return_keluar');
+  }
+
+  function add_return_keluar()
+  {
+    $this->load->view('admin/add_return_keluar');
+  }
+
+  function edit_return_keluar($id)
+  {
+    $this->load->view('admin/edit_return_keluar');
+  }
+
+  function detail_return_keluar()
+  {
+    $this->load->view('admin/detail_return_keluar');
+  }
+
+  function return_masuk()
+  {
+    $this->load->view('admin/return_masuk');
+  }
+
+  function add_return_masuk()
+  {
+    $this->load->view('admin/add_return_masuk');
+  }
+
+  function edit_return_masuk()
+  {
+    $this->load->view('admin/edit_return_masuk');
+  }
+
+  function detail_return_masuk()
+  {
+    $this->load->view('admin/detail_return_masuk');
+  }
+
+  function memorandum()
+  {
+    $this->load->view('admin/memorandum');
+  }
+
+  function add_memorandum()
+  {
+    $this->load->view('admin/add_memorandum');
+  }
+
+  function edit_memorandum($id)
+  {
+    $this->load->view('admin/edit_memorandum');
+  }
+
+  function detail_memorandum()
+  {
+    $this->load->view('admin/detail_memorandum');
   }
 
 }

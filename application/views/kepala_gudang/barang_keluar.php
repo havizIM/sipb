@@ -9,7 +9,6 @@
               <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
               <li class="breadcrumb-item active">Barang Keluar</li>
           </ol>
-          <a href="#/add_barang_keluar" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</a>
       </div>
     </div>
   </div>
@@ -89,12 +88,7 @@
         {"data": 'status'},
         {"data": 'nama_user'},
         {"data": null, 'render': function(data, type, row){
-            if(row.status === 'Proses'){
-              return `<a href="#/detail_barang_keluar/${row.no_keluar}" class="btn btn-primary" id="print"><i class="fa fa-print"></i></a>
-                      <button type="submit" id="btn_approve" data-id="${row.no_keluar}" class="btn btn-success">Approve<i class="ti-check"></i></button>`
-            } else {
-              return `<a href="#/detail_barang_keluar/${row.no_keluar}" class="btn btn-primary" id="print" style="width: 75%;"><i class="fa fa-print"></i></a>`
-            }
+            return `<a href="#/detail_barang_keluar/${row.no_keluar}" class="btn btn-primary" style="width: 75%;"><i class="fa fa-eye"></i></a>`
           }
         }
       ],

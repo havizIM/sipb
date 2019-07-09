@@ -83,55 +83,12 @@
         {"data": 'nama_user'},
         {"data": 'tgl_kirim'},
         {"data": null, 'render': function(data, type, row){
-            if(row.status === 'Proses'){
-              return `<a href="#/cetak_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print"><i class="fa fa-print"></i></a>
-                      <button type="submit" id="btn_approve" data-id="${row.no_pesanan}" class="btn btn-success">Approve<i class="ti-check"></i></button>`
-            } else {
-              return `<a href="#/cetak_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print" style="width: 75%;"><i class="fa fa-print"></i></a>`
-            }
+            return `<a href="#/detail_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print" style="width: 75%;"><i class="fa fa-eye"></i></a>`
           }
         }
       ],
       order: [[0, 'desc']]
     })
-
-    $(document).on('click', '#btn_approve', function(){
-      var no_pesanan = $(this).attr('data-id');
-
-        $.ajax({
-          url: `<?= base_url('api/pesanan/approve/'); ?>${auth.token}?no_pesanan=${no_pesanan}`,
-          type: 'GET',
-          dataType: 'JSON',
-          success: function(response){
-            if(response.status === 200){
-              Swal.fire({
-                position: 'center',
-                type: 'success',
-                title: response.message,
-                showConfirmButton: false,
-                timer: 1500
-              });
-            } else {
-              Swal.fire({
-                position: 'center',
-                type: 'error',
-                title: response.message,
-                showConfirmButton: false,
-                timer: 1500
-              });
-            }
-          },
-          error: function(){
-            Swal.fire({
-              position: 'center',
-              type: 'error',
-              title: 'Tidak dapat mengakses server',
-              showConfirmButton: false,
-              timer: 1500
-            });
-          }
-        });
-      })
 
       var pusher = new Pusher('6a169a704ab461b9a26a', {
         cluster: 'ap1',

@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Cetak Pesanan</h4>
+      <h4 class="text-themecolor">Detail Pesanan</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
           <li class="breadcrumb-item"><a href="#/pesanan">Pesanan</a></li>
-          <li class="breadcrumb-item active">Cetak Pesanan</li>
+          <li class="breadcrumb-item active">Detail Pesanan</li>
         </ol>
       </div>
     </div>
@@ -65,7 +65,7 @@
           </div>
         </div>
         <hr>
-        <div class="text-right">
+        <div class="text-right" id="approve">
           <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
         </div>
       </div>
@@ -79,7 +79,7 @@
 
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
-    var no_pesanan = location.hash.substr(16);
+    var no_pesanan = location.hash.substr(17);
     var link =
 
     $.ajax({
@@ -94,6 +94,16 @@
           $('#alamat_kirim').text(v.alamat_kirim)
           $('#tgl_pesanan').text(v.tgl_pesanan)
           $('#tgl_kirim').text(v.tgl_kirim)
+
+          var btn = ''
+
+          if(v.status === 'Proses'){
+            btn+= `<button type="submit" id="btn_approve" data-id="${v.no_pesanan}" class="btn btn-success" style="margin-right: 10px; margin-bottom: 15px;"><i class="ti-check"></i> Approve</button>`
+
+            $('#approve').append(btn)
+          } else {
+            $('#print').attr('style', 'margin-right: 15px; margin-bottom: 15px;')
+          }
 
           var html = ''
 
@@ -120,6 +130,58 @@
         });
       }
     })
+
+    $(document).on('click', '#btn_approve', function(){
+      var no_pesanan = $(this).attr('data-id');
+
+      Swal.fire({
+        title: `Apakah Anda yakin ingin membatalkan pesanan ${no_pesanan}?`,
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Saya yakin.',
+        cancelButtonText: 'Batal',
+        showLoaderOnConfirm: true
+        }).then((result) => {
+          if (result.value) {
+            $.ajax({
+              url: `<?= base_url('api/pesanan/approve/'); ?>${auth.token}?no_pesanan=${no_pesanan}`,
+              type: 'GET',
+              dataType: 'JSON',
+              success: function(response){
+                if(response.status === 200){
+                  Swal.fire({
+                    position: 'center',
+                    type: 'success',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  window.location = '#/pesanan'
+                } else {
+                  Swal.fire({
+                    position: 'center',
+                    type: 'error',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                }
+              },
+              error: function(){
+                Swal.fire({
+                  position: 'center',
+                  type: 'error',
+                  title: 'Tidak dapat mengakses server',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              }
+            });
+          }
+        })
+      })
 
     $("#print").click(function() {
 

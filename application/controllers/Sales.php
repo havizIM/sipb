@@ -44,9 +44,9 @@ class Sales extends CI_Controller{
     $this->load->view('sales/edit_pesanan');
   }
 
-  function cetak_pesanan($id)
+  function detail_pesanan($id)
   {
-    $this->load->view('sales/cetak_pesanan');
+    $this->load->view('sales/detail_pesanan');
   }
 
 }

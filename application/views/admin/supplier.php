@@ -232,7 +232,7 @@
         {"data": 'email'},
         {"data": 'alamat'},
         {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="edit_supplier" data-id="${row.id_supplier}"><i class="far fa-edit"></i></button> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_supplier" data-id="${row.id_supplier}"><i class="fas fa-trash"></i></button>`
+          return `<button class="btn btn-info" id="edit_supplier" data-id="${row.id_supplier}"><i class="far fa-edit"></i></button> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_supplier" data-id="${row.id_supplier}" data-nama="${row.nama_supplier}"><i class="fas fa-trash"></i></button>`
           }
         }
       ],
@@ -341,9 +341,10 @@
 
     $(document).on('click', '#hapus_supplier', function(){
       var id_supplier = $(this).attr('data-id');
+      var nama_supplier = $(this).attr('data-nama')
 
       Swal.fire({
-        title: 'Apa Anda yakin ingin menghapus ini?',
+        title: `Apa Anda yakin ingin menghapus ${nama_supplier}?`,
         text: "Data akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,

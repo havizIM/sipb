@@ -7,7 +7,7 @@
           <div class="d-flex justify-content-end align-items-center">
               <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-                  <li class="breadcrumb-item"><a href="#/stok">Pesanan</a></li>
+                  <li class="breadcrumb-item"><a href="#/pesanan">Pesanan</a></li>
                   <li class="breadcrumb-item active">Ubah Pesanan</li>
               </ol>
           </div>

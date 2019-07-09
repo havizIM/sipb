@@ -24,8 +24,8 @@
               <thead>
                 <tr>
                   <th>Tgl. Input</th>
-                  <th>No. Persediaan</th>
-                  <th>Nama Persediaan</th>
+                  <th>Kode Barang</th>
+                  <th>Nama Barang</th>
                   <th>Satuan</th>
                   <th>Warna</th>
                   <th>Keterangan</th>
@@ -55,11 +55,11 @@
       <form class="form-horizontal" method="post" id="form_add" enctype="multipart/form-data">
         <div class="modal-body form-group">
           <div class="form-group">
-            <input type="text" class="form-control" name="no_persediaan" id="no_persediaan" placeholder="No. Persediaan">
+            <input type="text" class="form-control" name="no_persediaan" id="no_persediaan" placeholder="Kode Barang">
           </div>
 
           <div class="form-group">
-            <input type="text" class="form-control" name="nama_persediaan" id="nama_persediaan" placeholder="Nama Persediaan">
+            <input type="text" class="form-control" name="nama_persediaan" id="nama_persediaan" placeholder="Nama Barang">
           </div>
 
           <div class="form-group">
@@ -100,7 +100,7 @@
       <form class="form-horizontal" method="post" id="form_edit" enctype="multipart/form-data">
         <div class="modal-body form-group">
           <div class="form-group">
-            <input type="text" class="form-control" name="nama_persediaan" id="edit_nama_persediaan" placeholder="Nama Persediaan">
+            <input type="text" class="form-control" name="nama_persediaan" id="edit_nama_persediaan" placeholder="Nama Barang">
           </div>
 
           <div class="form-group">
@@ -241,7 +241,7 @@
           }
         },
         {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="edit_barang" data-id="${row.no_persediaan}"><i class="far fa-edit"></i></button> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_barang" data-id="${row.no_persediaan}"><i class="fas fa-trash"></i></button>`
+          return `<button class="btn btn-info" id="edit_barang" data-id="${row.no_persediaan}"><i class="far fa-edit"></i></button> <button class="btn btn-danger" style="margin-left: 5px;" id="hapus_barang" data-id="${row.no_persediaan}" data-nama="${row.nama_persediaan}"><i class="fas fa-trash"></i></button>`
           }
         }
       ],
@@ -250,9 +250,10 @@
 
     $(document).on('click', '#hapus_barang', function(){
       var no_persediaan = $(this).attr('data-id');
+      var nama_persediaan = $(this).attr('data-nama')
 
       Swal.fire({
-        title: 'Apa Anda yakin ingin menghapus ini?',
+        title: `Apa Anda yakin ingin menghapus ${nama_persediaan}?`,
         text: "Barang akan terhapus secara permanen",
         type: 'question',
         showCancelButton: true,

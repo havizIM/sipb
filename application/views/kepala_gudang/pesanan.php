@@ -82,7 +82,7 @@
         {"data": 'nama_user'},
         {"data": 'tgl_kirim'},
         {"data": null, 'render': function(data, type, row){
-          return `<a href="#/cetak_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print" style="width: 75%;"><i class="fa fa-print"></i></a>`
+          return `<a href="#/detail_pesanan/${row.no_pesanan}" class="btn btn-primary" id="print" style="width: 75%;"><i class="fa fa-eye"></i></a>`
           }
         }
       ],

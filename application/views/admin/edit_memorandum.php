@@ -1,16 +1,16 @@
 <div class="container-fluid">
   <div class="row page-titles">
       <div class="col-md-5 align-self-center">
-          <h4 class="text-themecolor">Ubah Barang Masuk</h4>
+        <h4 class="text-themecolor">Ubah Memorandum</h4>
       </div>
       <div class="col-md-7 align-self-center text-right">
-          <div class="d-flex justify-content-end align-items-center">
-              <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-                  <li class="breadcrumb-item"><a href="#/barang_masuk">Barang Masuk</a></li>
-                  <li class="breadcrumb-item active">Ubah Barang Masuk</li>
-              </ol>
-          </div>
+        <div class="d-flex justify-content-end align-items-center">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="#/memorandum">Memorandum</a></li>
+            <li class="breadcrumb-item active">Ubah Memorandum</li>
+          </ol>
+        </div>
       </div>
   </div>
 
@@ -20,82 +20,34 @@
         <div class="card-body">
           <form class="form-horizontal" method="post" id="form_edit" enctype="multipart/form-data">
             <div class="form-group">
-              <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Supplier</label>
-              <div class="input-group">
-                <input type="hidden" name="id_supplier" id="id_supplier">
-                <input type="text" class="form-control" name="nama_supplier" id="nama_supplier" placeholder="-- Pilih Supplier --" readonly>
-                <div class="input-group-append">
-                  <span class="input-group-text bg-info text-white" id="modal_supplier" style="cursor: pointer;">Cari</span>
+              <label style="margin-left: 10px; margin-bottom: 5px;">Keterangan Memo</label>
+              <textarea name="keterangan_memo" id="keterangan_memo" class="form-control" rows="8" cols="80"></textarea>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <label style="margin-left: 10px; margin-bottom: 5px;">Detail Memorandum</label>
+                  <table class="table table-bordered" id="detail_memo">
+                    <thead>
+                      <th>No. Identifikasi</th>
+                      <th>Qty. Masuk</th>
+                      <th>Qty. Keluar</th>
+                      <th>Keterangan</th>
+                      <th> <button type="button" class="btn btn-sm btn-info" id="modal_stok"> <i class="fa fa-plus"></i> </button> </th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <br>
+            </div>
 
-              <div class="form-group">
-                <label style="margin-left: 10px; margin-bottom: 5px;">No. Surat</label>
-                <input type="text" class="form-control" id="no_surat" name="no_surat">
-              </div>
-
-              <div class="form-group">
-                <label style="margin-left: 10px; margin-bottom: 5px;">No. PO</label>
-                <input type="text" class="form-control" name="no_po" id="no_po">
-              </div>
-
-              <div class="form-group">
-                <label style="margin-left: 10px; margin-bottom: 5px;">Tgl. Masuk</label>
-                <input type="date" class="form-control" name="tgl_masuk" id="tgl_masuk">
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="table-responsive">
-                    <label style="margin-left: 10px; margin-bottom: 5px;">Detail Barang Keluar</label>
-                    <table class="table table-bordered" id="detail_masuk">
-                      <thead>
-                        <th>No Identifikasi</th>
-                        <th>Qty</th>
-                        <th> <button type="button" class="btn btn-sm btn-info" id="modal_stok"> <i class="fa fa-plus"></i> </button> </th>
-                      </thead>
-                      <tbody>
-
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-              <center><button type="submit" id="submit_edit" class="btn btn-info waves-effect">Simpan</button></center>
-          </form>
-        </div>
+            <center><button type="submit" id="submit_edit" class="btn btn-info waves-effect">Simpan</button></center>
+        </form>
       </div>
-    </div>
-  </div>
- </div>
-</div>
-
-<div id="lookup_supplier" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Pilih Supplier</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      </div>
-      <div class="modal-body form-group">
-        <div class="table-responsive m-t-40">
-          <table class="table table-striped table-hover" id="t_supplier">
-            <thead>
-              <th>Nama Supplier</th>
-              <th>Telepon</th>
-              <th>Fax</th>
-              <th>Email</th>
-              <th>Alamat</th>
-              <th></th>
-            </thead>
-            <tbody>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
+     </div>
     </div>
   </div>
 </div>
@@ -137,58 +89,7 @@
 
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
-    var no_masuk = location.hash.substr(20);
-
-    var tables = $('#t_supplier').DataTable({
-      columnDefs: [{
-        targets: [0],
-        searchable: true
-      }, {
-        targets: [5],
-        orderable: false
-      }],
-      autoWidth: false,
-      language: {
-        search: 'Cari Nama: _INPUT_',
-        lengthMenu: 'Tampilkan: _MENU_',
-        paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
-        info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Supplier',
-        zeroRecords: 'Supplier tidak ditemukan',
-        infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Supplier',
-        loadingRecords: '<i class="fa fa-refresh fa-spin"></i>',
-        processing: 'Memuat....',
-        infoFiltered: ''
-      },
-      responsive: true,
-      processing: true,
-      ajax: '<?= base_url('api/supplier/show/'); ?>'+auth.token,
-      columns: [
-        {"data": 'nama_supplier'},
-        {"data": 'telepon'},
-        {"data": 'fax'},
-        {"data": 'email'},
-        {"data": 'alamat'},
-        {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="pilih_supplier" data-id="${row.id_supplier}" data-nama="${row.nama_supplier}"> Pilih</button>`
-          }
-        }
-      ],
-      order: [[0, 'desc']]
-    })
-
-    $('#modal_supplier').on('click', function(){
-      $('#lookup_supplier').modal('show');
-    })
-
-    $('#t_supplier').on('click', '#pilih_supplier', function(){
-      var id_supplier = $(this).attr('data-id');
-      var nama_supplier = $(this).attr('data-nama');
-
-      $('#id_supplier').val(id_supplier);
-      $('#nama_supplier').val(nama_supplier);
-
-      $('#lookup_supplier').modal('hide');
-    })
+    var no_memo = location.hash.substr(18);
 
     var table = $('#t_stok').DataTable({
       columnDefs: [{
@@ -241,11 +142,13 @@
       var html = `<tr id="baris${id_identifikasi}">`
 
       html+=`<td>${no_identifikasi} <input type="hidden" name="id_identifikasi[]" value="${id_identifikasi}"></td>`
-      html+=`<td><input type="text" class="form-control" name="qty_masuk[]" placeholder="Qty" required></td>`
+      html+=`<td><input type="text" class="form-control" name="qty_masuk[]" placeholder="Qty. Masuk" required></td>`
+      html+=`<td><input type="text" class="form-control" name="qty_keluar[]" placeholder="Qty. Keluar" required></td>`
+      html+=`<td><input type="text" class="form-control" name="keterangan[]" placeholder="Keterangan" required></td>`
       html+=`<td><button type="button" class="btn btn-danger remove" id="${id_identifikasi}"><i class="fa fa-trash"></i></button></td>`
       html+=`</tr>`
 
-      $('#detail_masuk').append(html)
+      $('#detail_memo').append(html)
     })
 
     $(document).on('click', '.remove', function(){
@@ -255,16 +158,12 @@
     })
 
     $.ajax({
-      url: `<?= base_url('api/barang_masuk/detail/') ?>${auth.token}?no_masuk=${no_masuk}`,
+      url: `<?= base_url('api/memorandum/detail/') ?>${auth.token}?no_memo=${no_memo}`,
       type: 'GET',
       dataType: 'JSON',
       success: function(response){
         $.each(response.data, function(k, v){
-          $('#id_supplier').val(v.id_supplier)
-          $('#nama_supplier').val(v.nama_supplier)
-          $('#no_surat').val(v.no_surat)
-          $('#no_po').val(v.no_po)
-          $('#tgl_masuk').val(v.tgl_masuk)
+          $('#keterangan_memo').val(v.keterangan_memo)
 
           var html = ''
 
@@ -272,11 +171,13 @@
             html+= `<tr id="baris${v1.id_identifikasi}">`
 
             html+=`<td>${v1.no_identifikasi} <input type="hidden" name="id_identifikasi[]" value="${v1.id_identifikasi}"></td>`
-            html+=`<td><input type="text" class="form-control" value="${v1.qty_masuk}" name="qty_masuk[]" placeholder="Qty" required></td>`
+            html+=`<td><input type="text" class="form-control" value="${v1.qty_masuk}" name="qty_masuk[]" placeholder="Qty Masuk" required></td>`
+            html+=`<td><input type="text" class="form-control" value="${v1.qty_keluar}" name="qty_keluar[]" placeholder="Qty Keluar" required></td>`
+            html+=`<td><input type="text" class="form-control" value="${v1.keterangan}" name="keterangan[]" placeholder="Keterangan" required></td>`
             html+=`<td><button type="button" class="btn btn-danger remove" id="${v1.id_identifikasi}"><i class="fa fa-trash"></i></button></td>`
             html+=`</tr>`
 
-            $('#detail_masuk').append(html)
+            $('#detail_memo').append(html)
           })
         })
       },
@@ -294,13 +195,10 @@
     $('#form_edit').on('submit', function(e){
       e.preventDefault();
 
-      var id_supplier = $('#id_supplier').val()
-      var no_surat = $('#no_surat').val()
-      var no_po = $('#no_po').val()
-      var tgl_masuk = $('#tgl_masuk').val()
-      var detail = $('#detail_masuk tbody tr').length
+      var keterangan_memo = $('#keterangan_memo').val()
+      var detail = $('#detail_memo tbody tr').length
 
-      if(id_supplier === '' || no_surat === '' || no_po === '' || tgl_masuk === ''){
+      if(keterangan_memo === ''){
         Swal.fire({
           position: 'center',
           type: 'warning',
@@ -317,9 +215,9 @@
             showConfirmButton: false,
             timer: 1500
           });
-        } else {
+      } else {
           $.ajax({
-            url: `<?= base_url('api/barang_masuk/edit/') ?>${auth.token}?no_masuk=${no_masuk}`,
+            url: `<?= base_url('api/memorandum/edit/') ?>${auth.token}?no_memo=${no_memo}`,
             type: 'POST',
             dataType: 'JSON',
             beforeSend: function(){
@@ -336,7 +234,7 @@
                   timer: 1500
                 });
                 $('#form_edit')[0].reset();
-                location.hash = '#/barang_masuk';
+                location.hash = '#/memorandum';
               } else {
                 Swal.fire({
                   position: 'center',
