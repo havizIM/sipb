@@ -23,15 +23,19 @@
             <table id="table_barang" class="table table-striped table-hover">
               <thead>
                 <tr>
-                  <th></th>
                   <th>Tgl. Input</th>
                   <th>Kode Barang</th>
                   <th>Nama Barang</th>
                   <th>Satuan</th>
                   <th>Warna</th>
                   <th>Keterangan</th>
+                  <th>Barang Masuk</th>
+                  <th>Barang Keluar</th>
+                  <th>Return Pemasok</th>
+                  <th>Return Pelanggan</th>
+                  <th>Sisa Stock</th>
                   <th>Foto</th>
-                  <th style="width: 12%;"></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -134,27 +138,6 @@
 
 <script type="text/javascript">
 
-  function format (d){
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left: 50px;">'+
-      '<tr>'+
-        '<td>Jumlah Barang Keluar</td>'+
-        '<td>'+d.jml_barang_keluar+'</td>'+
-      '</tr>'+
-      '<tr>'+
-        '<td>Jumlah Barang Masuk</td>'+
-        '<td>'+d.jml_barang_masuk+'</td>'+
-      '</tr>'+
-      '<tr>'+
-        '<td>Jumlah Return Keluar</td>'+
-        '<td>'+d.jml_return_keluar+'</td>'+
-      '</tr>'+
-      '<tr>'+
-        '<td>Jumlah Return Masuk</td>'+
-        '<td>'+d.jml_return_masuk+'</td>'+
-      '</tr>'+
-    '</table>';
-  }
-
   $(document).ready(function(){
 
     var session = localStorage.getItem('sipb');
@@ -231,7 +214,7 @@
 
     var table = $('#table_barang').DataTable({
       columnDefs: [{
-        targets: [0, 1, 4, 5, 6, 7, 8],
+        targets: [0, 1, 4, 5, 6, 7],
         searchable: false
       }, {
         targets: [7],
@@ -253,18 +236,32 @@
       processing: true,
       ajax: '<?= base_url('api/barang/show/'); ?>'+auth.token,
       columns: [
-        {
-          "className":      'details-control',
-          "orderable":      false,
-          "data":           null,
-          "defaultContent": ''
-        },
         {"data": 'tgl_input'},
         {"data": 'no_persediaan'},
         {"data": 'nama_persediaan'},
         {"data": 'satuan'},
         {"data": 'warna'},
         {"data": 'keterangan'},
+        {"data": null, 'render': function(data, type, row){
+          return `${row.jml_barang_masuk ? row.jml_barang_masuk : 0}`
+          }
+        },
+        {"data": null, 'render': function(data, type, row){
+          return `${row.jml_barang_keluar ? row.jml_barang_keluar : 0}`
+          }
+        },
+        {"data": null, 'render': function(data, type, row){
+          return `${row.jml_return_keluar ? row.jml_return_keluar : 0}`
+          }
+        },
+        {"data": null, 'render': function(data, type, row){
+          return `${row.jml_return_masuk ? row.jml_return_masuk : 0}`
+          }
+        },
+        {"data": null, 'render': function(data, type, row){
+          return `${0 + (parseInt(row.jml_barang_masuk) - parseInt(row.jml_barang_keluar)) + (parseInt(row.jml_return_masuk) - parseInt(row.jml_return_keluar)) }`
+          }
+        },
         {"data": null, 'render': function(data, type, row){
           return `<center><img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 75px; height: 75px;"></center>`
           }
@@ -424,18 +421,18 @@
       }
     });
 
-    $('#table_barang tbody').on('click', 'td.details-control', function(){
-      var tr = $(this).closest('tr');
-      var row = table.row(tr);
+    // $('#table_barang tbody').on('click', 'td.details-control', function(){
+    //   var tr = $(this).closest('tr');
+    //   var row = table.row(tr);
 
-      if(row.child.isShown() ){
-        row.child.hide();
-        tr.removeClass('shown');
-      } else {
-        row.child(format(row.data())).show();
-        tr.addClass('shown');
-      }
-    })
+    //   if(row.child.isShown() ){
+    //     row.child.hide();
+    //     tr.removeClass('shown');
+    //   } else {
+    //     row.child(format(row.data())).show();
+    //     tr.addClass('shown');
+    //   }
+    // })
 
     // var pusher = new Pusher('6a169a704ab461b9a26a', {
     //   cluster: 'ap1',
