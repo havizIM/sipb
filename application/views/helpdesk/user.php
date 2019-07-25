@@ -101,6 +101,7 @@
                   <th>ID User</th>
                   <th>Nama User</th>
                   <th>Username</th>
+                  <th>Password</th>
                   <th>Level</th>
                   <th>Foto</th>
                   <th>Status</th>
@@ -127,7 +128,7 @@
 
     var table = $('#table_user').DataTable({
       columnDefs: [{
-        targets: [0, 2, 3, 4, 5, 6, 7],
+        targets: [2, 3, 4, 5, 6, 7],
         searchable: false
       }, {
         targets: [7],
@@ -135,7 +136,7 @@
       }],
       autoWidth: false,
       language: {
-        search: 'Cari Nama: _INPUT_',
+        search: 'Cari (ID/Nama): _INPUT_',
         lengthMenu: 'Tampilkan: _MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
         info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ User',
@@ -156,6 +157,7 @@
         {"data": 'id_user'},
         {"data": 'nama_user'},
         {"data": 'username'},
+        {"data": 'password'},
         {"data": 'level'},
         {"data": 'foto'},
         {"data": 'status'},
@@ -210,6 +212,7 @@
               });
               $('#modal_add').modal('hide');
               $('#form_add')[0].reset();
+              table.ajax.reload();
             } else {
               Swal.fire({
                 position: 'center',
@@ -304,6 +307,7 @@
               });
               $('#modal_edit').modal('hide');
               $('#form_edit')[0].reset();
+              table.ajax.reload();
             } else {
               Swal.fire({
                 position: 'center',
@@ -358,6 +362,7 @@
                   showConfirmButton: false,
                   timer: 1500
                 })
+                table.ajax.reload();
               } else {
                 Swal.fire({
                   position: 'center',
@@ -382,15 +387,15 @@
       })
     });
 
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('sipb');
-    channel.bind('user', function(data) {
-      table.ajax.reload();
-    });
+    // var pusher = new Pusher('6a169a704ab461b9a26a', {
+    //   cluster: 'ap1',
+    //   forceTLS: true
+    // });
+    //
+    // var channel = pusher.subscribe('sipb');
+    // channel.bind('user', function(data) {
+    //   table.ajax.reload();
+    // });
 
   });
 

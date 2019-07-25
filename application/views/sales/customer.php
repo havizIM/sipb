@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Customer</h4>
+      <h4 class="text-themecolor">Pelanggan</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item active">Customer</li>
+          <li class="breadcrumb-item active">Pelanggan</li>
         </ol>
         <button type="button" id="btn_add" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</button>
       </div>
@@ -18,14 +18,14 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="vcenter">Tambah Customer</h4>
+          <h4 class="modal-title" id="vcenter">Tambah Pelanggan</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
 
         <form class="form-horizontal" method="post" id="form_add">
           <div class="modal-body form-group">
             <div class="form-group">
-              <input type="text" class="form-control" name="nama_customer" id="nama_customer" placeholder="Nama Customer">
+              <input type="text" class="form-control" name="nama_customer" id="nama_customer" placeholder="Nama Pelanggan">
             </div>
 
             <div class="form-group">
@@ -57,14 +57,14 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="vcenter">Ubah Customer</h4>
+          <h4 class="modal-title" id="vcenter">Ubah Pelanggan</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
 
         <form class="form-horizontal" method="post" id="form_edit">
           <div class="modal-body form-group">
             <div class="form-group">
-              <input type="text" class="form-control" name="nama_customer" id="edit_nama_customer" placeholder="Nama Customer">
+              <input type="text" class="form-control" name="nama_customer" id="edit_nama_customer" placeholder="Nama Pelanggan">
             </div>
 
             <div class="form-group">
@@ -97,13 +97,13 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Data Customer</h4>
+          <h4 class="card-title">Data Pelanggan</h4>
           <div class="table-responsive m-t-40">
             <table id="t_customer" class="table table-striped">
               <thead>
                 <tr>
                   <th>Tgl Input</th>
-                  <th>Nama Customer</th>
+                  <th>Nama Pelanggan</th>
                   <th>Telepon</th>
                   <th>Fax</th>
                   <th>Email</th>
@@ -176,6 +176,7 @@
               });
               $('#modal_add').modal('hide');
               $('#form_add')[0].reset();
+              table.ajax.reload();
             } else {
               Swal.fire({
                 position: 'center',
@@ -211,7 +212,7 @@
       }],
       autoWidth: false,
       language: {
-        search: 'Cari (Nama Customer): _INPUT_',
+        search: 'Cari (Nama): _INPUT_',
         lengthMenu: 'Tampilkan: _MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
         info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Data',
@@ -314,6 +315,7 @@
               });
               $('#modal_edit').modal('hide');
               $('#form_edit')[0].reset();
+              table.ajax.reload();
             } else {
               Swal.fire({
                 position: 'center',
@@ -367,6 +369,7 @@
                   showConfirmButton: false,
                   timer: 1500
                 });
+                table.ajax.reload();
               } else {
                 Swal.fire({
                   position: 'center',
@@ -391,15 +394,15 @@
       })
     });
 
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('sipb');
-    channel.bind('customer', function(data) {
-      table.ajax.reload();
-    });
+    // var pusher = new Pusher('6a169a704ab461b9a26a', {
+    //   cluster: 'ap1',
+    //   forceTLS: true
+    // });
+    //
+    // var channel = pusher.subscribe('sipb');
+    // channel.bind('customer', function(data) {
+    //   table.ajax.reload();
+    // });
 
   })
 

@@ -245,6 +245,8 @@
       html+=`</tr>`
 
       $('#detail_masuk').append(html)
+
+      $('#lookup_stok').modal('hide')
     })
 
     $(document).on('click', '.remove', function(){

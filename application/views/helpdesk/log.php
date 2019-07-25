@@ -27,6 +27,7 @@
                   <th>Tanggal</th>
                   <th>ID User</th>
                   <th>Nama User</th>
+                  <th>ID Ref</th>
                   <th>Keterangan</th>
                   <th>Kategori</th>
                 </tr>
@@ -73,21 +74,22 @@
         {"data": 'tgl_log'},
         {"data": 'id_user'},
         {"data": 'nama_user'},
+        {"data": 'id_ref'},
         {"data": 'keterangan'},
         {"data": 'kategori'}
       ],
       order: [[0, 'desc']]
     });
 
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('sipb');
-    channel.bind('log', function(data) {
-      table.ajax.reload();
-    });
+    // var pusher = new Pusher('6a169a704ab461b9a26a', {
+    //   cluster: 'ap1',
+    //   forceTLS: true
+    // });
+    //
+    // var channel = pusher.subscribe('sipb');
+    // channel.bind('log', function(data) {
+    //   table.ajax.reload();
+    // });
 
   });
 

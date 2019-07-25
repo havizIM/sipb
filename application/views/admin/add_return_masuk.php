@@ -233,6 +233,8 @@
       html+=`</tr>`
 
       $('#stok').append(html)
+
+      $('#lookup_stok').modal('hide')
     })
 
     $(document).on('click', '.remove', function(){

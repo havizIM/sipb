@@ -48,12 +48,12 @@
 
     var table = $('#table_barang').DataTable({
       columnDefs: [{
-        targets: [0, 1, 3, 4, 5, 6],
+        targets: [0, 3, 4, 5, 6],
         searchable: false
       }],
       autoWidth: false,
       language: {
-        search: 'Cari Nama: _INPUT_',
+        search: 'Cari (Kode/Nama Barang): _INPUT_',
         lengthMenu: 'Tampilkan: _MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
         info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Barang',
@@ -81,15 +81,15 @@
       order: [[0, 'desc']]
     });
 
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('sipb');
-    channel.bind('barang', function(data) {
-      table.ajax.reload();
-    });
+    // var pusher = new Pusher('6a169a704ab461b9a26a', {
+    //   cluster: 'ap1',
+    //   forceTLS: true
+    // });
+    //
+    // var channel = pusher.subscribe('sipb');
+    // channel.bind('barang', function(data) {
+    //   table.ajax.reload();
+    // });
 
   })
 

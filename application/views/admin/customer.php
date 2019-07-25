@@ -58,7 +58,7 @@
       }],
       autoWidth: false,
       language: {
-        search: 'Cari (Nama Pelanggan): _INPUT_',
+        search: 'Cari (Nama): _INPUT_',
         lengthMenu: 'Tampilkan: _MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
         info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Data',
@@ -82,15 +82,15 @@
       order: [[0, 'desc']]
     });
 
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('sipb');
-    channel.bind('customer', function(data) {
-      table.ajax.reload();
-    });
+    // var pusher = new Pusher('6a169a704ab461b9a26a', {
+    //   cluster: 'ap1',
+    //   forceTLS: true
+    // });
+    //
+    // var channel = pusher.subscribe('sipb');
+    // channel.bind('customer', function(data) {
+    //   table.ajax.reload();
+    // });
 
   })
 

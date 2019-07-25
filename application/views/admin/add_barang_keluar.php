@@ -338,6 +338,8 @@
       html+=`</tr>`
 
       $('#detail_keluar').append(html)
+
+      $('#lookup_stok').modal('hide')
     })
 
     $(document).on('click', '.remove', function(){

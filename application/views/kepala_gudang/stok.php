@@ -26,8 +26,8 @@
                   <th>Nomor Identifikasi</th>
                   <th>Keterangan Stok</th>
                   <th>Saldo Awal</th>
-                  <th>Nomor Persediaan</th>
-                  <th>Nama Persediaan</th>
+                  <th>Kode Barang</th>
+                  <th>Nama Barang</th>
                   <th>Satuan</th>
                   <th>Warna</th>
                   <th>Keterangan Barang</th>
@@ -53,12 +53,12 @@
 
     var table = $('#t_stok').DataTable({
       columnDefs: [{
-        targets: [0, 2, 3, 4, 5, 6, 7, 8],
+        targets: [0, 2, 3, 5, 6, 7, 8],
         searchable: false
       }],
       autoWidth: false,
       language: {
-        search: '<span>Cari (Nomor Identifikasi) :</span>_INPUT_',
+        search: '<span>Cari (No. Identifikasi/Nama Barang) :</span>_INPUT_',
         lengthMenu: '<span>Tampilkan: </span>_MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
         info: 'Menampilkan  _START_ sampai _END_ dari _TOTAL_ Data',
@@ -85,15 +85,15 @@
       order: [[0, 'desc']]
     })
 
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('sipb');
-    channel.bind('stock', function(data) {
-      table.ajax.reload();
-    });
+    // var pusher = new Pusher('6a169a704ab461b9a26a', {
+    //   cluster: 'ap1',
+    //   forceTLS: true
+    // });
+    //
+    // var channel = pusher.subscribe('sipb');
+    // channel.bind('stock', function(data) {
+    //   table.ajax.reload();
+    // });
 
   })
 

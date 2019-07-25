@@ -47,6 +47,21 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css"/>
 
+    <style media="screen">
+
+      td.details-control {
+        background: url('<?= base_url(''); ?>assets/images/detail-open.png') no-repeat center center;
+        cursor: pointer;
+        background-size: 25px 25px;
+      }
+
+      tr.shown td.details-control {
+        background: url('<?= base_url(''); ?>assets/images/detail-close.png') no-repeat center center;
+        background-size: 25px 25px;
+      }
+
+    </style>
+
   </head>
 
   <body class="skin-red fixed-layout">
@@ -164,19 +179,13 @@
                 </a>
                 <ul aria-expanded="false" class="collapse">
                   <li> <a href="#/customer">Pelanggan</a> </li>
-                  <li> <a href="#/Pemasok">Pemasok</a> </li>
+                  <li> <a href="#/supplier">Pemasok</a> </li>
                 </ul>
               </li>
 
               <li>
                 <a class="waves-effect waves-dark" href="#/pesanan" aria-expanded="false">
                   <i class="ti-shopping-cart"></i><span class="hide-menu">Pesanan</span>
-                </a>
-              </li>
-
-              <li>
-                <a class="waves-effect waves-dark" href="#/barang_keluar" aria-expanded="false">
-                  <i class="icon-logout"></i><span class="hide-menu">Barang Keluar</span>
                 </a>
               </li>
 

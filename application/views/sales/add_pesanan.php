@@ -240,6 +240,8 @@
       html+=`</tr>`
 
       $('#detail_pesanan tbody').append(html)
+
+      $('#lookup_persediaan').modal('hide')
     })
 
     $(document).on('click', '.remove', function(){

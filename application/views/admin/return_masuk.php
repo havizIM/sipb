@@ -25,7 +25,7 @@
                 <tr>
                   <th>Tgl Return Masuk</th>
                   <th>No. Return Masuk</th>
-                  <th>Nama Customer</th>
+                  <th>Nama Pelanggan</th>
                   <th>Alamat</th>
                   <th>No. Ref</th>
                   <th>Status</th>
@@ -53,7 +53,7 @@
 
     var table = $('#t_return_masuk').DataTable({
       columnDefs: [{
-        targets: [0, 2, 3, 4, 5, 6, 7],
+        targets: [0, 3, 4, 5, 6, 7],
         searchable: false
       }, {
         targets: [7],
@@ -61,7 +61,7 @@
       }],
       autoWidth: false,
       language: {
-        search: '<span>Cari (Nomor Return Masuk) :</span>_INPUT_',
+        search: '<span>Cari (No. Return/Nama Pelanggan) :</span>_INPUT_',
         lengthMenu: '<span>Tampilkan: </span>_MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
         info: 'Menampilkan  _START_ sampai _END_ dari _TOTAL_ Data',
@@ -118,6 +118,7 @@
                   showConfirmButton: false,
                   timer: 1500
                 });
+                table.ajax.reload();
               } else {
                 Swal.fire({
                   position: 'center',
@@ -142,15 +143,15 @@
       })
     });
 
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('sipb');
-    channel.bind('return_masuk', function(data) {
-      table.ajax.reload();
-    });
+    // var pusher = new Pusher('6a169a704ab461b9a26a', {
+    //   cluster: 'ap1',
+    //   forceTLS: true
+    // });
+    //
+    // var channel = pusher.subscribe('sipb');
+    // channel.bind('return_masuk', function(data) {
+    //   table.ajax.reload();
+    // });
 
   })
 

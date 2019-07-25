@@ -84,7 +84,6 @@
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
     var no_keluar = location.hash.substr(23);
-    var link =
 
     $.ajax({
       url: `<?= base_url('api/barang_keluar/detail/') ?>${auth.token}?no_keluar=${no_keluar}`,
@@ -150,7 +149,7 @@
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Saya yakin.',
         cancelButtonText: 'Batal',
-        showLoaderOnConfirm: true
+        // showLoaderOnConfirm: true
         }).then((result) => {
           if (result.value) {
             $.ajax({
@@ -166,7 +165,7 @@
                     showConfirmButton: false,
                     timer: 1500
                   });
-                  window.location = '#/barang_keluar'
+                  location.hash = '#/barang_keluar'
                 } else {
                   Swal.fire({
                     position: 'center',

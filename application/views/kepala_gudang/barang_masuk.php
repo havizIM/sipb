@@ -26,7 +26,7 @@
                   <th>No. Masuk</th>
                   <th>No. Surat</th>
                   <th>No. PO</th>
-                  <th>Nama Supplier</th>
+                  <th>Nama Pemasok</th>
                   <th>Telepon</th>
                   <th>Fax</th>
                   <th>Email</th>
@@ -56,7 +56,7 @@
 
     var table = $('#t_barang_masuk').DataTable({
       columnDefs: [{
-        targets: [0, 2, 3, 4, 5, 6, 7, 8, 9],
+        targets: [0, 2, 3, 5, 6, 7, 8, 9],
         searchable: false
       }, {
         targets: [9],
@@ -64,7 +64,7 @@
       }],
       autoWidth: false,
       language: {
-        search: '<span>Cari (Nomor Keluar) :</span>_INPUT_',
+        search: '<span>Cari (No. Masuk/Nama Pemasok) :</span>_INPUT_',
         lengthMenu: '<span>Tampilkan: </span>_MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
         info: 'Menampilkan  _START_ sampai _END_ dari _TOTAL_ Data',
@@ -97,15 +97,15 @@
       order: [[0, 'desc']]
     })
 
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('sipb');
-    channel.bind('barang_masuk', function(data) {
-      table.ajax.reload();
-    });
+    // var pusher = new Pusher('6a169a704ab461b9a26a', {
+    //   cluster: 'ap1',
+    //   forceTLS: true
+    // });
+    //
+    // var channel = pusher.subscribe('sipb');
+    // channel.bind('barang_masuk', function(data) {
+    //   table.ajax.reload();
+    // });
 
   })
 

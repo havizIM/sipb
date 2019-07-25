@@ -166,7 +166,7 @@
               </a>
               <ul aria-expanded="false" class="collapse">
                 <li> <a href="#/customer">Pelanggan</a> </li>
-                <li> <a href="#/Pemasok">Pemasok</a> </li>
+                <li> <a href="#/supplier">Pemasok</a> </li>
               </ul>
             </li>
 

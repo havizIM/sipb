@@ -148,8 +148,10 @@
       html+=`</tr>`
 
       $('#detail_memo').append(html)
+
+      $('#lookup_stok').modal('hide')
     })
-    
+
     $(document).on('click', '.remove', function(){
       var id = $(this).attr('id')
 

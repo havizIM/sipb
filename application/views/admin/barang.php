@@ -23,6 +23,7 @@
             <table id="table_barang" class="table table-striped table-hover">
               <thead>
                 <tr>
+                  <th></th>
                   <th>Tgl. Input</th>
                   <th>Kode Barang</th>
                   <th>Nama Barang</th>
@@ -133,6 +134,27 @@
 
 <script type="text/javascript">
 
+  function format (d){
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left: 50px;">'+
+      '<tr>'+
+        '<td>Jumlah Barang Keluar</td>'+
+        '<td>'+d.jml_barang_keluar+'</td>'+
+      '</tr>'+
+      '<tr>'+
+        '<td>Jumlah Barang Masuk</td>'+
+        '<td>'+d.jml_barang_masuk+'</td>'+
+      '</tr>'+
+      '<tr>'+
+        '<td>Jumlah Return Keluar</td>'+
+        '<td>'+d.jml_return_keluar+'</td>'+
+      '</tr>'+
+      '<tr>'+
+        '<td>Jumlah Return Masuk</td>'+
+        '<td>'+d.jml_return_masuk+'</td>'+
+      '</tr>'+
+    '</table>';
+  }
+
   $(document).ready(function(){
 
     var session = localStorage.getItem('sipb');
@@ -181,6 +203,7 @@
               });
               $('#modal_add').modal('hide');
               $('#form_add')[0].reset();
+              table.ajax.reload();
             } else {
               Swal.fire({
                 position: 'center',
@@ -208,7 +231,7 @@
 
     var table = $('#table_barang').DataTable({
       columnDefs: [{
-        targets: [0, 1, 3, 4, 5, 6, 7],
+        targets: [0, 1, 4, 5, 6, 7, 8],
         searchable: false
       }, {
         targets: [7],
@@ -216,7 +239,7 @@
       }],
       autoWidth: false,
       language: {
-        search: 'Cari Nama: _INPUT_',
+        search: 'Cari (Kode/Nama Barang): _INPUT_',
         lengthMenu: 'Tampilkan: _MENU_',
         paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
         info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Barang',
@@ -230,6 +253,12 @@
       processing: true,
       ajax: '<?= base_url('api/barang/show/'); ?>'+auth.token,
       columns: [
+        {
+          "className":      'details-control',
+          "orderable":      false,
+          "data":           null,
+          "defaultContent": ''
+        },
         {"data": 'tgl_input'},
         {"data": 'no_persediaan'},
         {"data": 'nama_persediaan'},
@@ -277,6 +306,7 @@
                   showConfirmButton: false,
                   timer: 1500
                 });
+                table.ajax.reload();
               } else {
                 Swal.fire({
                   position: 'center',
@@ -368,6 +398,7 @@
               });
               $('#modal_edit').modal('hide');
               $('#form_edit')[0].reset();
+              table.ajax.reload();
             } else {
               Swal.fire({
                 position: 'center',
@@ -393,15 +424,28 @@
       }
     });
 
-    var pusher = new Pusher('6a169a704ab461b9a26a', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
+    $('#table_barang tbody').on('click', 'td.details-control', function(){
+      var tr = $(this).closest('tr');
+      var row = table.row(tr);
 
-    var channel = pusher.subscribe('sipb');
-    channel.bind('barang', function(data) {
-      table.ajax.reload();
-    });
+      if(row.child.isShown() ){
+        row.child.hide();
+        tr.removeClass('shown');
+      } else {
+        row.child(format(row.data())).show();
+        tr.addClass('shown');
+      }
+    })
+
+    // var pusher = new Pusher('6a169a704ab461b9a26a', {
+    //   cluster: 'ap1',
+    //   forceTLS: true
+    // });
+    //
+    // var channel = pusher.subscribe('sipb');
+    // channel.bind('barang', function(data) {
+    //   table.ajax.reload();
+    // });
 
   });
 
