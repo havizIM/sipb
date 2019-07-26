@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Return Masuk</h4>
+        <h4 class="text-themecolor">Return Pelanggan</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-              <li class="breadcrumb-item active">Return Masuk</li>
+              <li class="breadcrumb-item active">Return Pelanggan</li>
           </ol>
           <a href="#/add_return_masuk" class="btn btn-info d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Tambah Baru</a>
       </div>
@@ -18,7 +18,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Data Return Masuk</h4>
+          <h4 class="card-title">Data Return Pelanggan</h4>
           <div class="table-responsive m-t-40">
             <table id="t_return_masuk" class="table table-striped table-hover">
               <thead>
