@@ -206,7 +206,7 @@
       </div>
 
       <footer class="footer">
-        Sistem Informasi Manajemen Persediaan Barang PT. Setia Sapta by Hani
+        Made with <i class="fa fa-heart" style="color: pink"></i> by Hanifah Julianti - 30815007
       </footer>
     </div>
 
