@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row page-titles">
       <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Ubah Return Masuk</h4>
+        <h4 class="text-themecolor">Ubah Return Pelanggan</h4>
       </div>
       <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="#/return_masuk">Return Masuk</a></li>
-            <li class="breadcrumb-item active">Ubah Return Masuk</li>
+            <li class="breadcrumb-item"><a href="#/return_masuk">Return Pelanggan</a></li>
+            <li class="breadcrumb-item active">Ubah Return Pelanggan</li>
           </ol>
         </div>
       </div>

@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Detail Return Keluar</h4>
+      <h4 class="text-themecolor">Detail Return Pemasok</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="#/return_keluar">Return Keluar</a></li>
-          <li class="breadcrumb-item active">Detail Return Keluar</li>
+          <li class="breadcrumb-item"><a href="#/return_keluar">Return Pemasok</a></li>
+          <li class="breadcrumb-item active">Detail Return Pemasok</li>
         </ol>
       </div>
     </div>
@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>DETAIL RETURN KELUAR</b> <span class="pull-right"></span></h3>
+          <h3><b>DETAIL RETURN PEMASOK</b> <span class="pull-right"></span></h3>
           <hr>
           <div class="row">
             <div class="col-md-6">
