@@ -187,14 +187,14 @@
             </li>
 
             <li>
-              <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                <i class="ti-direction-alt"></i><span class="hide-menu">Return</span>
-              </a>
-              <ul aria-expanded="false" class="collapse">
-                <li> <a href="#/return_keluar">Return Keluar</a> </li>
-                <li> <a href="#/return_masuk">Return Masuk</a> </li>
-              </ul>
-            </li>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                  <i class="ti-direction-alt"></i><span class="hide-menu">Return</span>
+                </a>
+                <ul aria-expanded="false" class="collapse">
+                  <li> <a href="#/return_keluar">Return Pemasok</a> </li>
+                  <li> <a href="#/return_masuk">Return Pelanggan</a> </li>
+                </ul>
+              </li>
 
             <li>
               <a class="waves-effect waves-dark" href="#/memorandum" aria-expanded="false">

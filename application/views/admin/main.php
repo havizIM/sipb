@@ -204,8 +204,8 @@
                   <i class="ti-direction-alt"></i><span class="hide-menu">Return</span>
                 </a>
                 <ul aria-expanded="false" class="collapse">
-                  <li> <a href="#/return_keluar">Return Keluar</a> </li>
-                  <li> <a href="#/return_masuk">Return Masuk</a> </li>
+                  <li> <a href="#/return_keluar">Return Pemasok</a> </li>
+                  <li> <a href="#/return_masuk">Return Pelanggan</a> </li>
                 </ul>
               </li>
 
