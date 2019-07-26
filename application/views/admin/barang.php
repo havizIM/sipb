@@ -234,7 +234,12 @@
       },
       responsive: true,
       processing: true,
-      ajax: '<?= base_url('api/barang/show/'); ?>'+auth.token,
+      ajax: {
+        url : '<?= base_url('api/barang/show/'); ?>'+auth.token,
+        dataSrc: function(res){
+          return res.data;
+        }
+      },
       columns: [
         {"data": 'tgl_input'},
         {"data": 'no_persediaan'},
@@ -259,7 +264,13 @@
           }
         },
         {"data": null, 'render': function(data, type, row){
-          return `${0 + (parseInt(row.jml_barang_masuk) - parseInt(row.jml_barang_keluar)) + (parseInt(row.jml_return_masuk) - parseInt(row.jml_return_keluar)) }`
+            var barang_masuk = row.jml_barang_masuk ? row.jml_barang_masuk : 0;
+            var barang_keluar = row.jml_barang_keluar ? row.jml_barang_keluar : 0;
+            var return_masuk = row.jml_return_masuk ? row.jml_return_masuk : 0;
+            var return_keluar =  row.jml_return_keluar ? row.jml_return_keluar : 0;
+            var total_barang = parseInt(barang_masuk - barang_keluar) + parseInt(return_masuk - return_keluar);
+
+            return `${total_barang}`
           }
         },
         {"data": null, 'render': function(data, type, row){

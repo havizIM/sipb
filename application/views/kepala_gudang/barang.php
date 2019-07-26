@@ -99,7 +99,13 @@
           }
         },
         {"data": null, 'render': function(data, type, row){
-          return `<img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 75px; height: 75px;">`
+            var barang_masuk = row.jml_barang_masuk ? row.jml_barang_masuk : 0;
+            var barang_keluar = row.jml_barang_keluar ? row.jml_barang_keluar : 0;
+            var return_masuk = row.jml_return_masuk ? row.jml_return_masuk : 0;
+            var return_keluar =  row.jml_return_keluar ? row.jml_return_keluar : 0;
+            var total_barang = parseInt(barang_masuk - barang_keluar) + parseInt(return_masuk - return_keluar);
+
+            return `${total_barang}`
           }
         }
       ],
