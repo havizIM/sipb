@@ -155,7 +155,8 @@ class Return_masuk extends CI_Controller {
           } else {
             $post                 = $this->input->post();
 
-            $no_return_masuk      = $this->KodeModel->buatKode('return_masuk', 'RTR-M', 'no_return_masuk', 9);
+            $mycode               = 'RTN-'.date('my').'-';
+            $no_return_masuk      = $this->KodeModel->buatKode('return_masuk', $mycode, 'no_return_masuk', 5);
             $no_ref               = $post['no_ref'];
             $id_customer          = $post['id_customer'];
             $status               = 'Proses';

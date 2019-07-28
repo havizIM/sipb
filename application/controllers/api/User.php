@@ -92,7 +92,7 @@ class User extends CI_Controller {
           if($otorisasi->level != 'Helpdesk'){
             json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
           } else {
-            $id_user    = $this->KodeModel->buatKode('user', 'USR', 'id_user', 8);
+            $id_user    = $this->KodeModel->buatKode('user', 'USR', 'id_user', 3);
             $nama_user  = $this->input->post('nama_user');
             $username   = $this->input->post('username');
             $level      = $this->input->post('level');

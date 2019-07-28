@@ -151,7 +151,8 @@ class Memorandum extends CI_Controller {
           } else {
             $post           = $this->input->post();
 
-            $no_memo              = $this->KodeModel->buatKode('memorandum', 'MEMO-', 'no_memo', 10);
+            $mycode               = 'MEMO-'.date('mY').'-';
+            $no_memo              = $this->KodeModel->buatKode('memorandum', $mycode, 'no_memo', 3);
             $keterangan_memo      = $post['keterangan_memo'];
             $status               = 'Proses';
 
