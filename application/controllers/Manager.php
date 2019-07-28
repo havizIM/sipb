@@ -39,4 +39,9 @@ class Manager extends CI_Controller{
     $this->load->view('manager/detail_pesanan');
   }
 
+  function laporan_pesanan()
+  {
+    $this->load->view('manager/laporan_pesanan');
+  }
+
 }

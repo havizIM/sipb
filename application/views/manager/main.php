@@ -165,6 +165,12 @@
                   <i class="ti-shopping-cart"></i><span class="hide-menu">Pesanan</span>
                 </a>
               </li>
+
+              <li>
+                <a class="waves-effect waves-dark" href="#/laporan_pesanan" aria-expanded="false">
+                  <i class="ti-shopping-cart"></i><span class="hide-menu">Laporan Pesanan</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

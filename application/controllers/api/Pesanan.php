@@ -66,6 +66,54 @@ class Pesanan extends CI_Controller {
     }
   }
 
+  function laporan($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $auth = $this->AuthModel->cekAuth($token);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+          $otorisasi     = $auth->row();
+          $where = array(
+            'MONTH(a.tgl_pesanan)'  => $this->input->get('bulan'),
+            'YEAR(a.tgl_pesanan)'   => $this->input->get('tahun'),
+            'a.status'              => 'Disetujui'
+          );
+
+          $show  = $this->PesananModel->laporan($where);
+          $pesanan  = array();
+
+          foreach($show->result() as $key){
+            $json = array();
+
+            $json['no_pesanan']    = $key->no_pesanan;
+            $json['tgl_pesanan']   = $key->tgl_pesanan;
+            $json['tgl_kirim']     = $key->tgl_kirim;
+            $json['id_customer']   = $key->id_customer;
+            $json['nama_customer'] = $key->nama_customer;
+            $json['alamat_kirim']  = $key->alamat_kirim;
+            $json['status']        = $key->status;
+            $json['id_user']       = $key->id_user;
+            $json['nama_user']     = $key->nama_user;
+
+            $pesanan[] = $json;
+          }
+
+          json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $pesanan));
+        }
+      }
+    }
+  }
+
   function detail($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
