@@ -50,7 +50,7 @@
 
 <body class="skin-default card-no-border">
 
-  <section id="wrapper" class="login-register login-sidebar" style="background-image:url('<?= base_url(''); ?>assets/images/background-login2.jpg');">
+  <section id="wrapper" class="login-register login-sidebar" style="background-image:url('<?= base_url(''); ?>assets/images/background-login.jpg');">
     <div class="login-box card">
       <div class="card-body">
         <form class="form-horizontal form-material text-center" id="form_login" action="index.html">
@@ -66,7 +66,7 @@
               <input class="form-control" id="password" name="password" type="password" required="" placeholder="Password">
             </div>
           </div>
-          
+
           <div class="form-group row">
             <div class="col-md-12">
               <div class="d-flex no-block align-items-center">

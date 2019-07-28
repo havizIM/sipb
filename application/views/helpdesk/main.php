@@ -75,7 +75,7 @@
 
             <ul class="navbar-nav my-lg-0">
               <li class="nav-item dropdown u-pro">
-                <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url(''); ?>assets/images/users/1.jpg" alt="user" class=""> <span class="hidden-md-down nama"><i class="fa fa-angle-down"></i></span> </a>
+                <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url(''); ?>assets/images/user2.png" alt="user" class=""> <span class="hidden-md-down nama"><i class="fa fa-angle-down"></i></span> </a>
                 <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
                   <ul>
                     <li>
@@ -140,7 +140,7 @@
         <div class="scroll-sidebar">
           <nav class="sidebar-nav">
             <ul id="sidebarnav">
-              <li class="user-pro"> <a class=" waves-effect waves-dark" aria-expanded="false"><img src="<?= base_url(''); ?>assets/images/users/1.jpg" alt="user-img" class="img-circle"><span class="hide-menu nama"></span></a>
+              <li class="user-pro"> <a class=" waves-effect waves-dark" aria-expanded="false"><img src="<?= base_url(''); ?>assets/images/user2.png" alt="user-img" class="img-circle"><span class="hide-menu nama"></span></a>
               </li>
 
               <li>
