@@ -70,7 +70,7 @@
         zeroRecords: 'Data tidak ditemukan',
         infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Data',
         loadingRecords: '<i class="fas fa-redo-alt fa-spin"></i>',
-        processing: '<i class="fas fa-redo-alt fa-spin"></i>',
+        processing: 'Memuat...',
         infoFiltered: ''
       },
       responsive: true,

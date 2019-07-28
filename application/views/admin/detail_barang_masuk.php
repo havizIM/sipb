@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>DETAIL BARANG MASUK</b> <span class="pull-right"></span></h3>
+          <h3><b>NO BARANG MASUK</b> <span class="pull-right" id="no_masuk"></span></h3>
           <hr>
           <div class="row">
             <table width="100%">
@@ -71,9 +71,9 @@
           </div>
         </div>
         <hr>
-        <div class="text-right">
-          <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
-        </div>
+      </div>
+      <div class="text-right" id="action">
+        
       </div>
     </div>
   </div>
@@ -95,14 +95,21 @@
       success: function(response){
 
         $.each(response.data, function(k, v){
-          $('#no_masuk').text(v.no_masuk)
+          $('#no_masuk').text('#'+v.no_masuk)
           $('#nama_supplier').text(v.nama_supplier)
           $('#no_surat').text('No. Surat : '+v.no_surat)
           $('#no_po').text('No. PO : '+v.no_po)
           $('#tgl_masuk').text(v.tgl_masuk)
 
-          var html = ''
 
+          var btn = ''
+          if(v.status === 'Disetujui'){
+            btn += `<button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>`
+
+            $('#action').html(btn)
+          }
+
+          var html = ''
           $.each(v.detail, function(k1, v1){
             html+= `<tr id="baris${v1.id_masuk_detail}">`
 
@@ -128,7 +135,7 @@
       }
     })
 
-    $("#print").click(function() {
+    $('#action').on('click', '#print', function() {
 
       var mode = 'iframe'; //popup
       var close = mode == "popup";

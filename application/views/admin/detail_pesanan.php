@@ -65,9 +65,7 @@
           </div>
         </div>
         <hr>
-        <div class="text-right" id="show_batal">
-          <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
-        </div>
+        <div class="text-right" id="action"></div>
       </div>
     </div>
   </div>
@@ -96,17 +94,22 @@
           $('#tgl_kirim').text(v.tgl_kirim)
 
           var btn = ''
-
           if(v.status === 'Disetujui'){
-            btn+= `<button type="submit" id="btn_batal" data-id="${v.no_pesanan}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 15px;"><i class="ti-close"></i> Batalkan</button>`
+            btn += `
+              <button type="submit" id="btn_batal" data-id="${v.no_pesanan}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 15px;"><i class="ti-close"></i> Batalkan</button>
+              <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
+            `
 
-            $('#show_batal').append(btn)
-          } else {
-            $('#print').attr('style', 'margin-right: 15px; margin-bottom: 15px;')
+            $('#action').html(btn)
+          } else if(v.status === 'Batal'){
+            btn += `
+              <h3 class="text-danger" style="margin-right: 15px; margin-bottom: 15px"><i class="ti-close"></i> Batal</h3>
+            `;
+
+            $('#action').html(btn)
           }
 
           var html = ''
-
           $.each(v.detail, function(k1, v1){
             html+= `<tr id="baris${v1.id_detail_pesanan}">`
 
@@ -131,7 +134,7 @@
       }
     })
 
-    $(document).on('click', '#btn_batal', function(){
+    $('#action').on('click', '#btn_batal', function(){
       var no_pesanan = $(this).attr('data-id');
 
       Swal.fire({
@@ -158,6 +161,8 @@
                     showConfirmButton: false,
                     timer: 1500
                   });
+
+                  location.hash = '#/pesanan'
                 } else {
                   Swal.fire({
                     position: 'center',
@@ -182,7 +187,7 @@
         })
       })
 
-    $("#print").click(function() {
+    $('#action').on('click', '#print', function() {
 
       var mode = 'iframe'; //popup
       var close = mode == "popup";
@@ -190,6 +195,7 @@
           mode: mode,
           popClose: close
       };
+      
       $("div.printableArea").printArea(options);
     });
 

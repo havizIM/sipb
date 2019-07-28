@@ -119,17 +119,16 @@ class Barang extends CI_Controller {
           foreach($show->result() as $key){
             $json = array();
 
-            $json['no_persediaan']     = $key->no_persediaan;
-            $json['nama_persediaan']   = $key->nama_persediaan;
-            $json['satuan']            = $key->satuan;
-            $json['warna']             = $key->warna;
-            $json['keterangan']        = $key->keterangan;
-            $json['foto']              = $key->foto;
-            $json['tgl_input']         = $key->tgl_input;
-            $json['jml_barang_keluar'] = $key->jml_barang_keluar;
-            $json['jml_barang_masuk']  = $key->jml_barang_masuk;
-            $json['jml_return_keluar'] = $key->jml_return_keluar;
-            $json['jml_return_masuk']  = $key->jml_return_masuk;
+            $json['no_persediaan']        = $key->no_persediaan;
+            $json['nama_persediaan']      = $key->nama_persediaan;
+            $json['satuan']               = $key->satuan;
+            $json['warna']                = $key->warna;
+            $json['keterangan']           = $key->keterangan;
+            $json['foto']                 = $key->foto;
+            $json['tgl_input']            = $key->tgl_input;
+            $json['barang_masuk']         = $key->jml_barang_masuk + $key->jml_return_masuk + $key->jml_memorandum_in;
+            $json['barang_keluar']        = $key->jml_barang_keluar + $key->jml_return_keluar + $key->jml_memorandum_out;
+            $json['sisa_stock']           = (0 + $json['barang_masuk']) - $json['barang_keluar'];
 
             $persediaan[] = $json;
           }

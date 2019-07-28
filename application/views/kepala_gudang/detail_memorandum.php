@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>DETAIL MEMORANDUM</b> <span class="pull-right"></span></h3>
+          <h3><b>NO MEMORANDUM</b> <span class="pull-right" id="no_memorandum"></span></h3>
           <hr>
           <div class="row">
             <table width="100%">
@@ -68,10 +68,10 @@
           </div>
         </div>
         <hr>
-        <div class="text-right" id="approve">
-          <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
-        </div>
       </div>
+        <div class="text-right" id="action">
+        
+        </div>
     </div>
   </div>
 </div>
@@ -83,7 +83,6 @@
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
     var no_memo = location.hash.substr(20);
-    var link =
 
     $.ajax({
       url: `<?= base_url('api/memorandum/detail/') ?>${auth.token}?no_memo=${no_memo}`,
@@ -96,17 +95,17 @@
           $('#tgl_memo').text(v.tgl_memo)
 
           var btn = ''
-
           if(v.status === 'Proses'){
             btn+= `<button type="submit" id="btn_approve" data-id="${v.no_memo}" class="btn btn-success" style="margin-right: 10px; margin-bottom: 15px;">Approve<i class="ti-check"></i></button>`
 
-            $('#approve').append(btn)
+            $('#action').html(btn)
           } else {
-            $('#print').attr('style', 'margin-right: 15px; margin-bottom: 15px;')
+            btn += `<button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>`
+
+            $('#action').html(btn)
           }
 
           var html = ''
-
           $.each(v.detail, function(k1, v1){
             html+= `<tr id="baris${v1.id_memorandum_detail}">`
 
@@ -132,7 +131,7 @@
       }
     })
 
-    $(document).on('click', '#btn_approve', function(){
+    $('#action').on('click', '#btn_approve', function(){
       var no_memo = $(this).attr('data-id');
 
       Swal.fire({
@@ -184,7 +183,7 @@
         })
       })
 
-    $("#print").click(function() {
+    $("#action").on('click', '#print', function() {
 
       var mode = 'iframe'; //popup
       var close = mode == "popup";

@@ -67,12 +67,25 @@
         zeroRecords: 'Pesanan tidak ditemukan',
         infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Pesanan',
         loadingRecords: '<i class="fas fa-redo-alt fa-spin"></i>',
-        processing: '<i class="fas fa-redo-alt fa-spin"></i>',
+        processing: 'Memuat...',
         infoFiltered: ''
       },
       responsive: true,
       processing: true,
-      ajax: '<?= base_url('api/pesanan/show/'); ?>'+auth.token,
+      ajax: {
+        url: '<?= base_url('api/pesanan/show/'); ?>'+auth.token,
+        dataSrc: function(res){
+          var new_data = []
+
+          $.each(res.data, function(k, v){
+            if(v.status === 'Disetujui' || v.status === 'Batal'){
+              new_data.push(v)
+            }
+          })
+
+          return new_data;
+        }
+      },
       columns: [
         {"data": 'tgl_pesanan'},
         {"data": 'no_pesanan'},

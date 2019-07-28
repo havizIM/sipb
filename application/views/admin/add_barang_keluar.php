@@ -19,20 +19,25 @@
       <div class="card">
         <div class="card-body">
           <form class="form-horizontal" method="post" id="form_add" enctype="multipart/form-data">
-            <div class="form-group">
-              <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Customer</label>
-              <div class="input-group">
-                <input type="hidden" name="id_customer" id="id_customer">
-                <input type="text" class="form-control" name="nama_customer" id="nama_customer" placeholder="-- Pilih Customer --" readonly>
-                <div class="input-group-append">
-                  <span class="input-group-text bg-info text-white" id="modal_customer" style="cursor: pointer;">Cari</span>
+              <div class="form-group">
+                <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Pesanan</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" name="no_sp" id="no_pesanan" placeholder="-- Pilih Pesanan --" readonly>
+                  <div class="input-group-append">
+                    <span class="input-group-text bg-info text-white" id="modal_pesanan" style="cursor: pointer;">Cari</span>
+                  </div>
                 </div>
               </div>
-              <br>
+
+              <div class="form-group">
+                <label style="margin-left: 10px; margin-bottom: 5px;">Nama Pelanggan</label>
+                <input type="hidden" name="id_customer" id="id_customer">
+                <input type="text" class="form-control" name="nama_customer" id="nama_customer" readonly>
+              </div>
 
               <div class="form-group">
                 <label style="margin-left: 10px; margin-bottom: 5px;">Alamat Pengiriman</label>
-                <textarea class="form-control" id="alamat_kirim" name="alamat_kirim" rows="8" cols="80" placeholder="Alamat Pengiriman"></textarea>
+                <textarea class="form-control" id="alamat_kirim" name="alamat_kirim" rows="8" cols="80" placeholder="Alamat Pengiriman" readonly></textarea>
               </div>
 
               <div class="form-group">
@@ -45,20 +50,6 @@
                 <input type="text" class="form-control" name="no_truk" id="no_truk">
               </div>
 
-              <div class="form-group">
-                <label style="margin-left: 10px; margin-bottom: 5px;">No. Invoice</label>
-                <input type="text" class="form-control" name="ref_id" id="ref_id">
-              </div>
-
-              <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Pesanan</label>
-              <div class="input-group">
-                <input type="text" class="form-control" name="no_sp" id="no_pesanan" placeholder="-- Pilih Pesanan --" readonly>
-                <div class="input-group-append">
-                  <span class="input-group-text bg-info text-white" id="modal_pesanan" style="cursor: pointer;">Cari</span>
-                </div>
-              </div>
-              <br>
-
               <div class="row">
                 <div class="col-md-12">
                   <div class="table-responsive">
@@ -66,6 +57,7 @@
                     <table class="table table-bordered" id="detail_keluar">
                       <thead>
                         <th>No Identifikasi</th>
+                        <th>No Persediaan</th>
                         <th>Qty</th>
                         <th> <button type="button" class="btn btn-sm btn-info" id="modal_stok"> <i class="fa fa-plus"></i> </button> </th>
                       </thead>
@@ -79,38 +71,9 @@
 
               <center><button type="submit" id="submit_add" class="btn btn-info waves-effect">Tambah</button></center>
           </form>
-        </div>
       </div>
     </div>
   </div>
-  </div>
-</div>
-
-<div id="lookup_customer" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Pilih Customer</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      </div>
-      <div class="modal-body form-group">
-        <div class="table-responsive m-t-40">
-          <table class="table table-striped table-hover" id="t_customer">
-            <thead>
-              <th>Nama Customer</th>
-              <th>Telepon</th>
-              <th>Fax</th>
-              <th>Email</th>
-              <th>Alamat</th>
-              <th></th>
-            </thead>
-            <tbody>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -122,7 +85,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
       <div class="modal-body form-group">
-        <div class="table-responsive m-t-40">
+        <div class="table-responsive">
           <table class="table table-striped table-hover" id="t_pesanan">
             <thead>
               <th>No. Pesanan</th>
@@ -151,7 +114,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
       <div class="modal-body form-group">
-        <div class="table-responsive m-t-40">
+        <div class="table-responsive">
           <table class="table table-striped table-hover" id="t_stok">
             <thead>
               <th>No. Identifikasi</th>
@@ -180,43 +143,6 @@
 
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
-
-    var tables = $('#t_customer').DataTable({
-      columnDefs: [{
-        targets: [0],
-        searchable: true
-      }, {
-        targets: [5],
-        orderable: false
-      }],
-      autoWidth: false,
-      language: {
-        search: 'Cari Nama: _INPUT_',
-        lengthMenu: 'Tampilkan: _MENU_',
-        paginate: {'next': 'Berikutnya', 'previous': 'Sebelumnya'},
-        info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ Customer',
-        zeroRecords: 'Customer tidak ditemukan',
-        infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Customer',
-        loadingRecords: '<i class="fa fa-refresh fa-spin"></i>',
-        processing: 'Memuat....',
-        infoFiltered: ''
-      },
-      responsive: true,
-      processing: true,
-      ajax: '<?= base_url('api/customer/show/'); ?>'+auth.token,
-      columns: [
-        {"data": 'nama_customer'},
-        {"data": 'telepon'},
-        {"data": 'fax'},
-        {"data": 'email'},
-        {"data": 'alamat'},
-        {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="pilih_customer" data-id="${row.id_customer}" data-nama="${row.nama_customer}"> Pilih</button>`
-          }
-        }
-      ],
-      order: [[0, 'desc']]
-    })
 
     $('#modal_customer').on('click', function(){
       $('#lookup_customer').modal('show');
@@ -249,12 +175,25 @@
         zeroRecords: 'Pesanan tidak ditemukan',
         infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Pesanan',
         loadingRecords: '<i class="fas fa-redo-alt fa-spin"></i>',
-        processing: '<i class="fas fa-redo-alt fa-spin"></i>',
+        processing: 'Memuat...',
         infoFiltered: ''
       },
       responsive: true,
       processing: true,
-      ajax: '<?= base_url('api/pesanan/show/'); ?>'+auth.token,
+      ajax: {
+        url: '<?= base_url('api/pesanan/show/'); ?>'+auth.token,
+        dataSrc: function(res){
+          var new_data = [];
+
+          $.each(res.data, function(k, v){
+            if(v.status === 'Disetujui'){
+              new_data.push(v)
+            }
+          })
+
+          return new_data;
+        }
+      },
       columns: [
         {"data": 'no_pesanan'},
         {"data": 'tgl_pesanan'},
@@ -263,7 +202,7 @@
         {"data": 'alamat_kirim'},
         {"data": 'nama_user'},
         {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="pilih_pesanan" data-id="${row.no_pesanan}"> Pilih</button>`
+          return `<button class="btn btn-info" id="pilih_pesanan" data-id="${row.no_pesanan}" data-id_customer="${row.id_customer}" data-nama_customer="${row.nama_customer}" data-alamat="${row.alamat_kirim}"> Pilih</button>`
           }
         }
       ],
@@ -276,8 +215,14 @@
 
     $('#t_pesanan').on('click', '#pilih_pesanan', function(){
       var no_pesanan = $(this).attr('data-id');
+      var id_customer = $(this).attr('data-id_customer');
+      var nama_customer = $(this).attr('data-nama_customer');
+      var alamat_kirim = $(this).attr('data-alamat');
 
       $('#no_pesanan').val(no_pesanan);
+      $('#id_customer').val(id_customer);
+      $('#nama_customer').val(nama_customer);
+      $('#alamat_kirim').val(alamat_kirim);
 
       $('#lookup_pesanan').modal('hide');
     })
@@ -315,7 +260,7 @@
         {"data": 'warna'},
         {"data": 'ket_barang'},
         {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="pilih_stok" data-id="${row.id_identifikasi}" data-nama="${row.no_identifikasi}"> Pilih</button>`
+          return `<button class="btn btn-info" id="pilih_stok" data-id="${row.id_identifikasi}" data-barang="${row.no_persediaan}" data-nama="${row.no_identifikasi}"> Pilih</button>`
           }
         }
       ],
@@ -328,11 +273,13 @@
 
     $('#t_stok').on('click', '#pilih_stok', function(){
       var id_identifikasi = $(this).attr('data-id')
+      var no_persediaan = $(this).attr('data-barang')
       var no_identifikasi = $(this).attr('data-nama')
 
       var html = `<tr id="baris${id_identifikasi}">`
 
       html+=`<td>${no_identifikasi} <input type="hidden" name="id_identifikasi[]" value="${id_identifikasi}"></td>`
+      html+=`<td>${no_persediaan}</td>`
       html+=`<td><input type="text" class="form-control" name="qty_keluar[]" placeholder="Qty" required></td>`
       html+=`<td><button type="button" class="btn btn-danger remove" id="${id_identifikasi}"><i class="fa fa-trash"></i></button></td>`
       html+=`</tr>`

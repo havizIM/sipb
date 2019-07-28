@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>DETAIL BARANG MASUK</b> <span class="pull-right"></span></h3>
+          <h3><b>NO BARANG MASUK</b> <span class="pull-right" id="no_masuk"></span></h3>
           <hr>
           <div class="row">
             <div class="col-md-6">
@@ -66,8 +66,8 @@
           </div>
         </div>
         <hr>
-        <div class="text-right" id="if_approve">
-          <button id="print" class="btn btn-info" type="button" style="margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
+        <div class="text-right" id="action">
+        
         </div>
       </div>
     </div>
@@ -90,24 +90,24 @@
       success: function(response){
 
         $.each(response.data, function(k, v){
-          $('#no_masuk').text(v.no_masuk)
+          $('#no_masuk').text('#'+v.no_masuk)
           $('#nama_supplier').text(v.nama_supplier)
           $('#no_surat').text('No. Surat : '+v.no_surat)
           $('#no_po').text('No. PO : '+v.no_po)
           $('#tgl_masuk').text(v.tgl_masuk)
 
           var btn = ''
-
           if(v.status === 'Proses'){
-            btn+= `<button type="submit" id="btn_approve" data-id="${v.no_masuk}" class="btn btn-success" style="margin-right: 10px; margin-bottom: 15px;">Approve<i class="ti-check"></i></button>`
+            btn+= `<button type="submit" id="btn_approve" data-id="${v.no_masuk}" class="btn btn-success" style="margin-right: 10px; margin-bottom: 10px;">Approve<i class="ti-check"></i></button>`
 
-            $('#if_approve').append(btn)
+            $('#action').html(btn)
           } else {
-            $('#print').attr('style', 'margin-right: 15px; margin-bottom: 15px;')
+            btn += `<button id="print" class="btn btn-info" type="button" style="margin-right: 10px; margin-bottom: 10px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>`
+
+            $('#action').html(btn)
           }
 
           var html = ''
-
           $.each(v.detail, function(k1, v1){
             html+= `<tr id="baris${v1.id_masuk_detail}">`
 
@@ -133,7 +133,7 @@
       }
     })
 
-    $(document).on('click', '#btn_approve', function(){
+    $('#action').on('click', '#btn_approve', function(){
       var no_masuk = $(this).attr('data-id');
 
       Swal.fire({
@@ -185,7 +185,7 @@
         })
       })
 
-    $("#print").click(function() {
+    $('#action').on('click', '#print', function() {
 
       var mode = 'iframe'; //popup
       var close = mode == "popup";

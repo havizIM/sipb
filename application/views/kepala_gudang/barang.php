@@ -28,8 +28,6 @@
                 <th>Keterangan</th>
                 <th>Barang Masuk</th>
                 <th>Barang Keluar</th>
-                <th>Return Pemasok</th>
-                <th>Return Pelanggan</th>
                 <th>Sisa Stock</th>
                 <th>Foto</th>
               </tr>
@@ -79,33 +77,19 @@
         {"data": 'warna'},
         {"data": 'keterangan'},
         {"data": null, 'render': function(data, type, row){
-          return `${row.jml_barang_masuk ? row.jml_barang_masuk : 0}`
+          return `${row.barang_masuk ? row.barang_masuk : 0}`
           }
         },
         {"data": null, 'render': function(data, type, row){
-          return `${row.jml_barang_keluar ? row.jml_barang_keluar : 0}`
+          return `${row.barang_keluar ? row.barang_keluar : 0}`
           }
         },
         {"data": null, 'render': function(data, type, row){
-          return `${row.jml_return_keluar ? row.jml_return_keluar : 0}`
+          return `${row.sisa_stock ? row.sisa_stock : 0}`
           }
         },
         {"data": null, 'render': function(data, type, row){
-          return `${row.jml_return_masuk ? row.jml_return_masuk : 0}`
-          }
-        },
-        {"data": null, 'render': function(data, type, row){
-          return `${0 + (parseInt(row.jml_barang_masuk) - parseInt(row.jml_barang_keluar)) + (parseInt(row.jml_return_masuk) - parseInt(row.jml_return_keluar)) }`
-          }
-        },
-        {"data": null, 'render': function(data, type, row){
-            var barang_masuk = row.jml_barang_masuk ? row.jml_barang_masuk : 0;
-            var barang_keluar = row.jml_barang_keluar ? row.jml_barang_keluar : 0;
-            var return_masuk = row.jml_return_masuk ? row.jml_return_masuk : 0;
-            var return_keluar =  row.jml_return_keluar ? row.jml_return_keluar : 0;
-            var total_barang = parseInt(barang_masuk - barang_keluar) + parseInt(return_masuk - return_keluar);
-
-            return `${total_barang}`
+          return `<center><a href="<?= base_url('doc/barang/') ?>${row.foto}" target="_blank"><img src="<?= base_url('doc/barang/') ?>${row.foto}" style="width: 75px; height: 75px;"></a></center>`
           }
         }
       ],

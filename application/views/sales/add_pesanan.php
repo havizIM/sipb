@@ -20,10 +20,10 @@
         <div class="card-body">
           <form class="form-horizontal" method="post" id="form_add" enctype="multipart/form-data">
             <div class="form-group">
-              <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Customer</label>
+              <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Pelanggan</label>
               <div class="input-group">
                 <input type="hidden" name="id_customer" id="id_customer">
-                <input type="text" class="form-control" name="nama_customer" id="nama_customer" placeholder="-- Pilih Customer --" readonly>
+                <input type="text" class="form-control" name="nama_customer" id="nama_customer" placeholder="-- Pilih Pelanggan --" readonly>
                 <div class="input-group-append">
                   <span class="input-group-text bg-info text-white" id="modal_customer" style="cursor: pointer;">Cari</span>
                 </div>
@@ -72,14 +72,14 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Pilih Customer</h4>
+        <h4 class="modal-title" id="myLargeModalLabel">Pilih Pelanggan</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
       <div class="modal-body form-group">
         <div class="table-responsive m-t-40">
           <table class="table table-striped table-hover" id="t_customer">
             <thead>
-              <th>Nama Customer</th>
+              <th>Nama Pelanggan</th>
               <th>Telepon</th>
               <th>Fax</th>
               <th>Email</th>

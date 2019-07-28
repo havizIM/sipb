@@ -83,7 +83,18 @@
         {"data": 'status'},
         {"data": 'nama_user'},
         {"data": null, 'render': function(data, type, row){
-            return `<a href="#/edit_return_masuk/${row.no_return_masuk}" class="btn btn-info"><i class="far fa-edit"></i></a> <a href="#/detail_return_masuk/${row.no_return_masuk}" class="btn btn-primary" id="print"><i class="fa fa-eye"></i></a> <button class="btn btn-danger" id="hapus_return_masuk" data-id="${row.no_return_masuk}"><i class="fas fa-trash"></i></button>`
+            if(row.status === 'Proses'){
+              return `
+                <a href="#/edit_return_masuk/${row.no_return_masuk}" class="btn btn-info"><i class="far fa-edit"></i></a>
+                <a href="#/detail_return_masuk/${row.no_return_masuk}" class="btn btn-primary" id="print"><i class="fa fa-eye"></i></a>
+                <button class="btn btn-danger" id="hapus_return_masuk" data-id="${row.no_return_masuk}"><i class="fas fa-trash"></i></button>
+              `
+            } else {
+              return `
+                <a href="#/detail_return_masuk/${row.no_return_masuk}" class="btn btn-primary" id="print"><i class="fa fa-eye"></i></a>
+              `
+            }
+            
           }
         }
       ],

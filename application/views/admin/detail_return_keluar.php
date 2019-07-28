@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>DETAIL RETURN PEMASOK</b> <span class="pull-right"></span></h3>
+          <h3><b>NO RETURN PEMASOK</b> <span class="pull-right" id="no_return_keluar"></span></h3>
           <hr>
           <div class="row">
             <div class="col-md-6">
@@ -69,8 +69,8 @@
           </div>
         </div>
         <hr>
-        <div class="text-right">
-          <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
+        <div class="text-right" id="action">
+        
         </div>
       </div>
     </div>
@@ -93,17 +93,25 @@
       success: function(response){
 
         $.each(response.data, function(k, v){
-          $('#no_return_keluar').text(v.no_return_keluar)
+          $('#no_return_keluar').text('#'+v.no_return_keluar)
           $('#nama_supplier').text(v.nama_supplier)
           $('#telepon').text('Telepon : '+v.telepon)
           $('#email').text('Email : '+v.email)
           $('#fax').text('Fax : '+v.fax)
           $('#alamat').text('Alamat : '+v.alamat)
           $('#ref').text('No. Ref : '+v.no_ref)
-          $('#tgl_return_keluar').text(v.tgl_return_keluar)
+          $('#tgl_return').text(v.tgl_return)
+
+          var btn = ''
+          if(v.status === 'Disetujui'){
+            btn += `
+              <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
+            `;
+
+            $('#action').html(btn)
+          }
 
           var html = ''
-
           $.each(v.detail, function(k1, v1){
             html+= `<tr id="baris${v1.id_dreturn_keluar}">`
 
@@ -129,7 +137,7 @@
       }
     })
 
-    $("#print").click(function() {
+    $('#action').on('click', '#print', function() {
 
       var mode = 'iframe'; //popup
       var close = mode == "popup";

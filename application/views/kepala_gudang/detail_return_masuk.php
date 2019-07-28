@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>DETAIL RETURN PELANGGAN</b> <span class="pull-right"></span></h3>
+          <h3><b>NO RETURN PELANGGAN</b> <span class="pull-right" id="no_return"></span></h3>
           <hr>
           <div class="row">
             <table width="100%">
@@ -71,9 +71,9 @@
           </div>
         </div>
         <hr>
-        <div class="text-right" id="approve">
-          <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
-        </div>
+      </div>
+      <div class="text-right" id="action">
+      
       </div>
     </div>
   </div>
@@ -86,7 +86,6 @@
     var session = localStorage.getItem('sipb');
     var auth = JSON.parse(session);
     var no_return_masuk = location.hash.substr(22);
-    var link =
 
     $.ajax({
       url: `<?= base_url('api/return_masuk/detail/') ?>${auth.token}?no_return_masuk=${no_return_masuk}`,
@@ -95,24 +94,24 @@
       success: function(response){
 
         $.each(response.data, function(k, v){
-          $('#no_return_masuk').text(v.no_return_masuk)
+          $('#no_return').text('#'+v.no_return_masuk)
           $('#nama_customer').text(v.nama_customer)
           $('#alamat').text('Alamat : '+v.alamat)
           $('#no_ref').text('No. Ref : '+v.no_ref)
-          $('#tgl_return_masuk').text(v.tgl_return_masuk)
+          $('#tgl_return').text(v.tgl_return)
 
           var btn = ''
-
           if(v.status === 'Proses'){
             btn+=`<button type="submit" id="btn_approve" data-id="${v.no_return_masuk}" class="btn btn-success" style="margin-right: 10px; margin-bottom: 15px;"><i class="ti-check"></i> Approve</button>`
 
-            $('#approve').append(btn)
+            $('#action').html(btn)
           } else {
-            $('#print').attr('style', 'margin-right: 15px; margin-bottom: 15px;')
+            btn += `<button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>`
+
+            $('#action').html(btn)
           }
 
           var html = ''
-
           $.each(v.detail, function(k1, v1){
             html+= `<tr id="baris${v1.id_dreturn_masuk}">`
 
@@ -138,7 +137,7 @@
       }
     })
 
-    $(document).on('click', '#btn_approve', function(){
+    $('#action').on('click', '#btn_approve', function(){
       var no_return_masuk = $(this).attr('data-id');
 
       Swal.fire({
@@ -190,7 +189,7 @@
         })
       })
 
-    $("#print").click(function() {
+    $("#action").on('click', '#print', function() {
 
       var mode = 'iframe'; //popup
       var close = mode == "popup";

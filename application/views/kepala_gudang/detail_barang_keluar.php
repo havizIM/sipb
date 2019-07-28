@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body printableArea">
-          <h3><b>DETAIL BARANG KELUAR</b> <span class="pull-right" id="no_pesanan"></span></h3>
+          <h3><b>NO BARANG KELUAR</b> <span class="pull-right" id="no_keluar"></span></h3>
           <hr>
           <div class="row">
             <div class="col-md-6">
@@ -42,7 +42,6 @@
                     <p class="text-muted m-l-30" id="no_sp" name="no_sp" style="margin-bottom: 0px;"></p>
                     <p class="text-muted m-l-30" id="ekspedisi" name="ekspedisi" style="margin-bottom: 0px;"></p>
                     <p class="text-muted m-l-30" id="no_truk" name="no_truk" style="margin-bottom: 0px;"></p>
-                    <p class="text-muted m-l-30" id="ref_id" name="ref_id" style="margin-bottom: 0px;"></p>
                     <p><b>Tgl. Keluar :</b> <i class="fa fa-calendar"></i> <span id="tgl_keluar" name="tgl_keluar"></span> </p>
                   </address>
                 </div>
@@ -69,8 +68,8 @@
           </div>
         </div>
         <hr>
-        <div class="text-right" id="approve">
-          <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
+        <div class="text-right" id="action">
+        
         </div>
       </div>
     </div>
@@ -92,27 +91,28 @@
       success: function(response){
 
         $.each(response.data, function(k, v){
-          $('#no_keluar').text(v.no_keluar)
+          $('#no_keluar').text('#'+v.no_keluar)
           $('#nama_customer').text(v.nama_customer)
           $('#alamat_kirim').text('Alamat Pengiriman : '+v.alamat_kirim)
           $('#no_sp').text('No. SP : '+v.no_sp)
           $('#ekspedisi').text('Ekspedisi : '+v.ekspedisi)
           $('#no_truk').text('No. Truk : '+v.no_truk)
-          $('#ref_id').text('Ref. ID : '+v.ref_id)
           $('#tgl_keluar').text(v.tgl_keluar)
 
-          var btn = ''
 
+          var btn = ''
           if(v.status === 'Proses'){
             btn+=`<button type="submit" id="btn_approve" data-id="${v.no_keluar}" class="btn btn-success" style="margin-right: 10px; margin-bottom: 15px;"><i class="ti-check"></i> Approve</button>`
 
-            $('#approve').append(btn)
+            $('#action').html(btn)
           } else {
-            $('#print').attr('style', 'margin-right: 15px; margin-bottom: 15px;')
+            btn += `<button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>`
+
+            $('#action').html(btn)
           }
 
-          var html = ''
 
+          var html = ''
           $.each(v.detail, function(k1, v1){
             html+= `<tr id="baris${v1.id_keluar_detail}">`
 
@@ -138,7 +138,7 @@
       }
     })
 
-    $(document).on('click', '#btn_approve', function(){
+    $('#action').on('click', '#btn_approve', function(){
       var no_keluar = $(this).attr('data-id');
 
       Swal.fire({
@@ -190,7 +190,7 @@
         })
       })
 
-    $("#print").click(function() {
+    $("#action").on('click', '#print', function() {
 
       var mode = 'iframe'; //popup
       var close = mode == "popup";

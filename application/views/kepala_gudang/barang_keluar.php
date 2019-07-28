@@ -29,7 +29,6 @@
                   <th>No. SP</th>
                   <th>Ekspedisi</th>
                   <th>No. Truk</th>
-                  <th>No. Invoice</th>
                   <th>Status</th>
                   <th>Nama Admin</th>
                   <th style="width: 17%;"></th>
@@ -70,7 +69,7 @@
         zeroRecords: 'Data tidak ditemukan',
         infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Data',
         loadingRecords: '<i class="fas fa-redo-alt fa-spin"></i>',
-        processing: '<i class="fas fa-redo-alt fa-spin"></i>',
+        processing: 'Memuat...',
         infoFiltered: ''
       },
       responsive: true,
@@ -84,7 +83,6 @@
         {"data": 'no_sp'},
         {"data": 'ekspedisi'},
         {"data": 'no_truk'},
-        {"data": 'ref_id'},
         {"data": 'status'},
         {"data": 'nama_user'},
         {"data": null, 'render': function(data, type, row){

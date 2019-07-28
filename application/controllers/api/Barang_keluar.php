@@ -55,7 +55,6 @@ class Barang_keluar extends CI_Controller {
             $json['no_sp']         = $key->no_sp;
             $json['ekspedisi']     = $key->ekspedisi;
             $json['no_truk']       = $key->no_truk;
-            $json['ref_id']        = $key->ref_id;
             $json['status']        = $key->status;
             $json['id_user']       = $key->id_user;
             $json['nama_user']     = $key->nama_user;
@@ -122,7 +121,6 @@ class Barang_keluar extends CI_Controller {
               $json['no_sp']         = $key->no_sp;
               $json['ekspedisi']     = $key->ekspedisi;
               $json['no_truk']       = $key->no_truk;
-              $json['ref_id']        = $key->ref_id;
               $json['status']        = $key->status;
               $json['id_user']       = $key->id_user;
               $json['nama_user']     = $key->nama_user;
@@ -167,10 +165,9 @@ class Barang_keluar extends CI_Controller {
             $no_sp         = $post['no_sp'];
             $ekspedisi     = $post['ekspedisi'];
             $no_truk       = $post['no_truk'];
-            $ref_id        = $post['ref_id'];
             $status        = 'Proses';
 
-            if($id_customer == null || $no_sp == null || $alamat_kirim == null || $ekspedisi == null || $no_truk == null || $ref_id == null || $status == null){
+            if($id_customer == null || $no_sp == null || $alamat_kirim == null || $ekspedisi == null || $no_truk == null || $status == null){
               json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
             } else {
               if(!isset($post['id_identifikasi']) && count($post['id_identifikasi']) < 1){
@@ -192,7 +189,6 @@ class Barang_keluar extends CI_Controller {
                   'no_sp'         => $no_sp,
                   'ekspedisi'     => $ekspedisi,
                   'no_truk'       => $no_truk,
-                  'ref_id'        => $ref_id,
                   'status'        => $status,
                   'id_user'       => $otorisasi->id_user
                 );
@@ -251,12 +247,11 @@ class Barang_keluar extends CI_Controller {
             $no_sp         = $post['no_sp'];
             $ekspedisi     = $post['ekspedisi'];
             $no_truk       = $post['no_truk'];
-            $ref_id        = $post['ref_id'];
 
             if($no_keluar == null){
               json_output(401, array('status' => 400, 'description' => 'Gagal', 'message' => 'No Surat Jalan tidak ditemukan'));
             } else {
-              if($id_customer == null || $alamat_kirim == null || $no_sp == null || $ekspedisi == null || $no_truk == null || $ref_id == null){
+              if($id_customer == null || $alamat_kirim == null || $no_sp == null || $ekspedisi == null || $no_truk == null){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
               } else {
 
@@ -278,7 +273,6 @@ class Barang_keluar extends CI_Controller {
                     'no_sp'         => $no_sp,
                     'ekspedisi'     => $ekspedisi,
                     'no_truk'       => $no_truk,
-                    'ref_id'        => $ref_id,
                     'id_user'       => $otorisasi->id_user
                   );
 

@@ -79,7 +79,18 @@
         {"data": 'status'},
         {"data": 'nama_user'},
         {"data": null, 'render': function(data, type, row){
-            return `<a href="#/edit_memorandum/${row.no_memo}" class="btn btn-info"><i class="far fa-edit"></i></a> <a href="#/detail_memorandum/${row.no_memo}" class="btn btn-primary"><i class="fa fa-eye"></i></a> <button class="btn btn-danger" id="hapus_memorandum" data-id="${row.no_memo}"><i class="fas fa-trash"></i></button>`
+            if(row.status === 'Proses'){
+              return `
+                <a href="#/edit_memorandum/${row.no_memo}" class="btn btn-info"><i class="far fa-edit"></i></a>
+                <a href="#/detail_memorandum/${row.no_memo}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                <button class="btn btn-danger" id="hapus_memorandum" data-id="${row.no_memo}"><i class="fas fa-trash"></i></button>
+              `
+            } else {
+              return `
+                <a href="#/detail_memorandum/${row.no_memo}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+              `
+            }
+            
           }
         }
       ],

@@ -31,6 +31,7 @@
                   <table class="table table-bordered" id="detail_memo">
                     <thead>
                       <th>No. Identifikasi</th>
+                      <th>No. Persediaan</th>
                       <th>Qty. Masuk</th>
                       <th>Qty. Keluar</th>
                       <th>Keterangan</th>
@@ -107,7 +108,7 @@
         zeroRecords: 'Data tidak ditemukan',
         infoEmpty: 'Menampilkan 0 sampai 0 dari _TOTAL_ Data',
         loadingRecords: '<i class="fas fa-redo-alt fa-spin"></i>',
-        processing: '<i class="fas fa-redo-alt fa-spin"></i>',
+        processing: 'Memuat...',
         infoFiltered: ''
       },
       responsive: true,
@@ -123,7 +124,7 @@
         {"data": 'warna'},
         {"data": 'ket_barang'},
         {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="pilih_stok" data-id="${row.id_identifikasi}" data-nama="${row.no_identifikasi}"> Pilih</button>`
+          return `<button class="btn btn-info" id="pilih_stok" data-id="${row.id_identifikasi}" data-barang="${row.no_persediaan}" data-nama="${row.no_identifikasi}"> Pilih</button>`
           }
         }
       ],
@@ -136,11 +137,13 @@
 
     $('#t_stok').on('click', '#pilih_stok', function(){
       var id_identifikasi = $(this).attr('data-id')
+      var no_persediaan = $(this).attr('data-barang')
       var no_identifikasi = $(this).attr('data-nama')
 
       var html = `<tr id="baris${id_identifikasi}">`
 
       html+=`<td>${no_identifikasi} <input type="hidden" name="id_identifikasi[]" value="${id_identifikasi}"></td>`
+      html+=`<td>${no_persediaan}</td>`
       html+=`<td><input type="text" class="form-control" name="qty_masuk[]" placeholder="Qty. Masuk" required></td>`
       html+=`<td><input type="text" class="form-control" name="qty_keluar[]" placeholder="Qty. Keluar" required></td>`
       html+=`<td><input type="text" class="form-control" name="keterangan[]" placeholder="Keterangan" required></td>`

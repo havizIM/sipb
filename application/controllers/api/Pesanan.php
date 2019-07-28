@@ -153,7 +153,9 @@ class Pesanan extends CI_Controller {
           } else {
             $post           = $this->input->post();
 
-            $no_pesanan     = $this->KodeModel->buatKode('pesanan', 'PS', 'no_pesanan', 10);
+            $mycode = substr($otorisasi->username, 0, 2).'-'.date('my').'-';
+
+            $no_pesanan     = $this->KodeModel->buatKode('pesanan', $mycode, 'no_pesanan', 4);
             $tgl_kirim      = $post['tgl_kirim'];
             $id_customer    = $post['id_customer'];
             $alamat_kirim   = $post['alamat_kirim'];

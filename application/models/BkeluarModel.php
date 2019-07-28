@@ -26,8 +26,12 @@
         {
             $this->db->trans_start();
             $this->db->where('no_keluar', $no_keluar)->update('barang_keluar', $barang_keluar);
-            $this->db->where('no_keluar', $no_keluar)->delete('barang_keluar_detail');
-            $this->db->insert_batch('barang_keluar_detail', $detail);
+
+            if(!empty($detail)){
+                $this->db->where('no_keluar', $no_keluar)->delete('barang_keluar_detail');
+                $this->db->insert_batch('barang_keluar_detail', $detail);
+            }
+
             $this->db->insert('log', $log);
             $this->db->trans_complete();
 

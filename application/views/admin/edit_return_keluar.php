@@ -24,10 +24,10 @@
               <input type="text" class="form-control" id="no_ref" name="no_ref" rows="8" cols="80" placeholder="No. Ref">
             </div>
 
-            <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Supplier</label>
+            <label style="margin-left: 10px; margin-bottom: 5px;">Pilih Pemasok</label>
             <div class="input-group">
               <input type="hidden" name="id_supplier" id="id_supplier">
-              <input type="text" class="form-control" name="nama_supplier" id="nama_supplier" placeholder="-- Pilih Supplier --" readonly>
+              <input type="text" class="form-control" name="nama_supplier" id="nama_supplier" placeholder="-- Pilih Pemasok --" readonly>
               <div class="input-group-append">
                 <span class="input-group-text bg-info text-white" id="modal_supplier" style="cursor: pointer;">Cari</span>
               </div>
@@ -41,6 +41,7 @@
                   <table class="table table-bordered" id="stok">
                     <thead>
                       <th>No Identifikasi</th>
+                      <th>No Persediaan</th>
                       <th>Qty</th>
                       <th> <button type="button" class="btn btn-sm btn-info" id="modal_stok"> <i class="fa fa-plus"></i> </button> </th>
                     </thead>
@@ -64,14 +65,14 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Pilih Supplier</h4>
+        <h4 class="modal-title" id="myLargeModalLabel">Pilih Pemasok</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
       <div class="modal-body form-group">
         <div class="table-responsive m-t-40">
           <table class="table table-striped table-hover" id="t_supplier">
             <thead>
-              <th>Nama Supplier</th>
+              <th>Nama Pemasok</th>
               <th>Telepon</th>
               <th>Fax</th>
               <th>Email</th>
@@ -170,6 +171,7 @@
 
     $('#t_supplier').on('click', '#pilih_supplier', function(){
       var id_supplier = $(this).attr('data-id');
+      var no_persediaan = $(this).attr('data-barang');
       var nama_supplier = $(this).attr('data-nama');
 
       $('#id_supplier').val(id_supplier);
@@ -211,7 +213,7 @@
         {"data": 'warna'},
         {"data": 'ket_barang'},
         {"data": null, 'render': function(data, type, row){
-          return `<button class="btn btn-info" id="pilih_stok" data-id="${row.id_identifikasi}" data-nama="${row.no_identifikasi}"> Pilih</button>`
+          return `<button class="btn btn-info" id="pilih_stok" data-id="${row.id_identifikasi}" data-barang="${row.no_persediaan}" data-nama="${row.no_identifikasi}"> Pilih</button>`
           }
         }
       ],
@@ -224,16 +226,19 @@
 
     $('#t_stok').on('click', '#pilih_stok', function(){
       var id_identifikasi = $(this).attr('data-id')
+      var no_persediaan = $(this).attr('data-barang')
       var no_identifikasi = $(this).attr('data-nama')
 
       var html = `<tr id="baris${id_identifikasi}">`
 
       html+=`<td>${no_identifikasi} <input type="hidden" name="id_identifikasi[]" value="${id_identifikasi}"></td>`
+      html+=`<td>${no_persediaan}</td>`
       html+=`<td><input type="text" class="form-control" name="qty_return_keluar[]" placeholder="Qty" required></td>`
       html+=`<td><button type="button" class="btn btn-danger remove" id="${id_identifikasi}"><i class="fa fa-trash"></i></button></td>`
       html+=`</tr>`
 
-      $('#stok').append(html)
+      $('#stok tbody').append(html)
+      $('#lookup_stok').modal('hide')
     })
 
     $(document).on('click', '.remove', function(){
@@ -258,11 +263,12 @@
             html+= `<tr id="baris${v1.id_identifikasi}">`
 
             html+=`<td>${v1.no_identifikasi} <input type="hidden" name="id_identifikasi[]" value="${v1.id_identifikasi}"></td>`
+            html+=`<td>${v1.no_persediaan}</td>`
             html+=`<td><input type="text" class="form-control" value="${v1.qty_return_keluar}" name="qty_return_keluar[]" placeholder="Qty" required></td>`
             html+=`<td><button type="button" class="btn btn-danger remove" id="${v1.id_identifikasi}"><i class="fa fa-trash"></i></button></td>`
             html+=`</tr>`
 
-            $('#stok').append(html)
+            $('#stok tbody').html(html)
           })
         })
       },

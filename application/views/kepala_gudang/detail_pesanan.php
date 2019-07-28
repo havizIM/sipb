@@ -65,7 +65,7 @@
           </div>
         </div>
         <hr>
-        <div class="text-right">
+        <div class="text-right" id="action">
           <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
         </div>
       </div>
@@ -95,8 +95,22 @@
           $('#tgl_pesanan').text(v.tgl_pesanan)
           $('#tgl_kirim').text(v.tgl_kirim)
 
-          var html = ''
+          var btn = '';
+          if(v.status === 'Disetujui'){
+            btn  += `
+              <button id="print" class="btn btn-info" type="button" style="margin-right: 15px; margin-bottom: 15px;"> <span><i class="fa fa-print"></i> Cetak</span> </button>
+            `
 
+            $('#action').html(btn)
+          } else if(v.status === 'Batal'){
+            btn += `
+              <h3 class="text-danger" style="margin-right: 15px; margin-bottom: 15px"><i class="ti-close"></i> Batal</h3>
+            `;
+
+            $('#action').html(btn)
+          }
+
+          var html = ''
           $.each(v.detail, function(k1, v1){
             html+= `<tr id="baris${v1.id_detail_pesanan}">`
 
@@ -121,7 +135,7 @@
       }
     })
 
-    $("#print").click(function() {
+    $('#action').on('click', '#print', function() {
 
       var mode = 'iframe'; //popup
       var close = mode == "popup";
@@ -129,6 +143,7 @@
           mode: mode,
           popClose: close
       };
+      
       $("div.printableArea").printArea(options);
     });
 
