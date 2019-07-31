@@ -171,6 +171,11 @@
                   <i class="ti-shopping-cart"></i><span class="hide-menu">Laporan Pesanan</span>
                 </a>
               </li>
+              <li>
+                <a class="waves-effect waves-dark" href="#/laporan_stock" aria-expanded="false">
+                  <i class="ti-shopping-cart"></i><span class="hide-menu">Laporan Stok</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

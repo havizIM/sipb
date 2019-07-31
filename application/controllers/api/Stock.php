@@ -238,6 +238,57 @@ class Stock extends CI_Controller {
     }
   }
 
+  function laporan($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $auth = $this->AuthModel->cekAuth($token);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+          $otorisasi        = $auth->row();
+          $tgl_awal  = $this->input->get('tgl_awal');
+    			$tgl_akhir	= $this->input->get('tgl_akhir');
+
+          $show  = $this->StockModel->laporan($tgl_awal, $tgl_akhir);
+          $stock  = array();
+
+          foreach($show->result() as $key){
+            $json = array();
+
+            $json['id_identifikasi']   = $key->id_identifikasi;
+            $json['no_persediaan']     = $key->no_persediaan;
+            $json['no_identifikasi']   = $key->no_identifikasi;
+            $json['keterangan']        = $key->keterangan;
+
+            $masuk                    = $key->jml_barang_masuk + $key->jml_return_masuk + $key->jml_memorandum_in;
+            $keluar                   = $key->jml_barang_keluar + $key->jml_return_keluar + $key->jml_memorandum_out;
+            $json['saldo_awal']       = ($key->saldo_awal + $masuk) - $keluar;
+            $json['barang_masuk']     = $key->act_barang_masuk + $key->act_return_masuk + $key->act_memorandum_in;
+            $json['barang_keluar']    = $key->act_barang_keluar + $key->act_return_keluar + $key->act_memorandum_out;
+            $json['saldo_akhir']       = ($json['saldo_awal'] + $json['barang_masuk']) - $json['barang_keluar'];
+            
+            
+
+
+
+            $stock[] = $json;
+          }
+
+          json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $stock));
+        }
+      }
+    }
+  }
+
 
 }
 

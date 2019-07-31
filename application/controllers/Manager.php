@@ -24,6 +24,11 @@ class Manager extends CI_Controller{
     $this->load->view('manager/customer');
   }
 
+  function riwayat($id)
+  {
+    $this->load->view('manager/detail_customer');
+  }
+
   function barang()
   {
     $this->load->view('manager/barang');
@@ -42,6 +47,11 @@ class Manager extends CI_Controller{
   function laporan_pesanan()
   {
     $this->load->view('manager/laporan_pesanan');
+  }
+
+  function laporan_stock()
+  {
+    $this->load->view('manager/laporan_stock');
   }
 
 }

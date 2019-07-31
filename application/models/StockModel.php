@@ -26,6 +26,30 @@ class StockModel extends CI_Model {
       return $this->db->get();
     }
 
+    function laporan($tgl_awal, $tgl_akhir)
+    {
+      $this->db->select('*')
+               ->select('(SELECT sum(qty_keluar) FROM barang_keluar_detail, barang_keluar WHERE barang_keluar_detail.id_identifikasi = stock.id_identifikasi AND barang_keluar_detail.no_keluar = barang_keluar.no_keluar AND barang_keluar.tgl_keluar < "'.$tgl_awal.'") as jml_barang_keluar')
+               ->select('(SELECT sum(qty_masuk) FROM barang_masuk_detail, barang_masuk WHERE barang_masuk_detail.id_identifikasi = stock.id_identifikasi AND barang_masuk_detail.no_masuk = barang_masuk.no_masuk AND barang_masuk.tgl_masuk < "'.$tgl_awal.'") as jml_barang_masuk')
+               ->select('(SELECT sum(qty_return_keluar) FROM return_keluar_detail, return_keluar WHERE return_keluar_detail.id_identifikasi = stock.id_identifikasi AND return_keluar_detail.no_return_keluar = return_keluar.no_return_keluar AND return_keluar.tgl_return < "'.$tgl_awal.'") as jml_return_keluar')
+               ->select('(SELECT sum(qty_return_masuk) FROM return_masuk_detail, return_masuk WHERE return_masuk_detail.id_identifikasi = stock.id_identifikasi AND return_masuk_detail.no_return_masuk = return_masuk.no_return_masuk AND return_masuk.tgl_return < "'.$tgl_awal.'") as jml_return_masuk')
+               ->select('(SELECT sum(qty_masuk) FROM memorandum_detail, memorandum WHERE memorandum_detail.id_identifikasi = stock.id_identifikasi AND memorandum_detail.no_memo = memorandum.no_memo  AND memorandum.tgl_memo < "'.$tgl_awal.'") as jml_memorandum_in')
+               ->select('(SELECT sum(qty_keluar) FROM memorandum_detail, memorandum WHERE memorandum_detail.id_identifikasi = stock.id_identifikasi AND memorandum_detail.no_memo = memorandum.no_memo AND memorandum.tgl_memo < "'.$tgl_awal.'") as jml_memorandum_out')
+
+               ->select('(SELECT sum(qty_keluar) FROM barang_keluar_detail, barang_keluar WHERE barang_keluar_detail.id_identifikasi = stock.id_identifikasi AND barang_keluar_detail.no_keluar = barang_keluar.no_keluar AND barang_keluar.tgl_keluar BETWEEN "'.$tgl_awal.'" AND "'.$tgl_akhir.'") as act_barang_keluar')
+               ->select('(SELECT sum(qty_masuk) FROM barang_masuk_detail, barang_masuk WHERE barang_masuk_detail.id_identifikasi = stock.id_identifikasi AND barang_masuk_detail.no_masuk = barang_masuk.no_masuk AND barang_masuk.tgl_masuk BETWEEN "'.$tgl_awal.'" AND "'.$tgl_akhir.'") as act_barang_masuk')
+               ->select('(SELECT sum(qty_return_keluar) FROM return_keluar_detail, return_keluar WHERE return_keluar_detail.id_identifikasi = stock.id_identifikasi AND return_keluar_detail.no_return_keluar = return_keluar.no_return_keluar AND return_keluar.tgl_return BETWEEN "'.$tgl_awal.'" AND "'.$tgl_akhir.'") as act_return_keluar')
+               ->select('(SELECT sum(qty_return_masuk) FROM return_masuk_detail, return_masuk WHERE return_masuk_detail.id_identifikasi = stock.id_identifikasi AND return_masuk_detail.no_return_masuk = return_masuk.no_return_masuk AND return_masuk.tgl_return BETWEEN "'.$tgl_awal.'" AND "'.$tgl_akhir.'") as act_return_masuk')
+               ->select('(SELECT sum(qty_masuk) FROM memorandum_detail, memorandum WHERE memorandum_detail.id_identifikasi = stock.id_identifikasi AND memorandum_detail.no_memo = memorandum.no_memo  AND memorandum.tgl_memo BETWEEN "'.$tgl_awal.'" AND "'.$tgl_akhir.'") as act_memorandum_in')
+               ->select('(SELECT sum(qty_keluar) FROM memorandum_detail, memorandum WHERE memorandum_detail.id_identifikasi = stock.id_identifikasi AND memorandum_detail.no_memo = memorandum.no_memo AND memorandum.tgl_memo BETWEEN "'.$tgl_awal.'" AND "'.$tgl_akhir.'") as act_memorandum_out')
+               
+               ->from('stock');
+
+
+      $this->db->order_by('id_identifikasi', 'desc');
+      return $this->db->get();
+    }
+
     function add($data, $log)
     {
       $this->db->trans_start();

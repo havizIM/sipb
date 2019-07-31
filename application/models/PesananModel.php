@@ -79,6 +79,21 @@
       return $this->db->get();
     }
 
+    function riwayat($customer)
+    {
+      $this->db->select('a.*, b.nama_customer, c.id_user, c.nama_user')
+							 ->from('pesanan a')
+							 ->join('customer b', 'b.id_customer = a.id_customer')
+               ->join('user c', 'c.id_user = a.id_user');
+
+      
+      $this->db->where('a.id_customer', $customer);
+      
+
+      $this->db->order_by('a.no_pesanan', 'desc');
+      return $this->db->get();
+    }
+
     function laporan($where)
     {
       $this->db->select('a.*, b.nama_customer, c.id_user, c.nama_user')

@@ -227,7 +227,10 @@
       ajax: '<?= base_url('api/customer/show/'); ?>'+auth.token,
       columns: [
         {"data": 'tgl_input'},
-        {"data": 'nama_customer'},
+        {"data": null, 'render': function(data, type, row){
+          return `<a href="#/riwayat/${row.id_customer}">${row.nama_customer}</a>`
+          }
+        },
         {"data": 'telepon'},
         {"data": 'fax'},
         {"data": 'email'},

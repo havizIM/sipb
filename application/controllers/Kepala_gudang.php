@@ -34,6 +34,11 @@ class Kepala_gudang extends CI_Controller{
     $this->load->view('kepala_gudang/customer');
   }
 
+  function riwayat($id)
+  {
+    $this->load->view('kepala_gudang/detail_customer');
+  }
+
   function supplier()
   {
     $this->load->view('kepala_gudang/supplier');

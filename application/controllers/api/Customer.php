@@ -19,7 +19,8 @@ class Customer extends CI_Controller {
       $this->options
     );
 
-		$this->load->model('CustomerModel');
+    $this->load->model('CustomerModel');
+    $this->load->model('PesananModel');
   }
 
   function show($token = null){
@@ -55,6 +56,64 @@ class Customer extends CI_Controller {
             $json['email']         = $key->email;
             $json['alamat']        = $key->alamat;
             $json['tgl_input']     = $key->tgl_input;
+
+            $customer[] = $json;
+          }
+
+          json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $customer));
+        }
+      }
+    }
+  }
+
+  function riwayat($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $auth = $this->AuthModel->cekAuth($token);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+          $otorisasi      = $auth->row();
+          $id_customer  	= $this->input->get('id_customer');
+    			$nama_customer	= $this->input->get('nama_customer');
+
+          $show  = $this->CustomerModel->show($id_customer, $nama_customer);
+          $customer  = array();
+
+          foreach($show->result() as $key){
+            $json = array();
+
+            $json['id_customer']   = $key->id_customer;
+            $json['nama_customer'] = $key->nama_customer;
+            $json['telepon']       = $key->telepon;
+            $json['fax']           = $key->fax;
+            $json['email']         = $key->email;
+            $json['alamat']        = $key->alamat;
+            $json['tgl_input']     = $key->tgl_input;
+            $json['pesanan']       = array();
+
+            $riwayat               = $this->PesananModel->riwayat($key->id_customer);
+            foreach($riwayat->result() as $key2){
+              $json_p = array();
+
+              $json_p['no_pesanan']   = $key2->no_pesanan;
+              $json_p['tgl_pesanan']  = $key2->tgl_pesanan;
+              $json_p['tgl_kirim']    = $key2->tgl_kirim;
+              $json_p['alamat_kirim'] = $key2->alamat_kirim;
+              $json_p['status']       = $key2->status;
+
+              $json['pesanan'][]      = $json_p;
+            }
+
 
             $customer[] = $json;
           }
