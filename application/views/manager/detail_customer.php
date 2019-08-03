@@ -17,6 +17,9 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
+        <div class="card-header" style="background-color: #d63b70">
+          <h4 class="m-b-0 text-white">Detail Customer</h4>
+        </div>
         <div class="card-body" id="detail_pesanan">
 
         </div>

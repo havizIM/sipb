@@ -1,21 +1,24 @@
 <div class="container-fluid">
   <div class="row page-titles">
-      <div class="col-md-5 align-self-center">
-          <h4 class="text-themecolor">Barang</h4>
+    <div class="col-md-5 align-self-center">
+      <h4 class="text-themecolor">Barang</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+      <div class="d-flex justify-content-end align-items-center">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item active">Barang</li>
+        </ol>
       </div>
-      <div class="col-md-7 align-self-center text-right">
-          <div class="d-flex justify-content-end align-items-center">
-              <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Barang</li>
-              </ol>
-      </div>
+    </div>
   </div>
 
   <div class="col-md-12">
     <div class="card">
+      <div class="card-header" style="background-color: #d63b70">
+          <h4 class="m-b-0 text-white">Data Barang</h4>
+        </div>
       <div class="card-body">
-        <h4 class="card-title">Data Barang</h4>
         <div class="table-responsive">
           <table id="table_barang" class="table table-striped table-hover">
             <thead>

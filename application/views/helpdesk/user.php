@@ -91,7 +91,7 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-header" style="background-color: purple">
+        <div class="card-header" style="background-color: #d63b70">
           <h4 class="m-b-0 text-white">Data User</h4>
         </div>
         <div class="card-body">

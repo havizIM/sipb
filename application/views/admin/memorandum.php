@@ -16,10 +16,12 @@
 
   <div class="row">
     <div class="col-12">
+      <div class="card-header" style="background-color: #d63b70">
+          <h4 class="m-b-0 text-white">Data Memorandum</h4>
+        </div>
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Data Memorandum</h4>
-          <div class="table-responsive m-t-40">
+          <div class="table-responsive">
             <table id="t_memorandum" class="table table-striped">
               <thead>
                 <tr>

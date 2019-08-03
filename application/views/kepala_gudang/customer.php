@@ -16,9 +16,11 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
+        <div class="card-header" style="background-color: #d63b70">
+          <h4 class="m-b-0 text-white">Data Pelanggan</h4>
+        </div>
         <div class="card-body">
-          <h4 class="card-title">Data Pelanggan</h4>
-          <div class="table-responsive m-t-40">
+          <div class="table-responsive">
             <table id="t_customer" class="table table-striped">
               <thead>
                 <tr>
@@ -74,7 +76,7 @@
       columns: [
         {"data": 'tgl_input'},
         {"data": null, 'render': function(data, type, row){
-          return `<a href="#/riwayat/${row.id_customer}">${row.nama_customer}</a>`
+          return `<a href="#/riwayat/${row.id_customer}" class="btn btn-danger">${row.nama_customer}</a>`
           }
         },
         {"data": 'telepon'},

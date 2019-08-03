@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Supplier</h4>
+      <h4 class="text-themecolor">Pemasok</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
       <div class="d-flex justify-content-end align-items-center">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item active">Supplier</li>
+          <li class="breadcrumb-item active">Pemasok</li>
         </ol>
       </div>
     </div>
@@ -16,9 +16,11 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
+        <div class="card-header" style="background-color: #d63b70">
+          <h4 class="m-b-0 text-white">Data Pemasok</h4>
+        </div>
         <div class="card-body">
-          <h4 class="card-title">Data Supplier</h4>
-          <div class="table-responsive m-t-40">
+          <div class="table-responsive">
             <table id="t_supplier" class="table table-striped">
               <thead>
                 <tr>

@@ -17,9 +17,11 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
+        <div class="card-header" style="background-color: #d63b70">
+          <h4 class="m-b-0 text-white">Data Stok</h4>
+        </div>
         <div class="card-body">
-          <h4 class="card-title">Data Stok</h4>
-          <div class="table-responsive m-t-40">
+          <div class="table-responsive">
             <table id="t_stok" class="table table-striped table-hover">
               <thead>
                 <tr>
