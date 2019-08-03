@@ -31,6 +31,10 @@
                 <th>Keterangan</th>
                 <th>Barang Masuk</th>
                 <th>Barang Keluar</th>
+                <th>Return Pelanggan</th>
+                <th>Return Pemasok</th>
+                <th>Memorandum Keluar</th>
+                <th>Memorandum Masuk</th>
                 <th>Sisa Stock</th>
                 <th>Foto</th>
               </tr>
@@ -85,6 +89,22 @@
         },
         {"data": null, 'render': function(data, type, row){
           return `${row.barang_keluar ? row.barang_keluar : 0}`
+          }
+        },
+        {"data": null, 'render': function(data, type, row){
+          return `${row.return_masuk ? row.return_masuk : 0}`
+          }
+        },
+        {"data": null, 'render': function(data, type, row){
+          return `${row.return_keluar ? row.return_keluar : 0}`
+          }
+        },
+        {"data": null, 'render': function(data, type, row){
+          return `${row.memorandum_in ? row.memorandum_in : 0}`
+          }
+        },
+        {"data": null, 'render': function(data, type, row){
+          return `${row.memorandum_out ? row.memorandum_out : 0}`
           }
         },
         {"data": null, 'render': function(data, type, row){

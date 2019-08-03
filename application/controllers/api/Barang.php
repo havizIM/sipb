@@ -126,9 +126,13 @@ class Barang extends CI_Controller {
             $json['keterangan']           = $key->keterangan;
             $json['foto']                 = $key->foto;
             $json['tgl_input']            = $key->tgl_input;
-            $json['barang_masuk']         = $key->jml_barang_masuk + $key->jml_return_masuk + $key->jml_memorandum_in;
-            $json['barang_keluar']        = $key->jml_barang_keluar + $key->jml_return_keluar + $key->jml_memorandum_out;
-            $json['sisa_stock']           = (0 + $json['barang_masuk']) - $json['barang_keluar'];
+            $json['barang_masuk']         = $key->jml_barang_masuk;
+            $json['return_masuk']         = $key->jml_return_masuk;
+            $json['memorandum_in']        = $key->jml_memorandum_in;
+            $json['barang_keluar']        = $key->jml_barang_keluar;
+            $json['return_masuk']         = $key->jml_return_masuk;
+            $json['memorandum_out']       = $key->jml_memorandum_out;
+            $json['sisa_stock']           = (0 +  $key->jml_barang_masuk + $key->jml_return_masuk + $key->jml_memorandum_in) - ($key->jml_barang_keluar + $key->jml_return_keluar + $key->jml_memorandum_out);
 
             $persediaan[] = $json;
           }
