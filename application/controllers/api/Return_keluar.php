@@ -162,7 +162,7 @@ class Return_keluar extends CI_Controller {
             $post           = $this->input->post();
 
             $mycode               = 'RTN-'.date('my').'-';
-            $no_return_keluar     = $this->KodeModel->buatKode('return_keluar', $mycode, 'no_return_keluar', 9);
+            $no_return_keluar     = $this->KodeModel->buatKode('return_keluar', $mycode, 'no_return_keluar', 6);
             $no_ref               = $post['no_ref'];
             $id_supplier          = $post['id_supplier'];
             $status               = 'Proses';

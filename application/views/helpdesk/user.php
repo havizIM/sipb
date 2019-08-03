@@ -91,9 +91,11 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
+        <div class="card-header" style="background-color: purple">
+          <h4 class="m-b-0 text-white">Data User</h4>
+        </div>
         <div class="card-body">
-          <h4 class="card-title">Data User</h4>
-          <div class="table-responsive m-t-40">
+          <div class="table-responsive">
             <table id="table_user" class="table table-striped">
               <thead>
                 <tr>
