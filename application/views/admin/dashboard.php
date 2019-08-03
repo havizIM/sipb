@@ -151,8 +151,8 @@
     var data_3 = `<?= base_url().'api/customer/show/' ?>${token}`
     var data_4 = `<?= base_url().'api/supplier/show/' ?>${token}`
     var data_5 = `<?= base_url().'api/pesanan/show/' ?>${token}`
-    var data_6 = `<?= base_url().'api/barang_keluar/show/' ?>${token}`
-    var data_7 = `<?= base_url().'api/barang_masuk/show/' ?>${token}`
+    var data_6 = `<?= base_url().'api/barang_masuk/show/' ?>${token}`
+    var data_7 = `<?= base_url().'api/barang_keluar/show/' ?>${token}`
     var data_8 = `<?= base_url().'api/return_keluar/show/' ?>${token}`
     var data_9 = `<?= base_url().'api/return_masuk/show/' ?>${token}`
     var data_10 = `<?= base_url().'api/memorandum/show/' ?>${token}`
