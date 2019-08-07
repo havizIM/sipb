@@ -130,7 +130,7 @@ class Barang extends CI_Controller {
             $json['return_masuk']         = $key->jml_return_masuk;
             $json['memorandum_in']        = $key->jml_memorandum_in;
             $json['barang_keluar']        = $key->jml_barang_keluar;
-            $json['return_masuk']         = $key->jml_return_masuk;
+            $json['return_keluar']        = $key->jml_return_keluar;
             $json['memorandum_out']       = $key->jml_memorandum_out;
             $json['sisa_stock']           = (0 +  $key->jml_barang_masuk + $key->jml_return_masuk + $key->jml_memorandum_in) - ($key->jml_barang_keluar + $key->jml_return_keluar + $key->jml_memorandum_out);
 
